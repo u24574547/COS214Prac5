@@ -6,8 +6,9 @@
 
 class TransactionCaretaker {
     private:
-        vector<TransactionMemento*> mementos;
+        std::vector<TransactionMemento*> mementos;
     public:
+        void add(TransactionMemento* memento);
         TransactionMemento* undo();
 
 };
