@@ -1,17 +1,34 @@
-
 #ifndef PLANT_H
 #define PLANT_H
 
-#include "Bundle.h"
+#include "PlantState.h"
 #include <string>
 
-class Plant : public Bundle {
+class Plant {
 private:
-    std::string name;
+    PlantState* state;
+    bool sold = false;
 public:
-    Plant(const std::string& n);
-    virtual ~Plant();
-    void display() const;
+    // Constructor
+    Plant(PlantState* initialState);
+
+    // Destructor
+    ~Plant();
+
+    // Set a new state
+    void setState(PlantState* newState);
+
+    // Advance to the next state
+    void nextState();
+
+    // Get current state's name
+    std::string getStateName();
+
+    // Mark plant as sold
+    void markSold();
+
+    // Check if plant has been sold
+    bool isSold();
 };
 
-#endif
+#endif // PLANT_H
