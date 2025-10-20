@@ -5,6 +5,8 @@
 #include "Command.h"
 #include "TransactionIterator.h"
 
+#include "TransactionMemento.h"
+
 class TransactionHistory : public Aggregate
 {
     friend class TransactionIterator;
@@ -14,6 +16,8 @@ public:
     ~TransactionHistory();
 
     Iterator *createIterator();
+
+    TransactionMemento *createMemento();
 
 protected:
 private:
