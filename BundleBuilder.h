@@ -11,8 +11,8 @@ private:
 public:
     BundleBuilder();
     void reset();
-    void addBasicPlant(const std::string& name);
-    void addDecorativePlant(const std::string& name);
+    void addBasicPlant(Plant* name);
+    void addDecorativePlant(Plant* name);
     DisplayBundle* getResult();
     ~BundleBuilder();
 };

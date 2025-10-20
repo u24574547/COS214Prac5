@@ -1,4 +1,4 @@
-#include "PlantComponent.h"
+#include "Plant.h"
 
 Plant::Plant(const std::string& n) : name(n) {}
 
