@@ -10,6 +10,7 @@ private:
     std::string name;
 public:
     Plant(const std::string& n);
+    virtual ~Plant();
     void display() const;
 };
 
