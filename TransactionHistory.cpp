@@ -5,5 +5,6 @@
 TransactionHistory::TransactionHistory() : Aggregate() {}
 TransactionHistory::~TransactionHistory() {}
 Iterator *TransactionHistory::createIterator() {}
+TransactionMemento *TransactionHistory::createMemento() {}
 
 #endif
