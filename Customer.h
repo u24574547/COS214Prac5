@@ -1,16 +1,27 @@
+#ifndef Customer_H
+#define Customer_H
+
+class Command;
+class TransactionHistory;
+
+#include <string>
+
+using namespace std;
+
 class Customer
 {
-private:
-    /* data */
 public:
-    Customer(/* args */);
+    Customer();
     ~Customer();
+
+    void Order();
+    void Refund();
+    void Inquiry();
+
+protected:
+private:
+    string name;
+    TransactionHistory *transactionHistory;
 };
 
-Customer::Customer(/* args */)
-{
-}
-
-Customer::~Customer()
-{
-}
+#endif
