@@ -6,6 +6,11 @@
 class FernExpert : public Employee
 {
 public:
+    FernExpert();
+    ~FernExpert();
+
+    void handleInquiry();
+
 protected:
 private:
 };

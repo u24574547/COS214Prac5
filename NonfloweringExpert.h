@@ -6,6 +6,11 @@
 class NonfloweringExpert : public Employee
 {
 public:
+    NonfloweringExpert();
+    ~NonfloweringExpert();
+
+    void handleInquiry();
+
 protected:
 private:
 };

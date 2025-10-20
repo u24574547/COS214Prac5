@@ -6,6 +6,11 @@
 class MossExpert : public Employee
 {
 public:
+    MossExpert();
+    ~MossExpert();
+
+    void handleInquiry();
+
 protected:
 private:
 };
