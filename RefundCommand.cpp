@@ -10,8 +10,7 @@ void RefundCommand::execute() {
          std::cout << "Processing refund..." << std::endl;
         mediator->handleRefund();
     } else {
-        std::cout << "Refund could not be processed.\n
-                    No mediator was set to handle it.";
+        std::cout<<"Refund could not be processed.\nNo mediator was set to handle it.";
         return; 
     }
    

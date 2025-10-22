@@ -12,8 +12,7 @@ void InquiryCommand::execute() {
     }
         
     else{
-        std::cout << "Inquiry could not be handled.\n
-                            No mediator was set to handle it.";
+        std::cout << "Inquiry could not be handled.\nNo mediator was set to handle it.";
     }
         
    
