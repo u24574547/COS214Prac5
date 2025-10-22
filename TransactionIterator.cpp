@@ -1,15 +1,31 @@
-
-#ifndef TransactionIterator_CPP
-#define TransactionIterator_CPP
 #include "TransactionIterator.h"
-
 #include "TransactionHistory.h"
 #include "Command.h"
 
-TransactionIterator::TransactionIterator(Aggregate *transactionHistory) : Iterator(transactionHistory) {}
-TransactionIterator::~TransactionIterator() {}
-void TransactionIterator::next() {}
-bool TransactionIterator::isDone() {}
-Command *TransactionIterator::getCurrent() {}
+TransactionIterator::TransactionIterator(Aggregate<Command*> *transactionHistory) : Iterator<Command*>(transactionHistory) {
+    this->transactions = transactionHistory->getItems();
+    this->index = 0;
+}
 
-#endif
+Command* TransactionIterator::first() {
+    index = 0;
+    return transactions[0];
+}
+
+Command* TransactionIterator::next() {
+    if (!isDone()) return transactions[index++];
+    return nullptr;
+}
+
+Command* TransactionIterator::current() {
+    return transactions[index];
+}
+
+Command* TransactionIterator::last() {
+    index = transactions.size() - 1;
+    return transactions[index];
+}
+
+bool TransactionIterator::isDone() {
+    return index >= transactions.size();
+}

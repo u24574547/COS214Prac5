@@ -7,21 +7,18 @@
 
 #include "TransactionMemento.h"
 
-class TransactionHistory : public Aggregate
-{
+class TransactionHistory : public Aggregate<Command*> {
     friend class TransactionIterator;
 
 public:
     TransactionHistory();
     ~TransactionHistory();
 
-    Iterator *createIterator();
+    Iterator<Command*>* createIterator();
+    TransactionMemento* createMemento();
 
-    TransactionMemento *createMemento();
-
-protected:
 private:
-    vector<Command *> transactions;
+    vector<Command*> transactions;
 };
 
 #endif

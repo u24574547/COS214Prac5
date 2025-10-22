@@ -1,25 +1,25 @@
-#ifndef Iterator_H
-#define Iterator_H
+#ifndef ITERATOR_H
+#define ITERATOR_H
 
+template <typename T>
 class Aggregate;
 
 #include <vector>
 
-using namespace std;
-
-class Iterator
-{
+template <typename T>
+class Iterator {
 public:
-    Iterator(Aggregate *aggregate);
-    virtual ~Iterator();
+    Iterator(Aggregate<T> *aggregate) : aggregate(aggregate){};
+    virtual ~Iterator(){};
 
-    virtual void next() = 0;
+    //consider making the return type T& in the future
+    virtual T first() = 0;
+    virtual T next() = 0;
+    virtual T current() = 0;
     virtual bool isDone() = 0;
-
+    virtual T last() = 0;
 protected:
-    int current;
-
-private:
+    Aggregate<T>* aggregate;
 };
 
 #endif
