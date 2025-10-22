@@ -1,9 +1,10 @@
+
+#ifndef TransactionHistory_CPP
+#define TransactionHistory_CPP
 #include "TransactionHistory.h"
+TransactionHistory::TransactionHistory() : Aggregate() {}
+TransactionHistory::~TransactionHistory() {}
+Iterator *TransactionHistory::createIterator() {}
+TransactionMemento *TransactionHistory::createMemento() {}
 
-Iterator* TransactionHistory::createIterator(std::vector<Command*> transactions) {
-    return new TransactionIterator(this);
-}
-
-TransactionMemento* TransactionHistory::captureState() {
-    return new TransactionMemento(transactions);
-}
+#endif
