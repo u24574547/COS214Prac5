@@ -2,6 +2,7 @@
 #define COS214PRAC5_BASEPLANT_H
 #include "Plant.h"
 #include "SeedlingState.h"
+#include <iostream>
 
 
 class BasePlant: public Plant {
