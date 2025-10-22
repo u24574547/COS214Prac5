@@ -13,7 +13,7 @@ private:
     std::string id;
 public:
     Customer(const std::string& name, Employee* mediator,const std::string& id);
-    void inquire(const std::string& plantName);
+    void inquiry(const std::string& plantName);
     void order(const std::string& plantName);
     void refund(const std::string& plantName);
 };

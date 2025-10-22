@@ -7,7 +7,7 @@
 Customer::Customer(const std::string& name, Employee* mediator,const std::string& id)
     : name(name), mediator(mediator),id(id) {}
 
-void Customer::inquire(const std::string& plantName) {
+void Customer::inquiry(const std::string& plantName) {
     InquiryCommand inquiry(mediator, plantName);
     std::cout << name << " is inquiring about " << plantName << "...\n";
     inquiry.execute();
