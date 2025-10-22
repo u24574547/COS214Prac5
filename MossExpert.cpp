@@ -5,6 +5,6 @@
 MossExpert::MossExpert() {}
 MossExpert::~MossExpert() {}
 
-void MossExpert::handleInquiry() {}
+void MossExpert::handleInquiry(Command* command) {}
 
 #endif

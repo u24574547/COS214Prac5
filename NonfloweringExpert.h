@@ -9,7 +9,7 @@ public:
     NonfloweringExpert();
     ~NonfloweringExpert();
 
-    void handleInquiry();
+    void handleInquiry(Command* command);
 
 protected:
 private:

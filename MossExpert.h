@@ -9,7 +9,7 @@ public:
     MossExpert();
     ~MossExpert();
 
-    void handleInquiry();
+    void handleInquiry(Command* command);
 
 protected:
 private:

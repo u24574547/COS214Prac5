@@ -1,8 +1,8 @@
 #ifndef Employee_H
 #define Employee_H
 
-#include "Command.h"
-#include "Customer.h"
+class Command;
+class Customer;
 
 #include <vector>
 
@@ -16,9 +16,9 @@ public:
     void setNext(Employee *next);
     void setCustomers(vector<Customer *> customers);
 
-    void handleOrder();
-    void handleRefund();
-    virtual void handleInquiry() = 0;
+    void handleOrder(Command* command);
+    void handleRefund(Command* command);
+    virtual void handleInquiry(Command* command) = 0;
 
 protected:
     Employee *next;

@@ -5,6 +5,6 @@
 FloweringExpert::FloweringExpert() {}
 FloweringExpert::~FloweringExpert() {}
 
-void FloweringExpert::handleInquiry() {}
+void FloweringExpert::handleInquiry(Command* command) {}
 
 #endif

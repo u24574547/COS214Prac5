@@ -5,6 +5,6 @@
 FernExpert::FernExpert() {}
 FernExpert::~FernExpert() {}
 
-void FernExpert::handleInquiry() {}
+void FernExpert::handleInquiry(Command* command) {}
 
 #endif
