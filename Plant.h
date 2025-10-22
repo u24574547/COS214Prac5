@@ -10,7 +10,7 @@ private:
     bool sold = false;
 public:
     // Constructor
-    Plant(PlantState* initialState);
+    Plant();
 
     // Destructor
     ~Plant();
