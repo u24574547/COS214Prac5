@@ -1,25 +1,24 @@
-#ifndef TransactionIterator_H
-#define TransactionIterator_H
+#ifndef TRANSACTIONITERATOR_H
+#define TRANSACTIONITERATOR_H
 
 #include "Iterator.h"
 
 class TransactionHistory;
 class Command;
 
-class TransactionIterator : public Iterator
-{
+class TransactionIterator : public Iterator<Command*> {
 public:
-    TransactionIterator(Aggregate *transactionHistory);
+    TransactionIterator(Aggregate<Command*> *transactionHistory);
     ~TransactionIterator();
 
-    void next();
-    bool isDone();
-
-    Command *getCurrent();
-
-protected:
+    Command* first() override;
+    Command* next() override;
+    Command* current() override;
+    Command* last() override;
+    bool isDone() override;
 private:
     vector<Command *> transactions;
+    size_t index;
 };
 
 #endif

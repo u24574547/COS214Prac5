@@ -1,24 +1,21 @@
-#ifndef Aggregate_H
-#define Aggregate_H
+#ifndef AGGREGATE_H
+#define AGGREGATE_H
 
 #include "Iterator.h"
 
 #include <vector>
-
 using namespace std;
 
+template <typename T>
 class Aggregate
 {
-    friend class Iterator;
-
-public:
-    Aggregate();
-    virtual ~Aggregate();
-
-    virtual Iterator *createIterator() = 0;
-
-protected:
-private:
+    public:
+        Aggregate();
+        virtual ~Aggregate();
+        virtual Iterator<T>* createIterator() = 0;
+        std::vector<T>& getItems() {return items};
+    private:
+        vector<T> items;
 };
 
 #endif
