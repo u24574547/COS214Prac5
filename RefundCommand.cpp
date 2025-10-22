@@ -2,16 +2,19 @@
 #include "Employee.h"
 #include <iostream>
 
-RefundCommand::RefundCommand(Employee* mediator, const std::string& plantName)
-    : mediator(mediator), plantName(plantName) {}
+RefundCommand::RefundCommand(Customer* customer, Employee* mediator, Command* commandToRefund)
+    : Command(customer), mediator(mediator), commandToRefund(commandToRefund) {}
+
 
 void RefundCommand::execute() {
     if (mediator!= nullptr){
          std::cout << "Processing refund..." << std::endl;
-        mediator->handleRefund();
+        mediator->handleRefund(this);
     } else {
         std::cout<<"Refund could not be processed.\nNo mediator was set to handle it.";
         return; 
     }
-   
 }
+
+Command* RefundCommand::getCommandToRefund() const { return commandToRefund; }
+

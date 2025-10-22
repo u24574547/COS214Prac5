@@ -9,10 +9,11 @@ class Employee; // forward declaration
 class OrderCommand : public Command {
     private:
     Employee* mediator;
-    std::string plantName;
+    std::string speciesName;
     public:
-    OrderCommand(Employee* mediator, const std::string& plantName);
+    OrderCommand(Customer* customer, Employee* mediator, const std::string& speciesName);
     void execute() override;
+    std::string getSpeciesName() const ;
 };
 
 #endif

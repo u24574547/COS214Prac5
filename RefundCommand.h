@@ -9,10 +9,12 @@ class Employee; // forward declaration
 class RefundCommand : public Command {
     private:
     Employee* mediator;
-    std::string plantName;
+    Command* commandToRefund; // pointer to the command being refunded
+
     public:
-    RefundCommand(Employee* mediator, const std::string& plantName);
+    RefundCommand(Customer* customer, Employee* mediator, Command* commandToRefund);
     void execute() override;
+    Command* getCommandToRefund() const { return commandToRefund; }
 };
 
 #endif 

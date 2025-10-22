@@ -5,22 +5,41 @@
 #include <iostream>
 
 Customer::Customer(const std::string& name, Employee* mediator,const std::string& id)
-    : name(name), mediator(mediator),id(id) {}
+    : name(name), mediator(mediator),id(id) {
+          history = new TransactionHistory(); // created history for the particular customer
+    }
 
-void Customer::inquiry(const std::string& plantName) {
-    InquiryCommand inquiry(mediator, plantName);
-    std::cout << name << " is inquiring about " << plantName << "...\n";
+void Customer::inquiry(const std::string& plantType) {
+    InquiryCommand inquiry(this,mediator, plantType);
+    std::cout << name << " is inquiring about " << plantType << "...\n";
     inquiry.execute();
 }
 
-void Customer::order(const std::string& plantName) {
-    OrderCommand order(mediator, plantName);
-    std::cout << name << " is ordering " << plantName << "...\n";
-    order.execute();
+void Customer::order(const std::string& speciesName) {
+    OrderCommand* order = new OrderCommand(this, mediator, speciesName);
+    std::cout << name << " is ordering species: " << species << "...\n";
+    order->execute();
+
+    // Add the order to the customer's transaction history
+    //history->addOrder(order);
 }
 
-void Customer::refund(const std::string& plantName) {
-    RefundCommand refund(mediator, plantName);
-    std::cout << name << " is requesting a refund for " << plantName << "...\n";
-    refund.execute();
+void Customer::refund() {
+      // Retrieve the last order from history
+    OrderCommand* lastOrder = history->getLastOrder();
+    if (lastOrder != nullptr) {
+        RefundCommand refund(this, mediator, lastOrder);
+        std::cout << name << " is requesting a refund for species: " 
+                  << lastOrder->getSpecies() << "...\n";
+        refund.execute();
+
+        // IDK IF THE REMOVAL IS HANDLED IN THE TRANSACTION HISTORY OR IN THE REFUND COMMAND
+        //history->removeOrder(lastOrder);
+    } else {
+        std::cout << name << " has no orders to refund.\n";
+    }
+}
+
+Customer::~Customer() {
+    delete history;  // clean up
 }

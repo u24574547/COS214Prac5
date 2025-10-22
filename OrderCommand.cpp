@@ -2,13 +2,13 @@
 #include "Employee.h"
 #include <iostream> 
 
-OrderCommand::OrderCommand(Employee* mediator, const std::string& plantName)
-    : mediator(mediator), plantName(plantName) {}
+OrderCommand::OrderCommand(Customer* customer, Employee* mediator, const std::string& speciesName)
+    : Command(customer), mediator(mediator), speciesName(speciesName) {}
 
 void OrderCommand::execute() {
     if (mediator!= nullptr){
-    std::cout << "Processing order..." << std::endl;
-        mediator->handleOrder();}
+        std::cout << "Processing order for species: " << this->getSpeciesName() << "...\n";
+        mediator->handleOrder(this);}
     else{
         std::cout << "Order could not be processed.\nNo mediator was set to handle it."<<std::endl; 
                 }
@@ -16,4 +16,6 @@ void OrderCommand::execute() {
             
 }
 
-
+std::string OrderCommand::getSpeciesName() const {
+    return speciesName;
+}
