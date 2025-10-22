@@ -1,6 +1,20 @@
 #include "InquiryCommand.h"
+#include "Employee.h"
+#include <iostream>
+
+InquiryCommand::InquiryCommand(Employee* mediator, const std::string& plantName)
+    : mediator(mediator), plantName(plantName) {}
 
 void InquiryCommand::execute() {
-    // Logic to handle customer inquiry
-    std::cout << "Handling inquiry..." << std::endl;
+    if (mediator!= nullptr){
+        std::cout << "Handling inquiry..." << std::endl;
+                mediator->handleInquiry();
+    }
+        
+    else{
+        std::cout << "Inquiry could not be handled.\n
+                            No mediator was set to handle it.";
+    }
+        
+   
 }

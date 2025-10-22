@@ -4,8 +4,15 @@
 #include "Command.h"
 #include <iostream>
 
+class Employee; // forward declaration
+
+
 class InquiryCommand : public Command {
-public:
+    private:
+    Employee* mediator;
+    std::string plantName;
+    public:
+    InquiryCommand(Employee* mediator, const std::string& plantName);
     void execute() override;
 };
 
