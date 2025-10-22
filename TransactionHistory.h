@@ -6,7 +6,7 @@
 #include "Iterator.h"
 #include "TransactionMemento.h"
 #include "Command.h"
-#include "Transact ionIterator.h"
+#include "TransactionIterator.h"
 #include <vector>
 
 class TransactionHistory : public Aggregate {
