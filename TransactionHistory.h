@@ -3,7 +3,8 @@
 
 #include "Aggregate.h"
 #include "Command.h"
-#include "TransactionIterator.h"
+#include "Transact ionIterator.h"
+#include <vector>
 
 #include "TransactionMemento.h"
 
