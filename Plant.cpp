@@ -1,8 +1,9 @@
 #include "Plant.h"
 
-Plant::Plant(PlantState* initialState) : state(initialState) {}
+Plant::Plant(){}
 
 Plant::~Plant() {
+<<<<<<< HEAD
     if (state!= nullptr) {
         delete state;
     }
@@ -32,4 +33,6 @@ void Plant::markSold() {
 
 bool Plant::isSold() {
     return sold;
+=======
+>>>>>>> c93fcd48edd09d98240de95c401b7939f30e3dc7
 }

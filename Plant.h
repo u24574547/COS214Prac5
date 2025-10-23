@@ -5,30 +5,32 @@
 #include <string>
 
 class Plant {
-private:
-    PlantState* state;
-    bool sold = false;
 public:
     // Constructor
-    Plant(PlantState* initialState);
+    Plant();
 
     // Destructor
-    ~Plant();
+    virtual ~Plant();
+
+    virtual std::string toString() const=0;
+    virtual void water()=0;
 
     // Set a new state
-    void setState(PlantState* newState);
-
-    // Advance to the next state
-    void nextState();
+    virtual void setState(PlantState* newState)=0;
 
     // Get current state's name
-    std::string getStateName();
+    virtual std::string getStateName()=0;
 
     // Mark plant as sold
-    void markSold();
+    virtual void markSold()=0;
 
     // Check if plant has been sold
-    bool isSold();
+    virtual bool isSold()=0;
+
+    virtual int getGrowthLevel()=0;
+    virtual std::string getSpecies()=0;
+    virtual bool isWateredToday()=0;
+    virtual int getPreferredEnvironment()=0;
 };
 
 #endif // PLANT_H

@@ -4,10 +4,13 @@
 
 
 class Moss: public BasePlant {
+private:
+    const double GROWTH_MULTIPLIER = 1.5;
 public:
-    Moss();
+    Moss(std::string species, int currentEnvironment, int growthLevel,  bool isWatered, double growthRate, int preferredEnvironment, PlantState* state);
     virtual ~Moss();
-    void display() const;
+    virtual std::string toString() const;
+    virtual void water();
 };
 
 
