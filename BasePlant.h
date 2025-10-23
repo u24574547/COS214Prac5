@@ -4,6 +4,7 @@
 #include "SeedlingState.h"
 #include "SoldState.h"
 #include <iostream>
+#include <sstream>
 
 
 class BasePlant: public Plant {

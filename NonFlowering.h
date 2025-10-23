@@ -4,10 +4,13 @@
 
 
 class NonFlowering: public BasePlant {
+private:
+    const double GROWTH_MULTIPLIER = 1.0;
 public:
-    NonFlowering();
+    NonFlowering(std::string species, int currentEnvironment, int growthLevel,  bool isWatered, double growthRate, int preferredEnvironment, PlantState* state);
     virtual ~NonFlowering();
-    void toString() const;
+    virtual std::string toString() const;
+    virtual void water();
 };
 
 
