@@ -50,3 +50,7 @@ bool BasePlant::isWateredToday() {
 int BasePlant::getPreferredEnvironment() {
     return this->preferredEnvironment;
 }
+
+void BasePlant::setCurrentEnvironment(int newEnv) {
+    this->currentEnvironment=newEnv;
+}

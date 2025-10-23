@@ -16,14 +16,17 @@ public:
     virtual void water()=0;
 
 
-    void setState(PlantState* newState) override;
-    std::string getStateName() override;
     void markSold() override;
     bool isSold() override;
+
+    std::string getStateName() override;
     int getGrowthLevel() override;
     std::string getSpecies() override;
-    bool isWateredToday() override;
     int getPreferredEnvironment() override;
+    bool isWateredToday() override;
+
+    void setState(PlantState* newState) override;
+    void setCurrentEnvironment(int newEnv) override;
 
 protected:
     int growthLevel;
