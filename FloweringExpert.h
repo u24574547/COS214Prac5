@@ -6,7 +6,7 @@
 class FloweringExpert : public Employee
 {
 public:
-    FloweringExpert();
+    FloweringExpert(string name, Inventory *inventory);
     ~FloweringExpert();
 
     void handleInquiry(Command* command);

@@ -6,7 +6,7 @@
 class MossExpert : public Employee
 {
 public:
-    MossExpert();
+    MossExpert(string name, Inventory *inventory);
     ~MossExpert();
 
     void handleInquiry(Command* command);

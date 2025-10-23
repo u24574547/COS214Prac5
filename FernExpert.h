@@ -6,7 +6,7 @@
 class FernExpert : public Employee
 {
 public:
-    FernExpert();
+    FernExpert(string name, Inventory *inventory);
     ~FernExpert();
 
     void handleInquiry(Command* command);
