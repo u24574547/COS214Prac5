@@ -1,6 +1,5 @@
 #include "ReadyForSaleState.h"
 #include "Plant.h"
-#include "DormantState.h"
 #include "SoldState.h"
 
 void ReadyForSaleState::nextState(Plant* plant) {
