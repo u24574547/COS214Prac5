@@ -14,7 +14,7 @@ void RefundCommand::execute() {
         std::cout<<"Refund could not be processed.\nNo mediator was set to handle it.";
         return; 
     }
-}
-
+} 
+ 
 Command* RefundCommand::getCommandToRefund() const { return commandToRefund; }
 

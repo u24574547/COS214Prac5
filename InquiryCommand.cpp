@@ -14,7 +14,7 @@ void InquiryCommand::execute() {
         std::cout << "Inquiry could not be handled.\nNo mediator was set to handle it.";
     }
         
-   
+    
 }
 
 std::string InquiryCommand::getType() const { return plantType; }

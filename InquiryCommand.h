@@ -19,3 +19,4 @@ class InquiryCommand : public Command {
 };
 
 #endif // INQUIRYCOMMAND_H
+ 

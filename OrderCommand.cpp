@@ -19,3 +19,4 @@ void OrderCommand::execute() {
 std::string OrderCommand::getSpeciesName() const {
     return speciesName;
 }
+ 
