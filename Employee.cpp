@@ -6,10 +6,10 @@
 #include "Command.h"
 #include "Customer.h"
 
-Employee::Employee(int id, string name)
+Employee::Employee(string name, Inventory *inventory)
 {
-    this->id = id;
     this->name = name;
+    this->inventory = inventory;
 }
 Employee::Employee::~Employee() {}
 void Employee::setNext(Employee *next)
@@ -18,7 +18,20 @@ void Employee::setNext(Employee *next)
 }
 // void Employee::setCustomers(vector<Customer *> customers) {}
 
-void Employee::handleOrder(Command *command) {}
-void Employee::handleRefund(Command *command) {}
+void Employee::handleOrder(Command *command)
+{
+    Plant *plant = inventory.getPlant(command->getSpeciesName());
+    if (plant == nullptr)
+    {
+        cout << "sorry, stock on " << command->getSpeciesName() << " is empty.";
+    }
+    else
+    {
+        command->getCustomer()->orderReceive(plant);
+    }
+}
+void Employee::handleRefund(Command *command) {
+    
+}
 
 #endif

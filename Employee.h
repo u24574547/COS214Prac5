@@ -7,6 +7,7 @@ class Customer;
 #include "Inventory.h"
 
 #include <vector>
+#include <iostream>
 // #include <string>
 
 using namespace std;
@@ -14,7 +15,7 @@ using namespace std;
 class Employee
 {
 public:
-    Employee(int id, string name);
+    Employee(string name, Inventory* inventory);
     virtual ~Employee();
     void setNext(Employee *next);
     // void setCustomers(vector<Customer *> customers);
@@ -24,11 +25,11 @@ public:
     virtual void handleInquiry(Command *command) = 0;
 
 protected:
-    int id;
     string name;
 
     Employee *next;
     // vector<Customer *> customers;
+    Inventory* inventory;
 
 private:
 };
