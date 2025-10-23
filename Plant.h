@@ -32,6 +32,8 @@ public:
     virtual bool isWateredToday()=0;
     virtual int getPreferredEnvironment()=0;
     virtual void setCurrentEnvironment(int newEnv)=0;
+
+    virtual void endDay()=0;
 };
 
 #endif // PLANT_H

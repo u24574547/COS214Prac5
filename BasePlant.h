@@ -15,18 +15,22 @@ public:
     virtual std::string toString() const=0;
     virtual void water()=0;
 
-
+    //sales functions
     void markSold() override;
     bool isSold() override;
 
+    //getters
     std::string getStateName() override;
     int getGrowthLevel() override;
     std::string getSpecies() override;
     int getPreferredEnvironment() override;
     bool isWateredToday() override;
 
+    //setters
     void setState(PlantState* newState) override;
     void setCurrentEnvironment(int newEnv) override;
+
+    virtual void endDay();
 
 protected:
     int growthLevel;

@@ -54,3 +54,7 @@ int BasePlant::getPreferredEnvironment() {
 void BasePlant::setCurrentEnvironment(int newEnv) {
     this->currentEnvironment=newEnv;
 }
+
+void BasePlant::endDay() {
+    this->isWatered=false;
+}
