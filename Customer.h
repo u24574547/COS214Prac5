@@ -22,9 +22,15 @@ public:
     void inquiry(const std::string& plantType);
     void order(const std::string& speciesName);
     void refund();//when we issue a refund, we refund the last order made in our history
+
+    void inquiryReceive(const std::string& plantType, const std::string& inquiryResponse);
+    void orderReceive(const std::string& speciesName, bool success);
+    void refundReceive(const std::string& speciesName, bool success);
+
+    virtual ~Customer();
     std::string getName() const;
     std::string getId() const;
-    TransacrtionHistory* getHistory() const;
+    TransactionHistory* getHistory() const;
 };
 
 #endif
