@@ -9,12 +9,15 @@
 #include "TransactionIterator.h"
 #include <vector>
 
-class TransactionHistory : public Aggregate {
+class TransactionHistory : public Aggregate<Command*> {
     public:
-    //note, the virtual createIterator doesnt have the same params in the UML
-        Iterator* createIterator(std::vector<Command*> transactions) override;
+        TransactionHistory() : Aggregate(transactions) {};
+        ~TransactionHistory(){};
+        Iterator<Command*>* createIterator() override;
         TransactionMemento* captureState();
-        //capture state shouldnt be part of the aggregate interface
+        void addOrder(Command* order);
+        void removeOrder(Command* order);
+        Command* getLastOrder();
     private:
         std::vector<Command*> transactions;
 };
