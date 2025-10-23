@@ -1,6 +1,6 @@
 #include "MatureState.h"
 #include "Plant.h"
-#include "ReadyForSaleState.h"
+#include "ReadyForSale.h"
 
 void MatureState::nextState(Plant* plant) {
     //depending on conditions, transition to ReadyForSaleState
