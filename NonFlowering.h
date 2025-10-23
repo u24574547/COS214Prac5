@@ -7,7 +7,7 @@ class NonFlowering: public BasePlant {
 public:
     NonFlowering();
     virtual ~NonFlowering();
-    void display() const;
+    void toString() const;
 };
 
 

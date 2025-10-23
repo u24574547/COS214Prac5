@@ -7,7 +7,7 @@ class Fern: public BasePlant {
     public:
     Fern();
     virtual ~Fern();
-    void display() const;
+    void toString() const;
 };
 
 

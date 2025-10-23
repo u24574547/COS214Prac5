@@ -7,7 +7,7 @@ class Flowering: public BasePlant {
     public:
     Flowering();
     virtual ~Flowering();
-    void display() const;
+    void toString() const;
 };
 
 
