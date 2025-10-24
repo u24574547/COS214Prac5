@@ -6,7 +6,9 @@
 class SeedlingState : public PlantState {
 public:
     void nextState(Plant* plant) override;
-    std::string getName() override { return "Seedling"; }
+    std::string getName() override;
+    void grow(Plant* plant) override;
+    ~SeedlingState() override {}
 };
 
 #endif // SEEDLINGSTATE_H
