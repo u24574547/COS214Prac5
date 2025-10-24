@@ -6,9 +6,7 @@
 class UnplantedState : public PlantState {
 public:
     void nextState(Plant* plant) override;
-    std::string getName() override ;
-    virtual void grow(Plant* plant) override;
-    virtual ~UnplantedState() override {}
+    std::string getName() override { return "Unplanted"; }
 };
 
 #endif // UNPLANTEDSTATE_H

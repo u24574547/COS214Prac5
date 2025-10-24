@@ -50,19 +50,3 @@ bool BasePlant::isWateredToday() {
 int BasePlant::getPreferredEnvironment() {
     return this->preferredEnvironment;
 }
-
-
-// void BasePlant::incrementGrowth(int amount) {
-//     growthLevel += amount;
-//     // Optionally clamp max growth
-// }
-
-// void BasePlant::grow() {
-//     if (state)
-//         state->grow(this); // delegates to current state
-        // else{
-        //     std::cout << "No state assigned to plant. Cannot grow." << std::endl;
-        // }
-// }
-
-// End of BasePlant.cpp
