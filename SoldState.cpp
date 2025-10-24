@@ -14,3 +14,4 @@ void SoldState::grow(Plant* plant) {
 std::string SoldState::getName() {
     return "Sold State";
 }
+// End of SoldState.cpp

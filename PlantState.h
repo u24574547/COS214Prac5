@@ -15,3 +15,4 @@ public:
 };
 
 #endif // PLANTSTATE_H
+// End of PlantState.h

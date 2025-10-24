@@ -24,3 +24,4 @@ void SeedlingState::grow(Plant* plant) {
 std::string SeedlingState::getName() {
     return "Seedling State";
 }
+// End of SeedlingState.cpp

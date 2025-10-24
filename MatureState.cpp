@@ -22,3 +22,4 @@ void MatureState::grow(Plant* plant) {
 std::string MatureState::getName() {
     return "Mature State";
 }   
+// End of MatureState.cpp

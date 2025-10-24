@@ -20,3 +20,4 @@ void UnplantedState::grow(Plant* plant) {
 std::string UnplantedState::getName() {
     return "Unplanted State";
 }   
+// End of UnplantedState.cpp

@@ -12,3 +12,4 @@ public:
 };
 
 #endif // SEEDLINGSTATE_H
+// End of SeedlingState.h

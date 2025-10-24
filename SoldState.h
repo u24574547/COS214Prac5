@@ -12,3 +12,4 @@ public:
 };
 
 #endif // SOLDSTATE_H
+// End of SoldState.h

@@ -12,3 +12,4 @@ public:
 };
 
 #endif // READYFORSALESTATE_H
+// End of ReadyForSale.h

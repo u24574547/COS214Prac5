@@ -21,3 +21,4 @@ void ReadyForSaleState::grow(Plant* plant) {
 std::string ReadyForSaleState::getName() {
     return "Ready For Sale State";
 }
+// End of ReadyForSale.cpp

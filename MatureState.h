@@ -12,3 +12,4 @@ public:
 };
 
 #endif // MATURESTATE_H
+// End of MatureState.h
