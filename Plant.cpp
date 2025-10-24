@@ -4,4 +4,3 @@ Plant::Plant(){}
 
 Plant::~Plant() {
 }
-// End of Plant.cpp

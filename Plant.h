@@ -34,4 +34,3 @@ public:
 };
 
 #endif // PLANT_H
-// End of Plant.h
