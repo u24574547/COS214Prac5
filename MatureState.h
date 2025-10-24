@@ -7,7 +7,7 @@ class MatureState : public PlantState {
 public:
     void nextState(Plant* plant) override;
     std::string getName() override ;
-    void grow(Plant* plant) override;
+    virtual void grow(Plant* plant) override;
     ~MatureState() override {}
 };
 
