@@ -24,6 +24,8 @@ public:
     double getGrowthRate();
     int getPreferredEnvironment();
     int getCurrentEnvironment();
+    Plant* addFertiliser(Plant* plant);
+    Plant* addFrostnet(Plant* plant);
 
     virtual Plant* getPlant()=0;
 

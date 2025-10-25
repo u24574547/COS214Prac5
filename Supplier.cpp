@@ -1,5 +1,8 @@
 #include "Supplier.h"
 
+#include "Fertiliser.h"
+#include "FrostNet.h"
+
 Supplier::Supplier() {
     this->growthLevel= 0;
     this->species="unknown";
@@ -69,4 +72,12 @@ int Supplier::getPreferredEnvironment() {
 
 int Supplier::getCurrentEnvironment() {
     return this->currentEnvironment;
+}
+
+Plant * Supplier::addFertiliser(Plant *plant) {
+    return new Fertiliser(plant);
+}
+
+Plant * Supplier::addFrostnet(Plant *plant) {
+    return new FrostNet(plant);
 }

@@ -18,6 +18,7 @@ std::string Fern::toString() const {
     ss << "  Preferred Environment: " << preferredEnvironment << "\n";
     ss << "  Current Environment: " << currentEnvironment << "\n";
     ss << "  Life-cycle Stage: " << state->getName() << "\n";
+    ss << "  Extras:";
     return ss.str();
 }
 

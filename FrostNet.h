@@ -5,8 +5,9 @@
 
 class FrostNet: public PlantDecorator {
 public:
-    FrostNet();
+    FrostNet(Plant* plant);
     virtual ~FrostNet();
+    std::string toString() const;
 };
 
 

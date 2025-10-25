@@ -5,8 +5,9 @@
 
 class Fertiliser: public PlantDecorator {
     public:
-    Fertiliser();
+    Fertiliser(Plant* plant);
     virtual ~Fertiliser();
+    std::string toString() const;
 };
 
 
