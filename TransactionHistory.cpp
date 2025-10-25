@@ -12,20 +12,12 @@ void TransactionHistory::addOrder(Command* order) {
     transactions.push_back(order);
 }
 void TransactionHistory::removeOrder(Command* order) {
-    Iterator<Command*>* it = createIterator();
-
-    for (it->first(); !it->isDone(); it->next()) {
-        if (it->current() == order) {
-            auto& items = getItems();  // underlying vector
-            auto pos = std::find(items.begin(), items.end(), it->current());
-            if (pos != items.end()) {
-            items.erase(pos);  
-            }
-            break;
-        }
+    auto pos = std::find(transactions.begin(), transactions.end(), order);
+    if (pos != transactions.end()) {
+        transactions.erase(pos);
     }
-    delete it;
 }
+
 Command* TransactionHistory::getLastOrder() {
     return transactions.back();
 }
