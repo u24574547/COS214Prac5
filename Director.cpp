@@ -1,22 +1,18 @@
 #include "Director.h"
 #include <string>
 
-Director::Director(Builder* b) : builder(b) {}
-
-void Director::constructSimpleBundle() {
-    builder->reset();
-    builder->addBasicPlant("Fern");
-    builder->addBasicPlant("Cactus");
+Director::Director(Builder* b, Inventory* i){
+    builder = b;
+    inventory = i;
 }
 
-void Director::constructFancyBundle() {
-    builder->reset();
-    builder->addBasicPlant("Orchid");
-    builder->addDecorativePlant("Rose");
-    builder->addDecorativePlant("Bonsai");
-}
 void Director::constructGiftBundle(){
     builder->reset();
     // I need to check if the plants exist in inventory
+    builder->addDecorativePlant(inventory->getPlant("Tulip"));
     
+    
+}
+void Director::constructFrostReadyBundle(){
+    builder->reset();
 }
