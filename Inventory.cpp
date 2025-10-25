@@ -1,9 +1,21 @@
 
-#ifndef Inventory_CPP
-#define Inventory_CPP
 #include "Inventory.h"
-Inventory::Inventory() : Aggregate() {}
-Inventory::~Inventory() {}
-Iterator *Inventory::createIterator() {}
 
-#endif
+Iterator<Plant*>* Inventory::createIterator() {
+    return new PlantIterator(this);   
+}
+
+void Inventory::addPlant(Plant*  plant) {
+    plants.push_back(plant);
+}
+
+Plant* Inventory::getPlant(string name) {
+   Plant* plant = nullptr;
+   for (auto it = plants.begin(); it != plants.end(); ++it) {
+        if ((*it)->getSpecies() == name) {
+            plant = (*it);
+            plants.erase(it);
+        }
+   }
+   return plant;
+}

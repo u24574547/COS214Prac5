@@ -2,7 +2,6 @@
 #define AGGREGATE_H
 
 #include "Iterator.h"
-
 #include <vector>
 using namespace std;
 
