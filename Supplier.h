@@ -2,6 +2,7 @@
 #define COS214PRAC5_SUPPLIER_H
 #include "Plant.h"
 #include "SeedlingState.h"
+#include "UnplantedState.h"
 
 
 class Supplier {
@@ -25,11 +26,11 @@ public:
     int getPreferredEnvironment();
     int getCurrentEnvironment();
     Plant* addFertiliser(Plant* plant);
-    Plant* addFrostnet(Plant* plant);
+    Plant* addFrostNet(Plant* plant);
 
     virtual Plant* getPlant()=0;
 
-private:
+protected:
     int growthLevel;
     std::string species;
     bool isWatered;

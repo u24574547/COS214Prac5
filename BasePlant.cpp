@@ -1,6 +1,6 @@
 #include "BasePlant.h"
 
-BasePlant::BasePlant(std::string species, int currentEnvironment, int growthLevel=0,  bool isWatered=false, double growthRate=10.0, int preferredEnvironment=0, PlantState* state = new SeedlingState()) : Plant() {
+BasePlant::BasePlant(std::string species, int currentEnvironment, int growthLevel=0,  bool isWatered=false, double growthRate=10.0, int preferredEnvironment=0, PlantState* state = new UnplantedState()) : Plant() {
     this->growthLevel = growthLevel;
     this->species = species;
     this->isWatered=isWatered;
@@ -21,7 +21,7 @@ void BasePlant::setState(PlantState *newState) {
 
 std::string BasePlant::getStateName() {
     if (this->state==nullptr) {
-        this->state=new SeedlingState();
+        this->state=new UnplantedState();
     }
     return this->state->getName();
 }

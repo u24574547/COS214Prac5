@@ -10,7 +10,7 @@ Supplier::Supplier() {
     this->growthRate=1.0;
     this->preferredEnvironment=0;
     this->currentEnvironment=0;
-    this->state = new SeedlingState();
+    this->state = new UnplantedState();
 }
 
 Supplier::~Supplier() {
@@ -78,6 +78,6 @@ Plant * Supplier::addFertiliser(Plant *plant) {
     return new Fertiliser(plant);
 }
 
-Plant * Supplier::addFrostnet(Plant *plant) {
+Plant * Supplier::addFrostNet(Plant *plant) {
     return new FrostNet(plant);
 }

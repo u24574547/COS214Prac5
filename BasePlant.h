@@ -1,7 +1,7 @@
 #ifndef COS214PRAC5_BASEPLANT_H
 #define COS214PRAC5_BASEPLANT_H
 #include "Plant.h"
-#include "SeedlingState.h"
+#include "UnplantedState.h"
 #include "SoldState.h"
 #include <iostream>
 #include <sstream>
