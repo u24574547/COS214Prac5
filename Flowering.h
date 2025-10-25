@@ -4,10 +4,13 @@
 
 
 class Flowering: public BasePlant {
-    public:
-    Flowering();
+private:
+    const double GROWTH_MULTIPLIER = 0.8;
+public:
+    Flowering(std::string species, int currentEnvironment, int growthLevel,  bool isWatered, double growthRate, int preferredEnvironment, PlantState* state);
     virtual ~Flowering();
-    void display() const;
+    virtual std::string toString() const;
+    virtual void water();
 };
 
 
