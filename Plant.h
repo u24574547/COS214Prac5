@@ -4,7 +4,7 @@
 #include "PlantState.h"
 #include <string>
 
-class Plant {
+class Plant : public Bundle{
 public:
     // Constructor
     Plant();

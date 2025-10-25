@@ -15,3 +15,8 @@ void Director::constructFancyBundle() {
     builder->addDecorativePlant("Rose");
     builder->addDecorativePlant("Bonsai");
 }
+void Director::constructGiftBundle(){
+    builder->reset();
+    // I need to check if the plants exist in inventory
+    
+}

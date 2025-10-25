@@ -10,6 +10,7 @@ public:
     Director(Builder* b);
     void constructSimpleBundle();
     void constructFancyBundle();
+    void constructGiftBundle();
 };
 
 #endif
