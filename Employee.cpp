@@ -4,6 +4,10 @@
 #include "Employee.h"
 
 #include "Command.h"
+#include "InquiryCommand.h"
+#include "OrderCommand.h"
+#include "RefundCommand.h"
+
 #include "Customer.h"
 
 Employee::Employee(string name, Inventory *inventory)
@@ -16,11 +20,10 @@ void Employee::setNext(Employee *next)
 {
     this->next = next;
 }
-// void Employee::setCustomers(vector<Customer *> customers) {}
 
-void Employee::handleOrder(Command *command)
+void Employee::handleOrder(OrderCommand *command)
 {
-    Plant *plant = inventory.getPlant(command->getSpeciesName());
+    Plant *plant = inventory->getPlant(command->getSpeciesName());
     if (plant == nullptr)
     {
         cout << "sorry, stock on " << command->getSpeciesName() << " is empty.";
@@ -30,7 +33,7 @@ void Employee::handleOrder(Command *command)
         command->getCustomer()->orderReceive(plant);
     }
 }
-void Employee::handleRefund(Command *command)
+void Employee::handleRefund(RefundCommand *command)
 {
     Command *refund = command->getCommandToRefund();
     if (refund == nullptr)

@@ -2,15 +2,18 @@
 #ifndef NonfloweringExpert_CPP
 #define NonfloweringExpert_CPP
 #include "NonfloweringExpert.h"
+#include "InquiryCommand.h"
+#include "Customer.h"
 NonfloweringExpert::NonfloweringExpert(string name, Inventory *inventory) : Employee(name, inventory) {}
 NonfloweringExpert::~NonfloweringExpert() {}
 
-void NonfloweringExpert::handleInquiry(Command *command) {
-        cout << name << " is taking a look at the inquiry." << endl;
+void NonfloweringExpert::handleInquiry(InquiryCommand *command)
+{
+    cout << name << " is taking a look at the inquiry." << endl;
     if (command->getType() == "Nonflowering")
     {
         cout << name << " is happy to help you." << endl;
-        command->getCustomer()->inquiryReceive("*a response about nonflowering plants");
+        command->getCustomer()->inquiryReceive(command->getType(), "*a response about nonflowering plants");
     }
     else
     {
