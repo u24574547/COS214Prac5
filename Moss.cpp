@@ -1,6 +1,6 @@
 #include "Moss.h"
 
-Moss::Moss(std::string species, int currentEnvironment, int growthLevel=0,  bool isWatered=false, double growthRate=10.0, int preferredEnvironment=0, PlantState* state = new SeedlingState()): BasePlant(species, currentEnvironment, growthLevel, isWatered, growthRate, preferredEnvironment, state) {
+Moss::Moss(std::string species, int currentEnvironment, int growthLevel=0,  bool isWatered=false, double growthRate=10.0, int preferredEnvironment=0, PlantState* state = new UnplantedState()): BasePlant(species, currentEnvironment, growthLevel, isWatered, growthRate, preferredEnvironment, state) {
 }
 
 Moss::~Moss() {
@@ -17,6 +17,7 @@ std::string Moss::toString() const {
     ss << "  Preferred Environment: " << preferredEnvironment << "\n";
     ss << "  Current Environment: " << currentEnvironment << "\n";
     ss << "  Life-cycle Stage: " << state->getName() << "\n";
+    ss << "  Extras:";
     return ss.str();
 }
 

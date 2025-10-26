@@ -3,10 +3,17 @@
 
 #include "Command.h"
 #include <iostream>
+#include <string>
+class Employee; // forward declaration
 
 class OrderCommand : public Command {
-public:
+    private:
+    Employee* mediator;
+    std::string speciesName;
+    public:
+    OrderCommand(Customer* customer, Employee* mediator, const std::string& speciesName);
     void execute() override;
+    std::string getSpeciesName() const ;
 };
-
+ 
 #endif

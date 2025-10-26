@@ -7,6 +7,10 @@ TransactionIterator::TransactionIterator(Aggregate<Command*> *transactionHistory
     this->index = 0;
 }
 
+TransactionIterator::~TransactionIterator() {
+    
+}
+
 Command* TransactionIterator::first() {
     index = 0;
     return transactions[0];

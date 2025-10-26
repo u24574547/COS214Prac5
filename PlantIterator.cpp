@@ -1,15 +1,34 @@
-
-#ifndef PlantIterator_CPP
-#define PlantIterator_CPP
-#include "PlantIterator.h"
-
+#include "PlantIterator.h" 
 #include "Inventory.h"
-#include "Plant.h"
 
-PlantIterator::PlantIterator(Aggregate *inventory) : Iterator(inventory) {}
-PlantIterator::~PlantIterator() {}
-void PlantIterator::next() {}
-bool PlantIterator::isDone() {}
-Plant *PlantIterator::getCurrent() {}
+PlantIterator::PlantIterator(Aggregate<Plant*>* plants) {
+    this->plants = plants->getItems();
+    this->index = 0;
+}
 
-#endif
+PlantIterator::~PlantIterator() {
+
+}
+
+Plant* PlantIterator::first() {
+    index = 0;
+    return plants[0];
+}
+
+Plant* PlantIterator::next() {
+    if (!isDone()) return plants[index++];
+    return nullptr;
+}
+
+Plant* PlantIterator::current() {
+    return plants[index];
+}
+
+Plant* PlantIterator::last() {
+    index = plants.size() - 1;
+    return plants[index];
+}
+
+bool PlantIterator::isDone() {
+    return index >= plants.size();
+}

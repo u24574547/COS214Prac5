@@ -1,6 +1,22 @@
 #include "OrderCommand.h"
+#include "Employee.h"
+#include <iostream> 
+
+OrderCommand::OrderCommand(Customer* customer, Employee* mediator, const std::string& speciesName)
+    : Command(customer), mediator(mediator), speciesName(speciesName) {}
 
 void OrderCommand::execute() {
-    // Logic for a customer placing an order
-    std::cout << "Processing order..." << std::endl;
+    if (mediator!= nullptr){
+        std::cout << "Processing order for species: " << this->getSpeciesName() << "...\n";
+        mediator->handleOrder(this);}
+    else{
+        std::cout << "Order could not be processed.\nNo mediator was set to handle it."<<std::endl; 
+                }
+            
+            
 }
+
+std::string OrderCommand::getSpeciesName() const {
+    return speciesName;
+}
+ 

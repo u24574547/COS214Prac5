@@ -1,7 +1,6 @@
 #include "Flowering.h"
 
-Flowering::Flowering(std::string species, int currentEnvironment, int growthLevel, bool isWatered, double growthRate,
-    int preferredEnvironment, PlantState *state): BasePlant(species, currentEnvironment, growthLevel, isWatered, growthRate, preferredEnvironment, state) {
+Flowering::Flowering(std::string species, int currentEnvironment, int growthLevel=0,  bool isWatered=false, double growthRate=10.0, int preferredEnvironment=0, PlantState* state = new UnplantedState()): BasePlant(species, currentEnvironment, growthLevel, isWatered, growthRate, preferredEnvironment, state) {
 }
 
 Flowering::~Flowering() {
@@ -18,6 +17,7 @@ std::string Flowering::toString() const {
     ss << "  Preferred Environment: " << preferredEnvironment << "\n";
     ss << "  Current Environment: " << currentEnvironment << "\n";
     ss << "  Life-cycle Stage: " << state->getName() << "\n";
+    ss << "  Extras:";
     return ss.str();
 }
 

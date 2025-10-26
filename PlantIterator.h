@@ -1,25 +1,26 @@
-#ifndef PlantIterator_H
-#define PlantIterator_H
+#ifndef PLANTITERATOR_H
+#define PLANTITERATOR_H
 
 #include "Iterator.h"
 
+//remove if there's no circular includes
 class Inventory;
 class Plant;
 
-class PlantIterator : public Iterator
-{
-public:
-    PlantIterator(Aggregate *inventory);
-    ~PlantIterator();
+class PlantIterator : public Iterator<Plant*> {
+    public:
+        PlantIterator(Aggregate<Plant*>* plants);
+        ~PlantIterator();
 
-    void next();
-    bool isDone();
+        Plant* first() override;
+        Plant* next() override;
+        Plant* current() override;
+        Plant* last() override;
+        bool isDone() override;
 
-    Plant *getCurrent();
-
-protected:
-private:
-    vector<Plant *> plants;
+    private:
+        vector<Plant*> plants;
+        size_t index;
 };
 
 #endif

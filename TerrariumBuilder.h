@@ -1,20 +1,21 @@
-#ifndef BUNDLEBUILDER_H
-#define BUNDLEBUILDER_H
+#ifndef TerrariumBuilder_H
+#define TerrariumBuilder_H
 
 #include "Builder.h"
 #include "DisplayBundle.h"
 #include "Plant.h"
 
-class BundleBuilder : public Builder {
+class TerrariumBuilder : public Builder {
 private:
     DisplayBundle* bundle;
 public:
-    BundleBuilder();
+    TerrariumBuilder();
     void reset();
     void addBasicPlant(Plant* name);
     void addDecorativePlant(Plant* name);
+    void addFertilisedPlant(Plant* name);
     DisplayBundle* getResult();
-    ~BundleBuilder();
+    ~TerrariumBuilder();
 };
 
 #endif

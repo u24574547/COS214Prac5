@@ -27,6 +27,7 @@ public:
      * @return A string "Sold".
      */
     std::string getName() override;
+<<<<<<< HEAD
 
     /**
      * @brief Simulates growth behavior in the Sold state.
@@ -40,6 +41,9 @@ public:
     /**
      * @brief Destructor.
      */
+=======
+     virtual void grow(Plant* plant) override;
+>>>>>>> feature
     ~SoldState() override {}
 };
 
