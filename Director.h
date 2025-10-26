@@ -14,6 +14,7 @@ public:
     void constructFancyBundle();
     void constructGiftBundle();
     void constructFrostReadyBundle();
+    void constructTerrariumBundle();
 };
 
 #endif

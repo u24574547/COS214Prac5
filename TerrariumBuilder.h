@@ -1,21 +1,21 @@
-#ifndef GiftBundle_H
-#define GiftBundle_H
+#ifndef TerrariumBuilder_H
+#define TerrariumBuilder_H
 
 #include "Builder.h"
 #include "DisplayBundle.h"
 #include "Plant.h"
 
-class GiftBundle : public Builder {
+class TerrariumBuilder : public Builder {
 private:
     DisplayBundle* bundle;
 public:
-    GiftBundle();
+    TerrariumBuilder();
     void reset();
     void addBasicPlant(Plant* name);
     void addDecorativePlant(Plant* name);
     void addFertilisedPlant(Plant* name);
     DisplayBundle* getResult();
-    ~GiftBundle();
+    ~TerrariumBuilder();
 };
 
 #endif
