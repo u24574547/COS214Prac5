@@ -4,7 +4,7 @@ void TransactionCaretaker::add(TransactionMemento* memento) {
     mementos.push_back(memento);
 }
 
-TransactionMemento* undo() {
+TransactionMemento* TransactionCaretaker::undo() {
     if (mementos.empty()) return nullptr;
     TransactionMemento* mem = mementos.back();
     mementos.pop_back();
