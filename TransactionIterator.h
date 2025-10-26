@@ -3,12 +3,13 @@
 
 #include "Iterator.h"
 
+//remvove if there's no circular includes
 class TransactionHistory;
 class Command;
 
 class TransactionIterator : public Iterator<Command*> {
 public:
-    TransactionIterator(Aggregate<Command*> *transactionHistory);
+    TransactionIterator(Aggregate<Command*>* transactionHistory);
     ~TransactionIterator();
 
     Command* first() override;
