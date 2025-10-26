@@ -4,40 +4,75 @@
 #include "SeedlingState.h"
 #include "UnplantedState.h"
 
+/**
+ * @class Supplier
+ * @brief Abstract class representing a supplier of Plant objects.
+ * 
+ * Handles the creation and configuration of Plant objects, including
+ * setting growth levels, environment, state, and decorators like Fertiliser or FrostNet.
+ */
 
 class Supplier {
 public:
+    /**
+     * @brief Constructs a Supplier object.
+     */
     Supplier();
+
+    /**
+     * @brief Destructor for Supplier.
+     */
     virtual ~Supplier();
 
-    void setState(PlantState* state);
-    void setGrowthLevel(int growthLevel);
-    void setSpecies(std::string species);
-    void setWatered(bool watered);
-    void setGrowthRate(double growthRate);
-    void setPreferredEnvironment(int env);
-    void setCurrentEnvironment(int env);
+    /** @name Setters */
+    ///@{
+    void setState(PlantState* state);           ///< Set the current PlantState.
+    void setGrowthLevel(int growthLevel);       ///< Set the plant's growth level.
+    void setSpecies(std::string species);       ///< Set the plant's species name.
+    void setWatered(bool watered);              ///< Set whether the plant has been watered today.
+    void setGrowthRate(double growthRate);      ///< Set the plant's growth rate.
+    void setPreferredEnvironment(int env);     ///< Set the plant's preferred environment type.
+    void setCurrentEnvironment(int env);       ///< Set the plant's current environment type.
+    ///@}
 
-    PlantState* getState();
-    int getGrowthLevel();
-    std::string getSpecies();
-    bool getWatered();
-    double getGrowthRate();
-    int getPreferredEnvironment();
-    int getCurrentEnvironment();
+    /** @name Getters */
+    ///@{
+    PlantState* getState();                     ///< Get the current PlantState.
+    int getGrowthLevel();                       ///< Get the plant's growth level.
+    std::string getSpecies();                   ///< Get the plant's species name.
+    bool getWatered();                          ///< Get whether the plant has been watered today.
+    double getGrowthRate();                     ///< Get the plant's growth rate.
+    int getPreferredEnvironment();              ///< Get the plant's preferred environment type.
+    int getCurrentEnvironment();                ///< Get the plant's current environment type.
+    ///@}
+
+    /**
+     * @brief Decorates a plant with fertiliser.
+     * @param plant Pointer to the Plant to decorate.
+     * @return Decorated Plant pointer.
+     */
     Plant* addFertiliser(Plant* plant);
+
+    /**
+     * @brief Decorates a plant with a frost net.
+     * @param plant Pointer to the Plant to decorate.
+     * @return Decorated Plant pointer.
+     */
     Plant* addFrostNet(Plant* plant);
 
-    virtual Plant* getPlant()=0;
-
+    /**
+     * @brief Abstract method to return a Plant object.
+     * @return Pointer to the created Plant.
+     */
+    virtual Plant* getPlant() = 0;
 protected:
-    int growthLevel;
-    std::string species;
-    bool isWatered;
-    double growthRate;
-    int preferredEnvironment;
-    int currentEnvironment;
-    PlantState* state;
+    int growthLevel;                 ///< Current growth level of the plant.
+    std::string species;             ///< Species name of the plant.
+    bool isWatered;                  ///< Whether the plant has been watered today.
+    double growthRate;               ///< Growth rate multiplier.
+    int preferredEnvironment;        ///< Preferred environment type.
+    int currentEnvironment;          ///< Current environment type.
+    PlantState* state;               ///< Current state of the plant.
 };
 
 
