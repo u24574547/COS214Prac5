@@ -9,7 +9,7 @@ public:
     FernExpert(string name, Inventory *inventory);
     ~FernExpert();
 
-    void handleInquiry(Command* command);
+    void handleInquiry(InquiryCommand* command);
 
 protected:
 private:

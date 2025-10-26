@@ -9,7 +9,7 @@ public:
     MossExpert(string name, Inventory *inventory);
     ~MossExpert();
 
-    void handleInquiry(Command* command);
+    void handleInquiry(InquiryCommand* command);
 
 protected:
 private:
