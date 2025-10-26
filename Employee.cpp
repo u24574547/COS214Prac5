@@ -26,18 +26,11 @@ void Employee::handleOrder(OrderCommand *command)
     Plant *plant = inventory->getPlant(command->getSpeciesName());
     if (plant == nullptr)
     {
-        cout << "sorry, stock on " << command->getSpeciesName() << " is empty.";
+        command->getCustomer()->orderReceive(nullptr, false);
     }
     else
     {
-        if (plant == nullptr)
-        {
-            command->getCustomer()->orderReceive(nullptr, false);
-        }
-        else
-        {
-            command->getCustomer()->orderReceive(plant, true);
-        }
+        command->getCustomer()->orderReceive(plant, true);
     }
 }
 void Employee::handleRefund(RefundCommand *command)
