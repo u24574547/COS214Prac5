@@ -22,6 +22,9 @@ std::string Fern::toString() const {
 }
 
 void Fern::water() {
-    if (!isWatered) growthLevel+= GROWTH_MULTIPLIER*(growthRate-abs(preferredEnvironment-currentEnvironment));
     isWatered = true;
+}
+
+double Fern::getGrowthMultiplier() {
+    return GROWTH_MULTIPLIER;
 }
