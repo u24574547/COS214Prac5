@@ -30,7 +30,14 @@ void Employee::handleOrder(OrderCommand *command)
     }
     else
     {
-        command->getCustomer()->orderReceive(plant);
+        if (plant == nullptr)
+        {
+            command->getCustomer()->orderReceive(nullptr, false);
+        }
+        else
+        {
+            command->getCustomer()->orderReceive(plant, true);
+        }
     }
 }
 void Employee::handleRefund(RefundCommand *command)
@@ -38,11 +45,12 @@ void Employee::handleRefund(RefundCommand *command)
     Command *refund = command->getCommandToRefund();
     if (refund == nullptr)
     {
-        cout << "sorry, there is no record of this transaction.";
+        // cout << "sorry, there is no record of this transaction.";
+        command->getCustomer()->refundReceive(false);
     }
     else
     {
-        command->getCustomer()->refundReceive();
+        command->getCustomer()->refundReceive(true);
     }
 }
 

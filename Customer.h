@@ -9,6 +9,8 @@
 #include "OrderCommand.h"
 #include "RefundCommand.h"
 
+class plant;
+
 class Employee;
 
 /**
@@ -84,7 +86,7 @@ public:
      * @param speciesName The name of the ordered species.
      * @param success Indicates whether the order was successful.
      */
-    void orderReceive(const std::string& speciesName, bool success);
+    void orderReceive(Plant* plant, bool success);
 
     /**
      * @brief Receives confirmation or failure feedback after requesting a refund.
@@ -92,7 +94,7 @@ public:
      * @param speciesName The name of the species being refunded.
      * @param success Indicates whether the refund was successful.
      */
-    void refundReceive(const std::string& speciesName, bool success);
+    void refundReceive(bool success);
 
     /**
      * @brief Destructor that cleans up the customer's transaction history.
