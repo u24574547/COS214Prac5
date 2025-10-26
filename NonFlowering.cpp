@@ -23,6 +23,8 @@ std::string NonFlowering::toString() const {
 
 void NonFlowering::water() {
     isWatered = true;
-    growthLevel+= growthRate-abs(preferredEnvironment-currentEnvironment);
-    //TODO: state = state->grow(growthLevel);
+}
+
+double NonFlowering::getGrowthMultiplier() {
+    return GROWTH_MULTIPLIER;
 }

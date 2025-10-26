@@ -51,3 +51,7 @@ void PlantDecorator::setCurrentEnvironment(int newEnv) {
 void PlantDecorator::endDay() {
     plant->endDay();
 }
+
+double PlantDecorator::getGrowthMultiplier() {
+    plant->getGrowthMultiplier();
+}

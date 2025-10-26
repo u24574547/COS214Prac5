@@ -23,6 +23,8 @@ std::string Moss::toString() const {
 
 void Moss::water() {
     isWatered = true;
-    growthLevel+= growthRate-abs(preferredEnvironment-currentEnvironment);
-    //TODO: state = state->grow(growthLevel);
+}
+
+double Moss::getGrowthMultiplier() {
+    return GROWTH_MULTIPLIER;
 }

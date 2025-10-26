@@ -15,19 +15,20 @@ public:
     // Set a new state
     void setState(PlantState* newState);
 
-    // Get current state's name
-    std::string getStateName();
-
     // Mark plant as sold
     void markSold();
 
     // Check if plant has been sold
     bool isSold();
 
+    //getters
     int getGrowthLevel();
     std::string getSpecies();
     bool isWateredToday();
     int getPreferredEnvironment();
+    double getGrowthMultiplier();
+    std::string getStateName();
+
     void setCurrentEnvironment(int newEnv);
 
     void endDay();
