@@ -2,16 +2,18 @@
 #ifndef FernExpert_CPP
 #define FernExpert_CPP
 #include "FernExpert.h"
+#include "InquiryCommand.h"
+#include "Customer.h"
 FernExpert::FernExpert(string name, Inventory *inventory) : Employee(name, inventory) {}
 FernExpert::~FernExpert() {}
 
-void FernExpert::handleInquiry(Command *command)
+void FernExpert::handleInquiry(InquiryCommand *command)
 {
     cout << name << " is taking a look at the inquiry." << endl;
     if (command->getType() == "Fern")
     {
         cout << name << " is happy to help you." << endl;
-        command->getCustomer()->inquiryReceive("*a response about Fern");
+        command->getCustomer()->inquiryReceive(command->getType(), "*a response about Fern");
     }
     else
     {

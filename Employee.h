@@ -2,6 +2,10 @@
 #define Employee_H
 
 class Command;
+class InquiryCommand;
+class OrderCommand;
+class RefundCommand;
+
 class Customer;
 
 #include "Inventory.h"
@@ -11,25 +15,23 @@ class Customer;
 // #include <string>
 
 using namespace std;
- 
+
 class Employee
 {
 public:
-    Employee(string name, Inventory* inventory);
+    Employee(string name, Inventory *inventory);
     virtual ~Employee();
     void setNext(Employee *next);
-    // void setCustomers(vector<Customer *> customers);
 
-    void handleOrder(Command *command);
-    void handleRefund(Command *command);
-    virtual void handleInquiry(Command *command) = 0;
+    void handleOrder(OrderCommand *command);
+    void handleRefund(RefundCommand *command);
+    virtual void handleInquiry(InquiryCommand *command) = 0;
 
 protected:
     string name;
 
     Employee *next;
-    // vector<Customer *> customers;
-    Inventory* inventory;
+    Inventory *inventory;
 
 private:
 };

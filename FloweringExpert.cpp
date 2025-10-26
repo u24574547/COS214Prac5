@@ -2,15 +2,18 @@
 #ifndef FloweringExpert_CPP
 #define FloweringExpert_CPP
 #include "FloweringExpert.h"
-FloweringExpert::FloweringExpert(string name, Inventory *inventory) : Employee(name, inventory)  {}
+#include "InquiryCommand.h"
+#include "Customer.h"
+FloweringExpert::FloweringExpert(string name, Inventory *inventory) : Employee(name, inventory) {}
 FloweringExpert::~FloweringExpert() {}
 
-void FloweringExpert::handleInquiry(Command* command) {
-        cout << name << " is taking a look at the inquiry." << endl;
+void FloweringExpert::handleInquiry(InquiryCommand *command)
+{
+    cout << name << " is taking a look at the inquiry." << endl;
     if (command->getType() == "Flowering")
     {
         cout << name << " is happy to help you." << endl;
-        command->getCustomer()->inquiryReceive("*a response about Flowering plants");
+        command->getCustomer()->inquiryReceive(command->getType(), "*a response about Flowering plants");
     }
     else
     {
