@@ -9,8 +9,9 @@ private:
 public:
     NonFlowering(std::string species, int currentEnvironment, int growthLevel,  bool isWatered, double growthRate, int preferredEnvironment, PlantState* state);
     virtual ~NonFlowering();
-    virtual std::string toString() const;
-    virtual void water();
+    std::string toString() const override;
+    void water() override;
+    double getGrowthMultiplier() override;
 };
 
 

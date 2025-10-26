@@ -23,6 +23,8 @@ std::string Flowering::toString() const {
 
 void Flowering::water() {
     isWatered = true;
-    growthLevel+= growthRate-abs(preferredEnvironment-currentEnvironment);
-    //TODO: state = state->grow(growthLevel);
+}
+
+double Flowering::getGrowthMultiplier() {
+    return GROWTH_MULTIPLIER;
 }

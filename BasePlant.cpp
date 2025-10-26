@@ -57,4 +57,14 @@ void BasePlant::setCurrentEnvironment(int newEnv) {
 
 void BasePlant::endDay() {
     this->isWatered=false;
+    grow();
+}
+
+void BasePlant::grow() {
+    if (state) {
+        if (isWatered) growthLevel += getGrowthMultiplier() * (growthRate - abs(preferredEnvironment - currentEnvironment));
+        state->grow(this); // delegates to current state
+    } else {
+        std::cout << "No state assigned to plant. Cannot grow." << std::endl;
+    }
 }

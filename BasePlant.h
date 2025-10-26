@@ -24,13 +24,17 @@ public:
     int getGrowthLevel() override;
     std::string getSpecies() override;
     int getPreferredEnvironment() override;
+    virtual double getGrowthMultiplier()=0;
     bool isWateredToday() override;
 
     //setters
     void setState(PlantState* newState) override;
     void setCurrentEnvironment(int newEnv) override;
 
-    virtual void endDay();
+    void endDay() override;
+
+private:
+    void grow();
 
 protected:
     int growthLevel;

@@ -10,7 +10,6 @@ void SeedlingState::nextState(Plant* plant) {
 
 void SeedlingState::grow(Plant* plant) {
     if (plant->isWateredToday()) {
-        //plant->incrementGrowth(5); // increment or add some growth formula
         std::cout << "Seedling growing... growth level: " << plant->getGrowthLevel() << std::endl;
 
         if (plant->getGrowthLevel() >= 20) { // threshold for Mature
