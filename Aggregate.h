@@ -13,7 +13,7 @@ class Aggregate
         virtual ~Aggregate();
         virtual Iterator<T>* createIterator() = 0;
         //CONSIDER CHANGING THIS TO PURE VIRTUAL IF STUFF CRASHES
-        std::vector<T>& getItems() {return items};
+        std::vector<T>& getItems() {return items;};
     protected:
         vector<T> items;
 };
