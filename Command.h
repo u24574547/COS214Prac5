@@ -20,19 +20,19 @@ protected:
     /**
      * @brief Pointer to the Customer who created the command.
      */
-    Customer* customer;  
+    Customer* customer;
 
 public:
     /**
      * @brief Constructs a Command associated with a specific Customer.
-     * 
+     *
      * @param customer Pointer to the Customer who initiated this command.
      */
     Command(Customer* customer);
 
     /**
      * @brief Executes the command's specific action.
-     * 
+     *
      * This is a pure virtual function that must be implemented
      * by all derived command types.
      */
@@ -45,7 +45,7 @@ public:
 
     /**
      * @brief Retrieves the Customer who created this command.
-     * 
+     *
      * @return Pointer to the Customer associated with this command.
      */
     Customer* getCustomer() const;

@@ -10,9 +10,9 @@ class Employee; // Forward declaration
 /**
  * @class RefundCommand
  * @brief Represents a command to process a refund for a previous customer order.
- * 
+ *
  * This class is part of the Command design pattern. It encapsulates the details
- * of a refund request initiated by a customer and delegates the execution to 
+ * of a refund request initiated by a customer and delegates the execution to
  * the appropriate Employee (mediator) responsible for handling refunds.
  */
 class RefundCommand : public Command {
@@ -30,7 +30,7 @@ private:
 public:
     /**
      * @brief Constructs a new RefundCommand.
-     * 
+     *
      * @param customer Pointer to the Customer requesting the refund.
      * @param mediator Pointer to the Employee handling the refund process.
      * @param commandToRefund Pointer to the Command being refunded.
@@ -44,7 +44,7 @@ public:
 
     /**
      * @brief Retrieves the original command being refunded.
-     * 
+     *
      * @return A pointer to the Command object being refunded.
      */
     Command* getCommandToRefund() const { return commandToRefund; }
