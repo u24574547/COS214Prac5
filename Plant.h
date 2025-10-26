@@ -2,39 +2,110 @@
 #define PLANT_H
 
 #include "PlantState.h"
+#include "Bundle.h"
 #include <string>
+
+/**
+ * @class Plant
+ * @brief Abstract base class representing a plant in the system.
+ * 
+ * Plant is a Bundle (Composite pattern) and defines the interface
+ * for all plant types. It supports growth, watering, sales tracking,
+ * and state management using the State pattern.
+ */
 
 class Plant : public Bundle{
 public:
-    // Constructor
+    /**
+     * @brief Constructs a Plant object.
+     */
     Plant();
 
-    // Destructor
+    /**
+     * @brief Virtual destructor for proper cleanup of derived plant classes.
+     */
     virtual ~Plant();
 
-    virtual std::string toString() const=0;
-    virtual void water()=0;
+    /**
+     * @brief Returns a string representation of the plant.
+     * @return A descriptive string of the plant.
+     */
+    virtual std::string toString() const = 0;
 
-    //sales functions
-    // Mark plant as sold
-    virtual void markSold()=0;
-    // Check if plant has been sold
-    virtual bool isSold()=0;
+    /**
+     * @brief Waters the plant, affecting growth and state.
+     */
+    virtual void water() = 0;
 
-    //getters
-    virtual int getGrowthLevel()=0;
-    virtual std::string getSpecies()=0;
-    virtual bool isWateredToday()=0;
-    virtual int getPreferredEnvironment()=0;
-    virtual double getGrowthMultiplier()=0;
-    virtual std::string getStateName()=0;
+    // Sales-related functions
 
-    //setters
-    virtual void setCurrentEnvironment(int newEnv)=0;
-    // Set a new state
-    virtual void setState(PlantState* newState)=0;
+    /**
+     * @brief Marks the plant as sold.
+     */
+    virtual void markSold() = 0;
 
-    virtual void endDay()=0;
+    /**
+     * @brief Checks if the plant has been sold.
+     * @return True if sold, false otherwise.
+     */
+    virtual bool isSold() = 0;
+
+    // Getters
+
+    /**
+     * @brief Retrieves the plant's growth level.
+     * @return Integer representing growth level.
+     */
+    virtual int getGrowthLevel() = 0;
+
+    /**
+     * @brief Retrieves the plant's species.
+     * @return Species name as a string.
+     */
+    virtual std::string getSpecies() = 0;
+
+    /**
+     * @brief Checks if the plant has been watered today.
+     * @return True if watered, false otherwise.
+     */
+    virtual bool isWateredToday() = 0;
+
+    /**
+     * @brief Retrieves the plant's preferred environment.
+     * @return Integer representing the preferred environment type.
+     */
+    virtual int getPreferredEnvironment() = 0;
+
+    /**
+     * @brief Retrieves the plant's growth multiplier.
+     * @return Growth multiplier as a double.
+     */
+    virtual double getGrowthMultiplier() = 0;
+
+    /**
+     * @brief Returns the current state name of the plant.
+     * @return Name of the current PlantState.
+     */
+    virtual std::string getStateName() = 0;
+
+    // Setters
+
+    /**
+     * @brief Sets the current environment of the plant.
+     * @param newEnv Integer representing the new environment.
+     */
+    virtual void setCurrentEnvironment(int newEnv) = 0;
+
+    /**
+     * @brief Updates the plant's state.
+     * @param newState Pointer to the new PlantState object.
+     */
+    virtual void setState(PlantState* newState) = 0;
+
+    /**
+     * @brief Ends the day for the plant, updating state and growth as necessary.
+     */
+    virtual void endDay() = 0;
 };
 
 #endif // PLANT_H
