@@ -2,13 +2,15 @@
 #define COS214PRAC5_FLOWERINGSUPPLIER_H
 #include "Plant.h"
 #include "Supplier.h"
+#include "Flowering.h"
+#include "UnplantedState.h"
 
 
 class FloweringSupplier: public Supplier {
 public:
     FloweringSupplier();
     virtual ~FloweringSupplier();
-    virtual Plant* createPlant();
+    Plant* getPlant() override;
 };
 
 

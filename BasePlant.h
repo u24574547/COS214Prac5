@@ -1,7 +1,7 @@
 #ifndef COS214PRAC5_BASEPLANT_H
 #define COS214PRAC5_BASEPLANT_H
 #include "Plant.h"
-#include "SeedlingState.h"
+#include "UnplantedState.h"
 #include "SoldState.h"
 #include <iostream>
 #include <sstream>
@@ -15,15 +15,22 @@ public:
     virtual std::string toString() const=0;
     virtual void water()=0;
 
-
-    void setState(PlantState* newState) override;
-    std::string getStateName() override;
+    //sales functions
     void markSold() override;
     bool isSold() override;
+
+    //getters
+    std::string getStateName() override;
     int getGrowthLevel() override;
     std::string getSpecies() override;
-    bool isWateredToday() override;
     int getPreferredEnvironment() override;
+    bool isWateredToday() override;
+
+    //setters
+    void setState(PlantState* newState) override;
+    void setCurrentEnvironment(int newEnv) override;
+
+    virtual void endDay();
 
 protected:
     int growthLevel;
