@@ -1,6 +1,6 @@
 #include "DisplayBundle.h"
 #include <iostream>
-
+//manditory change for commit
 void DisplayBundle::add(Bundle* b) {
     components.push_back(b);
 }
