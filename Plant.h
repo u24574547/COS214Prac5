@@ -2,6 +2,7 @@
 #define PLANT_H
 
 #include "PlantState.h"
+#include "Bundle.h"
 #include <string>
 
 class Plant : public Bundle{
