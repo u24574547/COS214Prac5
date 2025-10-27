@@ -22,7 +22,7 @@ class TransactionHistory : public Aggregate<Command*> {
         /**
          * @brief Constructs an empty TransactionHistory object.
          */
-        TransactionHistory() : Aggregate(transactions) {};
+        TransactionHistory(std::vector<Command*> transactions);
 
         /**
          * @brief Destroys the TransactionHistory and cleans up resources.
@@ -63,11 +63,6 @@ class TransactionHistory : public Aggregate<Command*> {
          * @return Pointer to the last Command object, or nullptr if the history is empty.
          */
         Command* getLastOrder();
-    private:
-        /**
-         * @brief The collection of Command objects representing transaction records.
-         */
-        std::vector<Command*> transactions;
 };
 
 

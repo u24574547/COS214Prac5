@@ -5,7 +5,7 @@
 Customer::Customer(const std::string &name, Employee *mediator, const std::string &id)
     : name(name), mediator(mediator), id(id)
 {
-    history = new TransactionHistory(); // created history for the particular customer
+    history = new TransactionHistory(vector<Command*>()); // created history for the particular customer
 }
 
 void Customer::inquiry(const std::string &plantType)
@@ -39,7 +39,7 @@ void Customer::orderReceive(Plant *plant, bool success)
     }
     else
     {
-        std::cout << name << " 's order failed"<< endl;
+        std::cout << name << "'s order failed"<< endl;
     }
 }
 
