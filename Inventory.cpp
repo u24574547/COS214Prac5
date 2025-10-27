@@ -2,7 +2,7 @@
 #include "Inventory.h"
 
 Iterator<Plant*>* Inventory::createIterator() {
-    return new PlantIterator(this);   
+    return new PlantIterator(this);
 }
 
 void Inventory::addPlant(Plant*  plant) {

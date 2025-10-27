@@ -4,6 +4,9 @@
 #include "Bundle.h"
 #include <vector>
 
+#include <iostream>
+#include <sstream>
+
 /**
  * @class DisplayBundle
  * @brief Composite bundle that can contain multiple Bundles for display.
@@ -29,7 +32,7 @@ public:
     /**
      * @brief Displays the bundle and all its components.
      */
-    void display() const;
+    std::string toString() const;
 
     /**
      * @brief Destructor to clean up allocated resources.

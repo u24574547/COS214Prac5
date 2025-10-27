@@ -1,14 +1,15 @@
 #include "DisplayBundle.h"
-#include <iostream>
 //manditory change for commit
 void DisplayBundle::add(Bundle* b) {
     components.push_back(b);
 }
 
-void DisplayBundle::display() const {
-    std::cout << "Display Bundle contains:" << std::endl;
+std::string DisplayBundle::toString() const {
+    std::stringstream ss;
+    ss<< "Display Bundle contains:" << std::endl;
     for (size_t i = 0; i < components.size(); ++i)
-        components[i]->display();
+        ss<<components[i]->toString();
+    return ss.str();
 }
 
 DisplayBundle::~DisplayBundle() {

@@ -16,7 +16,7 @@ public:
      * 
      * Concrete subclasses should implement this to show the bundle's content.
      */
-    virtual void display() const = 0;
+    virtual std::string toString() const = 0;
 
     /**
      * @brief Virtual destructor for proper cleanup of derived classes.

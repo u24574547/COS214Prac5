@@ -2,6 +2,9 @@
 #include <termios.h>
 #include <unistd.h>
 
+#include "FloweringSupplier.h"
+#include "Inventory.h"
+
 void setBufferedInput(bool enable) {
     static bool enabled = true;
     static struct termios oldt;
@@ -22,7 +25,9 @@ void setBufferedInput(bool enable) {
 }
 
 int main() {
-    char c;
+    Supplier* supp = new FloweringSupplier();
+    Inventory* inv = new Inventory();
+    /*char c;
     setBufferedInput(false);
 
     std::cout << "Press q to quit.\n";
@@ -35,6 +40,6 @@ int main() {
         else if (c == 'q') break;
     }
 
-    setBufferedInput(true);
+    setBufferedInput(true);*/
     return 0;
 }

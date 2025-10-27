@@ -53,5 +53,5 @@ void PlantDecorator::endDay() {
 }
 
 double PlantDecorator::getGrowthMultiplier() {
-    plant->getGrowthMultiplier();
+    return plant->getGrowthMultiplier();
 }
