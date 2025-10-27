@@ -19,8 +19,10 @@ void Gardener::handleInquiry(InquiryCommand *command)
         cout << "im sorry but we cannot help you, inquiry unhandled";
     }
 }
-    void Gardener::handleWater(int environment){
-        
-    }
+void Gardener::handleWater(int environment)
+{
+    cout << " i am watering the plants now" << endl;
+    inventory->water(environment);
+}
 
 #endif

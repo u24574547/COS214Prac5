@@ -7,15 +7,19 @@
 #include "PlantIterator.h"
 #include <string>
 
-class Inventory : public Aggregate<Plant*> {
-    public:
-        Inventory() : Aggregate(plants) {};
-        ~Inventory(){};
-        Iterator<Plant*>* createIterator() override;
-        void addPlant(Plant* plant);
-        Plant* getPlant(string name);
-    private:
-        vector<Plant*> plants;
+class Inventory : public Aggregate<Plant *>
+{
+public:
+    Inventory() : Aggregate(plants) {};
+    ~Inventory() {};
+    Iterator<Plant *> *createIterator() override;
+    void addPlant(Plant *plant);
+    Plant *getPlant(string name);
+
+    void water(int environment);
+
+private:
+    vector<Plant *> plants;
 };
 
 #endif
