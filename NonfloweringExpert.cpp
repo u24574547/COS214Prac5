@@ -7,13 +7,15 @@
 NonfloweringExpert::NonfloweringExpert(string name, Inventory *inventory) : Employee(name, inventory) {}
 NonfloweringExpert::~NonfloweringExpert() {}
 
-void NonfloweringExpert::handleInquiry(InquiryCommand *command)
+void NonfloweringExpert::handleInquiry(Command *command)
 {
+    InquiryCommand *cmd = static_cast<InquiryCommand *>(command);
+
     cout << name << " is taking a look at the inquiry." << endl;
-    if (command->getType() == "Nonflowering")
+    if (cmd->getType() == "Nonflowering")
     {
         cout << name << " is happy to help you." << endl;
-        command->getCustomer()->inquiryReceive(command->getType(), "*a response about nonflowering plants");
+        cmd->getCustomer()->inquiryReceive(cmd->getType(), "*a response about nonflowering plants");
     }
     else
     {
