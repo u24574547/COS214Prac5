@@ -6,6 +6,9 @@
  * Used to avoid circular dependencies between Command and Customer.
  */
 class Customer;
+#include <string>
+
+using namespace std;
 
 /**
  * @class Command
@@ -15,12 +18,13 @@ class Customer;
  * (e.g., OrderCommand, InquiryCommand, RefundCommand). Each command
  * maintains a pointer to the Customer who initiated it.
  */
-class Command {
+class Command
+{
 protected:
     /**
      * @brief Pointer to the Customer who created the command.
      */
-    Customer* customer;
+    Customer *customer;
 
 public:
     /**
@@ -28,7 +32,7 @@ public:
      *
      * @param customer Pointer to the Customer who initiated this command.
      */
-    Command(Customer* customer);
+    Command(Customer *customer);
 
     /**
      * @brief Executes the command's specific action.
@@ -48,7 +52,9 @@ public:
      *
      * @return Pointer to the Customer associated with this command.
      */
-    Customer* getCustomer() const;
+    Customer *getCustomer() const;
+
+    virtual string toString() = 0;
 };
 
 #endif // COMMAND_H
