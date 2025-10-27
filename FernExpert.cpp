@@ -7,13 +7,15 @@
 FernExpert::FernExpert(string name, Inventory *inventory) : Employee(name, inventory) {}
 FernExpert::~FernExpert() {}
 
-void FernExpert::handleInquiry(InquiryCommand *command)
+void FernExpert::handleInquiry(Command *command)
 {
+    InquiryCommand *cmd = static_cast<InquiryCommand *>(command);
+
     cout << name << " is taking a look at the inquiry." << endl;
-    if (command->getType() == "Fern")
+    if (cmd->getType() == "Fern")
     {
         cout << name << " is happy to help you." << endl;
-        command->getCustomer()->inquiryReceive(command->getType(), "*a response about Fern");
+        cmd->getCustomer()->inquiryReceive(cmd->getType(), "*a response about Fern");
     }
     else
     {

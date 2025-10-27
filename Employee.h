@@ -12,7 +12,6 @@ class Customer;
 
 #include <vector>
 #include <iostream>
-// #include <string>
 
 using namespace std;
 
@@ -23,9 +22,9 @@ public:
     virtual ~Employee();
     void setNext(Employee *next);
 
-    void handleOrder(OrderCommand *command);
-    void handleRefund(RefundCommand *command);
-    virtual void handleInquiry(InquiryCommand *command) = 0;
+    void handleOrder(Command *command);
+    void handleRefund(Command *command);
+    virtual void handleInquiry(Command *command) = 0;
     virtual void handleWater(int environment) = 0;
 
 protected:

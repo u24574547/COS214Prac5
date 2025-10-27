@@ -7,13 +7,15 @@
 MossExpert::MossExpert(string name, Inventory *inventory) : Employee(name, inventory) {}
 MossExpert::~MossExpert() {}
 
-void MossExpert::handleInquiry(InquiryCommand *command)
+void MossExpert::handleInquiry(Command *command)
 {
+    InquiryCommand *cmd = static_cast<InquiryCommand *>(command);
+
     cout << name << " is taking a look at the inquiry." << endl;
-    if (command->getType() == "Moss")
+    if (cmd->getType() == "Moss")
     {
         cout << name << " is happy to help you." << endl;
-        command->getCustomer()->inquiryReceive(command->getType(), "*a response about Moss plants");
+        cmd->getCustomer()->inquiryReceive(cmd->getType(), "*a response about Moss plants");
     }
     else
     {

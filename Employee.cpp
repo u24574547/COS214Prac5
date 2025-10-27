@@ -4,7 +4,6 @@
 #include "Employee.h"
 
 #include "Command.h"
-#include "InquiryCommand.h"
 #include "OrderCommand.h"
 #include "RefundCommand.h"
 
@@ -21,29 +20,33 @@ void Employee::setNext(Employee *next)
     this->next = next;
 }
 
-void Employee::handleOrder(OrderCommand *command)
+void Employee::handleOrder(Command *command)
 {
-    Plant *plant = inventory->getPlant(command->getSpeciesName());
+    OrderCommand *cmd = static_cast<OrderCommand *>(command);
+
+    Plant *plant = inventory->getPlant(cmd->getSpeciesName());
     if (plant == nullptr)
     {
-        command->getCustomer()->orderReceive(nullptr, false);
+        cmd->getCustomer()->orderReceive(nullptr, false);
     }
     else
     {
-        command->getCustomer()->orderReceive(plant, true);
+        cmd->getCustomer()->orderReceive(plant, true);
     }
 }
-void Employee::handleRefund(RefundCommand *command)
+void Employee::handleRefund(Command *command)
 {
-    Command *refund = command->getCommandToRefund();
+    RefundCommand *cmd = static_cast<RefundCommand *>(command);
+
+    Command *refund = cmd->getCommandToRefund();
     if (refund == nullptr)
     {
         // cout << "sorry, there is no record of this transaction.";
-        command->getCustomer()->refundReceive(false);
+        cmd->getCustomer()->refundReceive(false);
     }
     else
     {
-        command->getCustomer()->refundReceive(true);
+        cmd->getCustomer()->refundReceive(true);
     }
 }
 
