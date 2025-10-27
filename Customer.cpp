@@ -39,7 +39,7 @@ void Customer::orderReceive(Plant *plant, bool success)
     }
     else
     {
-        std::cout << name << " received order failure for " << plant->getSpecies() << endl;
+        std::cout << name << " 's order failed"<< endl;
     }
 }
 
