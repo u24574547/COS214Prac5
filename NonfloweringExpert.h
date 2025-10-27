@@ -9,7 +9,8 @@ public:
     NonfloweringExpert(string name, Inventory *inventory);
     ~NonfloweringExpert();
 
-    void handleInquiry(InquiryCommand* command);
+    void handleInquiry(InquiryCommand *command);
+    void handleWater(int environment);
 
 protected:
 private:
