@@ -22,5 +22,6 @@ void TransactionHistory::removeOrder(Command* order) {
 }
 
 Command* TransactionHistory::getLastOrder() {
-    return items.back();
+    if (!items.empty())return items.back();
+    return nullptr;
 }
