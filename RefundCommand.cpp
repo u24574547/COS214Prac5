@@ -2,6 +2,8 @@
 #include "Employee.h"
 #include <iostream>
 
+#include "Customer.h"
+
 RefundCommand::RefundCommand(Customer *customer, Employee *mediator, Command *commandToRefund)
     : Command(customer), mediator(mediator), commandToRefund(commandToRefund) {}
 
@@ -24,4 +26,7 @@ Command *RefundCommand::getCommandToRefund() const
     return commandToRefund;
 }
 
-string RefundCommand::toString() {}
+string RefundCommand::toString()
+{
+    return "RefundCommand from " + this->getCustomer()->getName() + " [id = " + this->customer->getId() + "]\n";
+}

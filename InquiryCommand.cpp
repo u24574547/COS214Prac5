@@ -2,6 +2,8 @@
 #include "Employee.h"
 #include <iostream>
 
+#include "Customer.h"
+
 InquiryCommand::InquiryCommand(Customer *customer, Employee *mediator, const std::string &plantType)
     : Command(customer), mediator(mediator), plantType(plantType) {}
 
@@ -23,4 +25,7 @@ std::string InquiryCommand::getType() const
     return plantType;
 }
 
-string InquiryCommand::toString() {}
+string InquiryCommand::toString()
+{
+    return "InquiryCommand from " + this->getCustomer()->getName() + " [id = " + this->customer->getId() + "]\n";
+}

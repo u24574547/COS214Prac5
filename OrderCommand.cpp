@@ -2,6 +2,8 @@
 #include "Employee.h"
 #include <iostream>
 
+#include "Customer.h"
+
 OrderCommand::OrderCommand(Customer *customer, Employee *mediator, const std::string &speciesName)
     : Command(customer), mediator(mediator), speciesName(speciesName) {}
 
@@ -24,4 +26,7 @@ std::string OrderCommand::getSpeciesName() const
     return speciesName;
 }
 
-string OrderCommand::toString() {}
+string OrderCommand::toString()
+{
+    return "OrderCommand from " + this->getCustomer()->getName() + " [id = " + this->customer->getId() + "]\n";
+}
