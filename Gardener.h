@@ -1,13 +1,13 @@
-#ifndef MossExpert_H
-#define MossExpert_H
+#ifndef Gardener_H
+#define Gardener_H
 
 #include "Employee.h"
 
-class MossExpert : public Employee
+class Gardener : public Employee
 {
 public:
-    MossExpert(string name, Inventory *inventory);
-    ~MossExpert();
+    Gardener(string name, Inventory *inventory);
+    ~Gardener();
 
     void handleInquiry(InquiryCommand *command);
     void handleWater(int environment);

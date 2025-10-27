@@ -10,7 +10,7 @@
 /**
  * @class Inventory
  * @brief Represents a collection (aggregate) of Plant objects.
- * 
+ *
  * The Inventory class stores and manages a collection of Plant pointers.
  * It provides operations to add and retrieve plants, as well as create
  * an iterator (PlantIterator) to traverse the collection.
@@ -30,7 +30,7 @@ class Inventory : public Aggregate<Plant*> {
         /**
          * @brief Creates an iterator to traverse the collection of plants.
          * @return A pointer to an Iterator<Plant*> for this Inventory.
-         */ 
+         */
         Iterator<Plant*>* createIterator() override;
 
         /**
@@ -41,11 +41,14 @@ class Inventory : public Aggregate<Plant*> {
 
         /**
          * @brief Retrieves a plant from the inventory by name.
-         * 
+         *
          * @param name The name of the plant to find.
          * @return Pointer to the Plant object if found, otherwise nullptr.
          */
         Plant* getPlant(string name);
+
+        void water(int environment);
+
     private:
         /**
          * @brief The underlying container that holds Plant pointers.
