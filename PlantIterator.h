@@ -61,7 +61,7 @@ class PlantIterator : public Iterator<Plant*> {
         /**
          * @brief Local copy of the plants to iterate over.
          */
-        std::vector<Plant*> plants;
+        std::vector<Plant*>& plants;
 
         /**
          * @brief Current index of the iterator within the plants vector.

@@ -1,4 +1,6 @@
 #include "TransactionHistory.h"
+#include "Customer.h"
+#include <iostream>
 #include <algorithm>
 
 Iterator<Command*>* TransactionHistory::createIterator() {
@@ -6,18 +8,24 @@ Iterator<Command*>* TransactionHistory::createIterator() {
 }
 TransactionMemento* TransactionHistory::captureState() {
     //create new memento
-    return new TransactionMemento(transactions);
+    return new TransactionMemento(items);
 }
+
 void TransactionHistory::addOrder(Command* order) {
-    transactions.push_back(order);
+    std::cout << "Adding order from: " << order->getCustomer()->getName()<< "\n";
+    items.push_back(order);
 }
 void TransactionHistory::removeOrder(Command* order) {
-    auto pos = std::find(transactions.begin(), transactions.end(), order);
-    if (pos != transactions.end()) {
-        transactions.erase(pos);
+    for (auto it = items.begin(); it != items.end(); ++it) {
+        if (*it == order) {
+            std::cout << "Removing order from " << (*it)->getCustomer()->getName() << "\n";
+            items.erase(it);
+            break;
+        }
     }
+    
 }
 
 Command* TransactionHistory::getLastOrder() {
-    return transactions.back();
+    return items.back();
 }

@@ -62,7 +62,7 @@ class TransactionIterator : public Iterator<Command*> {
         /**
          * @brief Local copy of the transactions to iterate over.
          */
-        std::vector<Command*> transactions;
+        std::vector<Command*>& transactions;
 
         /**
          * @brief Current index of the iterator within the transactions vector.

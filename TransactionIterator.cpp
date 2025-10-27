@@ -2,10 +2,12 @@
 #include "TransactionHistory.h"
 #include "Command.h"
 
-TransactionIterator::TransactionIterator(Aggregate<Command*> *transactionHistory) : Iterator<Command*>(transactionHistory) {
-    this->transactions = transactionHistory->getItems();
-    this->index = 0;
-}
+TransactionIterator::TransactionIterator(Aggregate<Command*> *transactionHistory)
+    :Iterator<Command*>(transactionHistory),
+     transactions(transactionHistory->getItems()),
+     index(0)
+    {}
+
 
 TransactionIterator::~TransactionIterator() {
     

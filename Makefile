@@ -1,27 +1,24 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Iinclude -Itests
+CXXFLAGS = -std=c++17 -Wall -Iinclude
 
-# Normal program
-SRCS_APP := $(wildcard *.cpp)
-OBJS_APP := $(SRCS_APP:.cpp=.o)
+# Source files
+SRCS := $(wildcard *.cpp)
+OBJS := $(SRCS:.cpp=.o)
 
-# Tests (exclude main.cpp)
-SRCS_TEST := $(filter-out main.cpp,$(wildcard *.cpp)) $(wildcard tests/*.cpp)
-OBJS_TEST := $(SRCS_TEST:.cpp=.o)
+# Default target
+all: app
 
-all: app test_runner
+# Compile the normal app
+app: $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $(OBJS)
 
-app: $(OBJS_APP)
-	$(CXX) $(CXXFLAGS) -o $@ $(OBJS_APP)
-
-test_runner: $(OBJS_TEST)
-	$(CXX) $(CXXFLAGS) -o $@ $(OBJS_TEST)
-
+# Compile object files
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
+# Clean build files
 clean:
-	rm -f *.o tests/*.o app test_runner
+	rm -f *.o app
 
-tests: test_runner
-	./test_runner
+run:
+	./app

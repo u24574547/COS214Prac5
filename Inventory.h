@@ -20,7 +20,7 @@ class Inventory : public Aggregate<Plant*> {
         /**
          * @brief Constructs an empty Inventory.
          */
-        Inventory() : Aggregate(plants) {};
+        Inventory() : Aggregate<Plant*>(){};
 
         /**
          * @brief Destroys the Inventory and cleans up resources.
@@ -46,11 +46,6 @@ class Inventory : public Aggregate<Plant*> {
          * @return Pointer to the Plant object if found, otherwise nullptr.
          */
         Plant* getPlant(string name);
-    private:
-        /**
-         * @brief The underlying container that holds Plant pointers.
-         */
-        vector<Plant*> plants;
 };
 
 #endif
