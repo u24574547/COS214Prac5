@@ -125,6 +125,7 @@ void customerMenu(Customer* customer) {
         else if (c == '2') orderPlant(customer);
         else if (c == '3') customer->refund();
         else if (c == '4') std::cout<<customer->toString();
+        else if (c == '5') std::cout<<customer->transactionHistoryToString();
         else if (c == 'b') break;
         else std::cout << "Not implemented yet\n";
         std::cout<<menu<<std::endl;
