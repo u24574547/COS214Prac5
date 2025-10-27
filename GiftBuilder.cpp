@@ -1,7 +1,8 @@
 #include "GiftBuilder.h"
 #include <iostream>
 #include <sstream>
-
+#include "Fertiliser.h"
+#include "FrostNet.h"
 
 GiftBuilder::GiftBuilder() {
     bundle = new DisplayBundle();
@@ -17,10 +18,19 @@ void GiftBuilder::addBasicPlant(Plant* name) {
 }
 void GiftBuilder::addDecorativePlant(Plant* name) {
     //I need to decorate the plants
+    // For now till i get that decorator class ill add normal
+    bundle->add(name);
     
 }
 void GiftBuilder::addFertilisedPlant(Plant* name){
-    
+    // decorate the plant and add it to the bundle
+    Fertiliser* decoratedPlant = new Fertiliser(name);
+    bundle->add(decoratedPlant);
+}
+void GiftBuilder::addFrostNetPlant(Plant* name){
+    // decorate the plant and add it to the bundle
+    FrostNet* decoratedPlant = new FrostNet(name);
+    bundle->add(decoratedPlant);
 }
 
 

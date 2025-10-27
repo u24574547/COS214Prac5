@@ -52,6 +52,12 @@ public:
     void addFertilisedPlant(Plant* plant) override;
 
     /**
+     * @brief Adds a frost-protected plant to the terrarium bundle.
+     * 
+     * @param plant Pointer to the Plant object to add.
+     */
+    void addFrostNetPlant(Plant* plant) override;
+    /**
      * @brief Retrieves the constructed terrarium bundle.
      * 
      * @return Pointer to the DisplayBundle representing the completed terrarium bundle.
