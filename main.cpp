@@ -14,21 +14,86 @@ void setBufferedInput(bool enable) {
     static struct termios oldt;
     struct termios newt;
 
+    auto purge_stdio_buffer = []() {
+        // Try to consume any bytes already in the C++ stream buffer
+        std::cin.clear(); // clear errors if any
+        std::streamsize avail = std::cin.rdbuf()->in_avail();
+        while (avail-- > 0) {
+            // withdraw characters without blocking
+            int ch = std::cin.get();
+            if (ch == EOF) break;
+        }
+    };
+
+    auto reopen_stdin_from_tty = []() -> bool {
+        // Reopen stdin from /dev/tty to reset stdio buffering.
+        // Returns true if succeeded.
+        if (!isatty(STDIN_FILENO)) return false; // not a TTY (can't reopen)
+        FILE *f = freopen("/dev/tty", "r", stdin);
+        if (f == nullptr) return false;
+        // After freopen, also clear C++ iostream association
+        std::cin.clear();
+        return true;
+    };
+
+    auto purge_kernel_queue = []() {
+        if (isatty(STDIN_FILENO)) tcflush(STDIN_FILENO, TCIFLUSH);
+    };
+
     if (enable && !enabled) {
-        // restore terminal settings
+        // Going back to buffered (canonical) mode:
+        // First, purge any stray input so the buffered-mode code starts clean.
+        // Reopen stdin from /dev/tty if possible (this drops stdio buffers).
+        if (!reopen_stdin_from_tty()) {
+            // fallback: try draining stdio buffer
+            purge_stdio_buffer();
+        }
+        purge_kernel_queue();
+
+        // restore saved termios
         tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
         enabled = true;
-    } else if (!enable && enabled) {
-        // disable canonical mode and echo
-        tcgetattr(STDIN_FILENO, &oldt);
+    }
+    else if (!enable && enabled) {
+        // Going into unbuffered (non-canonical) mode:
+        // Purge both stdio buffers and kernel queue BEFORE switching modes.
+        if (!reopen_stdin_from_tty()) {
+            purge_stdio_buffer();
+        }
+        purge_kernel_queue();
+
+        // Save current terminal attributes and disable canonical mode + echo.
+        if (tcgetattr(STDIN_FILENO, &oldt) == -1) {
+            // if tcgetattr fails, bail out silently (you can handle error if desired)
+            return;
+        }
         newt = oldt;
         newt.c_lflag &= ~(ICANON | ECHO);
+        newt.c_cc[VMIN]  = 1; // return after 1 byte
+        newt.c_cc[VTIME] = 0; // no timeout
         tcsetattr(STDIN_FILENO, TCSANOW, &newt);
         enabled = false;
     }
 }
 
-void customerMenu(std::vector<Customer*>& customers, Customer* customer) {
+void plantInquiry(Customer * customer) {
+    setBufferedInput(true);
+    while (true) {
+        std::cout<<"Enter plant type to enquire about(Fern/Flowering/Nonflowering/Moss):";
+        std::string type;
+        std::cin>>type;
+        if (type == "Fern" || type == "Flowering" || type == "Nonflowering" || type == "Moss") {
+            customer->inquiry(type);
+            break;
+        }
+        else {
+            std::cout<<"Invalid plant type. Please retry"<<std::endl;
+        }
+    }
+    setBufferedInput(false);
+}
+
+void customerMenu(Customer* customer) {
     std::string menu =  "Customer actions:\n"
     "1. Plant Inquiry\n"
     "2. Order a Plant\n"
@@ -36,14 +101,14 @@ void customerMenu(std::vector<Customer*>& customers, Customer* customer) {
     "4. View Customer details\n"
     "5. View Customer transaction history\n"
     "b to return to customer selection menu\n";
+    std::cout<<menu<<std::endl;
     char c;
     while (true) {
         c = getchar();
-        if (c == '1') ;
-        else if (c == 's') std::cout << "Down\n";
-        else if (c == 'a') std::cout << "Left\n";
-        else if (c == 'd') std::cout << "Right\n";
+        if (c=='1') plantInquiry(customer);
+        else if (c == '4') std::cout<<customer->toString();
         else if (c == 'b') break;
+        else std::cout << "Not implemented yet\n";
         std::cout<<menu<<std::endl;
     }
 }
@@ -143,7 +208,7 @@ void customerSelectionMenu(vector<Customer *>& customers, Employee* employee) {
         if (c == '1') {
             Customer* customer = chooseCustomer(customers);
             if (customer!=nullptr) {
-                customerMenu(customers, customer);
+                customerMenu(customer);
                 break;
             }
         }
