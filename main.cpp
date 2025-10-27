@@ -123,6 +123,7 @@ void customerMenu(Customer* customer) {
         c = getchar();
         if (c=='1') plantInquiry(customer);
         else if (c == '2') orderPlant(customer);
+        else if (c == '3') customer->refund();
         else if (c == '4') std::cout<<customer->toString();
         else if (c == 'b') break;
         else std::cout << "Not implemented yet\n";
