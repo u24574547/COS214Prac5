@@ -93,6 +93,22 @@ void plantInquiry(Customer * customer) {
     setBufferedInput(false);
 }
 
+void orderPlant(Customer * customer) {
+    setBufferedInput(true);
+    while (true) {
+        std::cout<<"Enter plant species to order:";
+        std::string species;
+        std::cin>>species;
+        customer->order(species);
+        std::cout<<"Order another plant?(Y/N):";
+        std::cin>>species;
+        if (species == "N") {
+            break;
+        }
+    }
+    setBufferedInput(false);
+}
+
 void customerMenu(Customer* customer) {
     std::string menu =  "Customer actions:\n"
     "1. Plant Inquiry\n"
@@ -106,6 +122,7 @@ void customerMenu(Customer* customer) {
     while (true) {
         c = getchar();
         if (c=='1') plantInquiry(customer);
+        else if (c == '2') orderPlant(customer);
         else if (c == '4') std::cout<<customer->toString();
         else if (c == 'b') break;
         else std::cout << "Not implemented yet\n";
