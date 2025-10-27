@@ -27,7 +27,7 @@ class Aggregate {
         /**
          * @brief Virtual destructor.
          */
-        virtual ~Aggregate();
+        virtual ~Aggregate(){};
 
         /**
          * @brief Creates an iterator to traverse the collection.

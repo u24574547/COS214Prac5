@@ -47,7 +47,7 @@ public:
      *
      * @return A pointer to the Command object being refunded.
      */
-    Command* getCommandToRefund() const { return commandToRefund; }
+    Command* getCommandToRefund() const;
 };
 
 #endif // REFUNDCOMMAND_H

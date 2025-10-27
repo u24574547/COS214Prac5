@@ -2,7 +2,7 @@
 #define ITERATOR_H
 
 
-#include "Aggregate.h"
+template<typename T> class Aggregate;
 #include <vector>
 
 /**
