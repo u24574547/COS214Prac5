@@ -1,5 +1,6 @@
 #include "TransactionHistory.h"
 #include <algorithm>
+#include <sstream>
 
 TransactionHistory::TransactionHistory(std::vector<Command *> transactions): Aggregate(transactions) {
 }
@@ -24,4 +25,12 @@ void TransactionHistory::removeOrder(Command* order) {
 Command* TransactionHistory::getLastOrder() {
     if (!items.empty())return items.back();
     return nullptr;
+}
+
+std::string TransactionHistory::toString() const {
+    std::stringstream ss;
+    for (auto it = items.begin(); it != items.end(); ++it) {
+        ss<<(*it)->toString();
+    }
+    return ss.str();
 }

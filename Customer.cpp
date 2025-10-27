@@ -100,3 +100,7 @@ TransactionHistory *Customer::getHistory() const
 std::string Customer::toString() const {
     return "ID: "+id+"\tName: "+name;
 }
+
+std::string Customer::transactionHistoryToString() const {
+    return history->toString();
+}

@@ -2,6 +2,8 @@
 #ifndef TRANSACTIONHISTORY_H
 #define TRANSACTIONHISTORY_H
 
+#include <string>
+
 #include "Aggregate.h"
 #include "Iterator.h"
 #include "TransactionMemento.h"
@@ -63,6 +65,13 @@ class TransactionHistory : public Aggregate<Command*> {
          * @return Pointer to the last Command object, or nullptr if the history is empty.
          */
         Command* getLastOrder();
+
+        /**
+        * @brief Returns a string representation of the Customer.
+        *
+        * @return std::string.
+        */
+        std::string toString() const;
 };
 
 

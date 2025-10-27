@@ -128,6 +128,13 @@ public:
      * @return std::string.
      */
     std::string toString() const;
+
+    /**
+     * @brief Returns a string representation of the Customer's transactions.
+     *
+     * @return std::string.
+     */
+    std::string transactionHistoryToString() const;
 };
 
 #endif // CUSTOMER_H
