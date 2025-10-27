@@ -9,12 +9,13 @@ RefundCommand::RefundCommand(Customer* customer, Employee* mediator, Command* co
 void RefundCommand::execute() {
     if (mediator!= nullptr){
          std::cout << "Processing refund..." << std::endl;
-        mediator->handleRefund(this);
+        Command* inter = this;
+        mediator->handleRefund(inter);
     } else {
         std::cout<<"Refund could not be processed.\nNo mediator was set to handle it.";
         return; 
     }
-} 
- 
+}
+
 Command* RefundCommand::getCommandToRefund() const { return commandToRefund; }
 

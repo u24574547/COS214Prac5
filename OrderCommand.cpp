@@ -8,7 +8,8 @@ OrderCommand::OrderCommand(Customer* customer, Employee* mediator, const std::st
 void OrderCommand::execute() {
     if (mediator!= nullptr){
         std::cout << "Processing order for species: " << this->getSpeciesName() << "...\n";
-        mediator->handleOrder(this);}
+        Command* inter = this;
+        mediator->handleOrder(inter);}
     else{
         std::cout << "Order could not be processed.\nNo mediator was set to handle it."<<std::endl; 
                 }
