@@ -68,3 +68,7 @@ void BasePlant::grow() {
         std::cout << "No state assigned to plant. Cannot grow." << std::endl;
     }
 }
+
+int BasePlant::getCurrentEnvironment() {
+    return currentEnvironment;
+}

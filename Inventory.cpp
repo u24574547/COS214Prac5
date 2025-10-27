@@ -19,3 +19,11 @@ Plant* Inventory::getPlant(string name) {
    }
    return plant;
 }
+
+void Inventory::water(int environment) {
+    for (auto it = plants.begin(); it != plants.end(); ++it) {
+        if ((*it)->getCurrentEnvironment() == environment) {
+            (*it)->water();
+        }
+    }
+}

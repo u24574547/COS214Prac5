@@ -77,6 +77,12 @@ public:
     virtual int getPreferredEnvironment() = 0;
 
     /**
+     * @brief Retrieves the plant's current environment.
+     * @return Integer representing the current environment type.
+     */
+    virtual int getCurrentEnvironment() = 0;
+
+    /**
      * @brief Retrieves the plant's growth multiplier.
      * @return Growth multiplier as a double.
      */

@@ -55,3 +55,7 @@ void PlantDecorator::endDay() {
 double PlantDecorator::getGrowthMultiplier() {
     return plant->getGrowthMultiplier();
 }
+
+int PlantDecorator::getCurrentEnvironment() {
+    return plant->getCurrentEnvironment();
+}

@@ -84,6 +84,12 @@ public:
     int getPreferredEnvironment() override;
 
     /**
+     * @brief Retrieves the plant's current environment.
+     * @return Integer representing the current environment type.
+     */
+    int getCurrentEnvironment() override;
+
+    /**
      * @brief Returns the growth multiplier for the decorated plant.
      * @return Growth multiplier as a double.
      */
