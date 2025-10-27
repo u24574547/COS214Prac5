@@ -24,8 +24,20 @@ void NonfloweringExpert::handleInquiry(InquiryCommand *command)
         }
         else
         {
-            cout << "im sorry but we cannot help you, inquiry unhandled";
+            cout << "im sorry but we cannot help you, inquiry unhandled" << endl;
         }
+    }
+}
+void NonfloweringExpert::handleWater(int environment)
+{
+    if (next != nullptr)
+    {
+        cout << name << " is forwarding the problem." << endl;
+        next->handleWater(environment);
+    }
+    else
+    {
+        cout << "it's not my job, plants unwatered" << endl;
     }
 }
 

@@ -9,7 +9,8 @@ public:
     Gardener(string name, Inventory *inventory);
     ~Gardener();
 
-    void handleInquiry(InquiryCommand* command);
+    void handleInquiry(InquiryCommand *command);
+    void handleWater(int environment);
 
 protected:
 private:
