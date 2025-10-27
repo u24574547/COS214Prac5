@@ -26,6 +26,7 @@ public:
     void handleOrder(OrderCommand *command);
     void handleRefund(RefundCommand *command);
     virtual void handleInquiry(InquiryCommand *command) = 0;
+    virtual void handleWater(int environment) = 0;
 
 protected:
     string name;
