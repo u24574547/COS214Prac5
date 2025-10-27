@@ -121,6 +121,13 @@ public:
      * @return Pointer to the TransactionHistory object.
      */
     TransactionHistory* getHistory() const;
+
+    /**
+     * @brief Returns a string representation of the Customer.
+     *
+     * @return std::string.
+     */
+    std::string toString() const;
 };
 
 #endif // CUSTOMER_H
