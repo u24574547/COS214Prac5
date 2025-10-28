@@ -14,12 +14,13 @@ class Employee; // Forward declaration
  * about a specific plant type. It is part of the Command pattern implementation
  * used to decouple the request (customer inquiry) from its processing (employee handling).
  */
-class InquiryCommand : public Command {
+class InquiryCommand : public Command
+{
 private:
     /**
      * @brief Pointer to the Employee (mediator) responsible for handling the command.
      */
-    Employee* mediator;
+    Employee *mediator;
 
     /**
      * @brief The type of plant being inquired about.
@@ -34,7 +35,7 @@ public:
      * @param mediator Pointer to the Employee who will handle the inquiry.
      * @param plantType The type of plant being inquired about.
      */
-    InquiryCommand(Customer* customer, Employee* mediator, const std::string& plantType);
+    InquiryCommand(Customer *customer, Employee *mediator, const std::string &plantType);
 
     /**
      * @brief Executes the inquiry command by delegating it to the mediator (Employee).
@@ -47,6 +48,8 @@ public:
      * @return A string representing the plant type.
      */
     std::string getType() const;
+
+    string toString();
 };
 
 #endif // INQUIRYCOMMAND_H

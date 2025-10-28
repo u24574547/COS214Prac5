@@ -15,17 +15,18 @@ class Employee; // Forward declaration
  * of a refund request initiated by a customer and delegates the execution to
  * the appropriate Employee (mediator) responsible for handling refunds.
  */
-class RefundCommand : public Command {
+class RefundCommand : public Command
+{
 private:
     /**
      * @brief Pointer to the Employee (mediator) responsible for processing the refund.
      */
-    Employee* mediator;
+    Employee *mediator;
 
     /**
      * @brief Pointer to the original Command (e.g., OrderCommand) being refunded.
      */
-    Command* commandToRefund;
+    Command *commandToRefund;
 
 public:
     /**
@@ -35,7 +36,7 @@ public:
      * @param mediator Pointer to the Employee handling the refund process.
      * @param commandToRefund Pointer to the Command being refunded.
      */
-    RefundCommand(Customer* customer, Employee* mediator, Command* commandToRefund);
+    RefundCommand(Customer *customer, Employee *mediator, Command *commandToRefund);
 
     /**
      * @brief Executes the refund command by delegating it to the mediator (Employee).
@@ -47,7 +48,9 @@ public:
      *
      * @return A pointer to the Command object being refunded.
      */
-    Command* getCommandToRefund() const;
+    Command *getCommandToRefund() const;
+
+    string toString();
 };
 
 #endif // REFUNDCOMMAND_H

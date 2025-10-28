@@ -16,12 +16,13 @@ class Employee; // Forward declaration
  * executed through a mediator (Employee) without the customer needing to know
  * the handling details.
  */
-class OrderCommand : public Command {
+class OrderCommand : public Command
+{
 private:
     /**
      * @brief Pointer to the Employee (mediator) responsible for processing the order.
      */
-    Employee* mediator;
+    Employee *mediator;
 
     /**
      * @brief The name of the plant species being ordered.
@@ -36,7 +37,7 @@ public:
      * @param mediator Pointer to the Employee handling the order.
      * @param speciesName The name of the plant species being ordered.
      */
-    OrderCommand(Customer* customer, Employee* mediator, const std::string& speciesName);
+    OrderCommand(Customer *customer, Employee *mediator, const std::string &speciesName);
 
     /**
      * @brief Executes the order command by delegating the task to the mediator (Employee).
@@ -49,6 +50,8 @@ public:
      * @return A string representing the plant species name.
      */
     std::string getSpeciesName() const;
+
+    string toString();
 };
 
 #endif // ORDERCOMMAND_H
