@@ -249,6 +249,16 @@ void plantMenu() {
 
 }
 
+bool tryParseDouble(const std::string& str, double& outValue) {
+    try {
+        size_t pos;
+        outValue = std::stod(str, &pos);
+        return pos == str.size();
+    } catch (...) {
+        return false;
+    }
+}
+
 void createPlant(Inventory * inv) {
     setBufferedInput(true);
     int plantType;
@@ -348,12 +358,70 @@ void createPlant(Inventory * inv) {
             throw std::invalid_argument("Invalid plant state.");
     }
 
-    void setWatered(bool watered);
-    void setGrowthRate(double growthRate);
-    void setPreferredEnvironment(int env);
-    void setCurrentEnvironment(int env);
+    //growth rate
+    while (true) {
+        std::cout<<"Enter 0 for default.\nHow fast does the plant grow(1.0-6.0):";
+        std::string type;
+        std::cin>>type;
+        double value;
+        if (tryParseDouble(type, value) && value>=1.0 && value<=6.0) {
+            supp->setGrowthRate(value);
+            break;
+        }
+        std::cout<<"Invalid growth rate. Please retry"<<std::endl;
+    }
 
-    inv->addPlant(plant);
+    //preferred environment
+    while (true) {
+        std::cout<<"Enter plant's preferred environment(Tropical/Temperate/Continental/Dry):";
+        std::string type;
+        std::cin>>type;
+        if (type == "Tropical") {
+            plantType=1;
+            break;
+        }
+        if (type == "Temperate") {
+            plantType=2;
+            break;
+        }
+        if (type == "Continental") {
+            plantType=3;
+            break;
+        }
+        if (type == "Dry") {
+            plantType=4;
+            break;
+        }
+        std::cout<<"Invalid environment type. Please retry"<<std::endl;
+    }
+    supp->setPreferredEnvironment(plantType);
+
+    //current environment
+    while (true) {
+        std::cout<<"Enter plant's storage location(Greenhouse/Shadenet/Semi-shaded/Sunny):";
+        std::string type;
+        std::cin>>type;
+        if (type == "Greenhouse") {
+            plantType=1;
+            break;
+        }
+        if (type == "Shadenet") {
+            plantType=2;
+            break;
+        }
+        if (type == "Semi-shaded") {
+            plantType=3;
+            break;
+        }
+        if (type == "Sunny") {
+            plantType=4;
+            break;
+        }
+        std::cout<<"Invalid environment type. Please retry"<<std::endl;
+    }
+    supp->setCurrentEnvironment(plantType);
+
+    inv->addPlant(supp->getPlant());
     setBufferedInput(false);
 }
 
