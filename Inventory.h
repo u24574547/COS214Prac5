@@ -48,6 +48,8 @@ class Inventory : public Aggregate<Plant*> {
         Plant* getPlant(string name);
 
         void water(int environment);
+
+        void endDay();
 };
 
 #endif

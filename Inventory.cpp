@@ -27,3 +27,10 @@ void Inventory::water(int environment) {
         }
     }
 }
+
+void Inventory::endDay() {
+    Iterator<Plant*>* iter = createIterator();
+    while (!iter->isDone()) {
+        iter->next()->endDay();
+    }
+}
