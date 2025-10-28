@@ -425,7 +425,7 @@ void createPlant(Inventory * inv) {
     setBufferedInput(false);
 }
 
-void choosePlant(Inventory* inv) {
+void plantSelectionMenu(Inventory* inv) {
     std::string menu =  "Choose/Create Plant:\n"
     "1. Choose a plant\n"
     "2. Create a new plant\n"
@@ -435,11 +435,11 @@ void choosePlant(Inventory* inv) {
     while (true) {
         c = getchar();
         if (c == '1') {
-            Plant* plant = choosePlant(inv);
+            /*Plant* plant = choosePlant(inv);
             if (customer!=nullptr) {
                 customerMenu(customer);
                 break;
-            }
+            }*/
         }
         else if (c == '2') {
             createPlant(inv);
@@ -466,7 +466,7 @@ int main() {
     while (true) {
         c = getchar();
         if (c == '1') customerSelectionMenu(customers, employee);
-        else if (c == '2') choosePlant(inv);
+        else if (c == '2') plantSelectionMenu(inv);
         else if (c == 'a') std::cout << "Left\n";
         else if (c == 'd') std::cout << "Right\n";
         else if (c == 'q') break;

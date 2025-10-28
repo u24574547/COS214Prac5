@@ -32,5 +32,6 @@ std::string TransactionHistory::toString() const {
     for (auto it = items.begin(); it != items.end(); ++it) {
         ss<<(*it)->toString();
     }
+    if (ss.str().length() == 0) return "Customer has not made any transactions.";
     return ss.str();
 }
