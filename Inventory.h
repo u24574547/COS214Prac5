@@ -20,7 +20,7 @@ class Inventory : public Aggregate<Plant*> {
         /**
          * @brief Constructs an empty Inventory.
          */
-        Inventory() : Aggregate(plants) {};
+        Inventory(std::vector<Plant*> plants) : Aggregate(plants) {};
 
         /**
          * @brief Destroys the Inventory and cleans up resources.
@@ -48,12 +48,6 @@ class Inventory : public Aggregate<Plant*> {
         Plant* getPlant(string name);
 
         void water(int environment);
-
-    private:
-        /**
-         * @brief The underlying container that holds Plant pointers.
-         */
-        vector<Plant*> plants;
 };
 
 #endif
