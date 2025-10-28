@@ -1,13 +1,19 @@
 #include <cstdint>
 #include <iomanip>
 #include <iostream>
+#include <random>
 #include <termios.h>
 #include <unistd.h>
 
 #include "Customer.h"
+#include "FernSupplier.h"
 #include "FloweringSupplier.h"
 #include "Inventory.h"
+#include "MatureState.h"
 #include "MossExpert.h"
+#include "MossSupplier.h"
+#include "NonFloweringSupplier.h"
+#include "ReadyForSale.h"
 
 void setBufferedInput(bool enable) {
     static bool enabled = true;
@@ -219,7 +225,7 @@ void customerSelectionMenu(vector<Customer *>& customers, Employee* employee) {
     std::string menu =  "Choose/Create Customer:\n"
     "1. Choose a customer\n"
     "2. Create a new customer\n"
-    "b to return to customer selection menu\n";
+    "b to return to main menu\n";
     std::cout<<menu<<std::endl;
     char c;
     while (true) {
@@ -239,8 +245,143 @@ void customerSelectionMenu(vector<Customer *>& customers, Employee* employee) {
     }
 }
 
+void plantMenu() {
+
+}
+
+void createPlant(Inventory * inv) {
+    setBufferedInput(true);
+    int plantType;
+    while (true) {
+        std::cout<<"Enter plant type to enquire about(Fern/Flowering/Nonflowering/Moss):";
+        std::string type;
+        std::cin>>type;
+        if (type == "Fern") {
+            plantType=1;
+            break;
+        }
+        if (type == "Flowering") {
+            plantType=2;
+            break;
+        }
+        if (type == "Nonflowering") {
+            plantType=3;
+            break;
+        }
+        if (type == "Moss") {
+            plantType=4;
+            break;
+        }
+        std::cout<<"Invalid plant type. Please retry"<<std::endl;
+    }
+
+    std::cout << "Enter new plants species:";
+    std::string name;
+    std::cin >> name;
+    Supplier* supp;
+    switch (plantType) {
+        case 1:
+            supp=new FernSupplier();
+            break;
+        case 2:
+            supp=new FloweringSupplier();
+            break;
+        case 3:
+            supp=new NonFloweringSupplier();
+            break;
+        case 4:
+            supp=new MossSupplier();
+            break;
+        default:
+            throw std::invalid_argument("Invalid plant type.");
+    }
+    //set state and growthLevel
+    while (true) {
+        std::cout<<"Enter 0 for default.\nWhat stage in its lifecycle is the plant(Unplanted/Seedling/Mature/ReadyForSale):";
+        std::string type;
+        std::cin>>type;
+        if (type == "Unplanted" || type=="0") {
+            plantType=1;
+            break;
+        }
+        if (type == "Seedling") {
+            plantType=2;
+            break;
+        }
+        if (type == "Mature") {
+            plantType=3;
+            break;
+        }
+        if (type == "ReadyForSale") {
+            plantType=4;
+            break;
+        }
+        std::cout<<"Invalid lifecycle stage. Please retry"<<std::endl;
+    }
+
+    std::random_device rd;         // seeds the generator (non-deterministic)
+    std::mt19937 gen(rd());        // Mersenne Twister RNG
+
+    // Define the range (e.g. 1 to 100)
+    uniform_int_distribution<> dist;
+    switch (plantType) {
+        case 1://Unplanted
+            supp->setState(new UnplantedState());
+            supp->setGrowthLevel(0);
+            break;
+        case 2://Seedling
+            supp->setState(new SeedlingState());
+            dist=uniform_int_distribution<>(0, 20);
+            supp->setGrowthLevel(dist(gen));
+            break;
+        case 3://Mature
+            supp->setState(new MatureState());
+            dist=uniform_int_distribution<>(20, 50);
+            supp->setGrowthLevel(dist(gen));
+            break;
+        case 4://ReadyForSale
+            supp->setState(new ReadyForSaleState());
+            dist=uniform_int_distribution<>(50, 200);
+            supp->setGrowthLevel(dist(gen));
+            break;
+        default:
+            throw std::invalid_argument("Invalid plant state.");
+    }
+
+    void setWatered(bool watered);
+    void setGrowthRate(double growthRate);
+    void setPreferredEnvironment(int env);
+    void setCurrentEnvironment(int env);
+
+    inv->addPlant(plant);
+    setBufferedInput(false);
+}
+
+void choosePlant(Inventory* inv) {
+    std::string menu =  "Choose/Create Plant:\n"
+    "1. Choose a plant\n"
+    "2. Create a new plant\n"
+    "b to return to main menu\n";
+    std::cout<<menu<<std::endl;
+    char c;
+    while (true) {
+        c = getchar();
+        if (c == '1') {
+            Plant* plant = choosePlant(inv);
+            if (customer!=nullptr) {
+                customerMenu(customer);
+                break;
+            }
+        }
+        else if (c == '2') {
+            createPlant(inv);
+        }
+        else if (c == 'b') break;
+        std::cout<<menu<<std::endl;
+    }
+}
+
 int main() {
-    Supplier* supp = new FloweringSupplier();
     Inventory* inv = new Inventory();
     Employee* employee = new MossExpert("John Employee",inv);
     std::vector<Customer*> customers = vector<Customer*>();
@@ -257,7 +398,7 @@ int main() {
     while (true) {
         c = getchar();
         if (c == '1') customerSelectionMenu(customers, employee);
-        else if (c == 's') std::cout << "Down\n";
+        else if (c == '2') choosePlant(inv);
         else if (c == 'a') std::cout << "Left\n";
         else if (c == 'd') std::cout << "Right\n";
         else if (c == 'q') break;
@@ -266,7 +407,6 @@ int main() {
 
     setBufferedInput(true);
 
-    delete supp;
     delete inv;
     return 0;
 }
