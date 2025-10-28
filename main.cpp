@@ -284,7 +284,10 @@ void plantMenu(Plant* plant) {
         c = getchar();
         if (c=='1') std::cout<<plant->toString()<<std::endl;
         else if (c == '2') movePlant(plant);
-        else if (c == '3') plant->water();
+        else if (c == '3') {
+            plant->water();
+            std::cout<<"Plant watered!"<<std::endl;
+        }
         else if (c == 'b') break;
         else std::cout << "Not implemented yet\n";
         std::cout<<menu<<std::endl;
@@ -536,8 +539,7 @@ void plantSelectionMenu(Inventory* inv) {
         if (c == '1') {
             Plant* plant = choosePlant(inv);
             if (plant!=nullptr) {
-                //plantMenu(plant);
-                std::cout<<"Plant menu not implemented yet."<<std::endl;;
+                plantMenu(plant);
                 break;
             }
         }
@@ -547,6 +549,11 @@ void plantSelectionMenu(Inventory* inv) {
         else if (c == 'b') break;
         std::cout<<menu<<std::endl;
     }
+}
+
+void endDay(Inventory* inv) {
+    //for now we just call inventories end day
+    inv->endDay();
 }
 
 int main() {
@@ -567,6 +574,7 @@ int main() {
         c = getchar();
         if (c == '1') customerSelectionMenu(customers, employee);
         else if (c == '2') plantSelectionMenu(inv);
+        else if (c == 'n') endDay(inv);
         else if (c == 'q') break;
         else std::cout<<"Not implemented yet."<<std::endl;
         std::cout<<menu<<std::endl;
