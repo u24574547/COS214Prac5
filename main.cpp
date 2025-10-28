@@ -245,8 +245,50 @@ void customerSelectionMenu(vector<Customer *>& customers, Employee* employee) {
     }
 }
 
-void plantMenu() {
+void movePlant(Plant * plant) {
+    int plantType;
+    while (true) {
+        std::cout<<"Enter plant's storage location(Greenhouse/Shadenet/Semi-shaded/Sunny):";
+        std::string type;
+        std::cin>>type;
+        if (type == "Greenhouse") {
+            plantType=1;
+            break;
+        }
+        if (type == "Shadenet") {
+            plantType=2;
+            break;
+        }
+        if (type == "Semi-shaded") {
+            plantType=3;
+            break;
+        }
+        if (type == "Sunny") {
+            plantType=4;
+            break;
+        }
+        std::cout<<"Invalid environment type. Please retry"<<std::endl;
+    }
+    plant->setCurrentEnvironment(plantType);
+}
 
+void plantMenu(Plant* plant) {
+    std::string menu =  "Customer actions:\n"
+    "1. View plant details\n"
+    "2. Move Plant\n"
+    "3. Water plant\n"
+    "b to return to customer selection menu\n";
+    std::cout<<menu<<std::endl;
+    char c;
+    while (true) {
+        c = getchar();
+        if (c=='1') std::cout<<plant->toString()<<std::endl;
+        else if (c == '2') movePlant(plant);
+        else if (c == '3') plant->water();
+        else if (c == 'b') break;
+        else std::cout << "Not implemented yet\n";
+        std::cout<<menu<<std::endl;
+    }
 }
 
 bool tryParseDouble(const std::string& str, double& outValue) {
