@@ -56,8 +56,8 @@ void BasePlant::setCurrentEnvironment(int newEnv) {
 }
 
 void BasePlant::endDay() {
-    this->isWatered=false;
     grow();
+    this->isWatered=false;
 }
 
 void BasePlant::grow() {
