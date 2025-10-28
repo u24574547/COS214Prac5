@@ -263,7 +263,7 @@ void createPlant(Inventory * inv) {
     setBufferedInput(true);
     int plantType;
     while (true) {
-        std::cout<<"Enter plant type to enquire about(Fern/Flowering/Nonflowering/Moss):";
+        std::cout<<"Enter plant type to create(Fern/Flowering/Nonflowering/Moss):";
         std::string type;
         std::cin>>type;
         if (type == "Fern") {
@@ -364,6 +364,10 @@ void createPlant(Inventory * inv) {
         std::string type;
         std::cin>>type;
         double value;
+        if (type=="0") {
+            supp->setGrowthRate(3.0);
+            break;
+        }
         if (tryParseDouble(type, value) && value>=1.0 && value<=6.0) {
             supp->setGrowthRate(value);
             break;
@@ -425,6 +429,59 @@ void createPlant(Inventory * inv) {
     setBufferedInput(false);
 }
 
+bool tryParseInt(const std::string& str, int& outValue) {
+    try {
+        size_t pos;
+        outValue = std::stoi(str, &pos);   // attempt to parse
+        return pos == str.size();          // ensure whole string was parsed
+    } catch (...) {
+        return false;                      // invalid argument or out of range
+    }
+}
+
+Plant * choosePlant(Inventory * inv) {
+    Plant* plant=nullptr;
+    Iterator<Plant*>* iter = inv->createIterator();
+    setBufferedInput(true);
+    bool done = false;
+    while (!done) {
+        if (!iter->isDone()) {
+            //output plants
+            int counter=1;
+            while (!iter->isDone()) {
+                std::cout<<"=============="<<counter<<"=============="<<std::endl;
+                std::cout<<iter->next()->toString()<<std::endl;
+                counter++;
+            }
+            //choose plant
+            std::cout<<"Enter the number of the plant or c to cancel:";
+            std::string id;
+            std::cin>>id;
+            if (id=="c") {
+                done=true;
+            }
+            else {//fetch plant pointer
+                iter->first();
+                int value;
+                if (tryParseInt(id, value)) {
+                    for (int i=0;i<value-1;i++) {
+                        iter->next();
+                    }
+                    plant=iter->current();
+                    done=true;
+                } else {
+                    std::cout << "Invalid input.\n";
+                }
+            }
+        }else {
+            std::cout<<"No plants are in stock.\n"<<std::endl;
+            done=true;
+        }
+    }
+    setBufferedInput(false);
+    return plant;
+}
+
 void plantSelectionMenu(Inventory* inv) {
     std::string menu =  "Choose/Create Plant:\n"
     "1. Choose a plant\n"
@@ -435,11 +492,12 @@ void plantSelectionMenu(Inventory* inv) {
     while (true) {
         c = getchar();
         if (c == '1') {
-            /*Plant* plant = choosePlant(inv);
-            if (customer!=nullptr) {
-                customerMenu(customer);
+            Plant* plant = choosePlant(inv);
+            if (plant!=nullptr) {
+                //plantMenu(plant);
+                std::cout<<"Plant menu not implemented yet."<<std::endl;;
                 break;
-            }*/
+            }
         }
         else if (c == '2') {
             createPlant(inv);
@@ -450,7 +508,7 @@ void plantSelectionMenu(Inventory* inv) {
 }
 
 int main() {
-    Inventory* inv = new Inventory();
+    Inventory* inv = new Inventory(vector<Plant*>());
     Employee* employee = new MossExpert("John Employee",inv);
     std::vector<Customer*> customers = vector<Customer*>();
     std::string menu =  "Choose an action type:\n"
@@ -467,9 +525,8 @@ int main() {
         c = getchar();
         if (c == '1') customerSelectionMenu(customers, employee);
         else if (c == '2') plantSelectionMenu(inv);
-        else if (c == 'a') std::cout << "Left\n";
-        else if (c == 'd') std::cout << "Right\n";
         else if (c == 'q') break;
+        else std::cout<<"Not implemented yet."<<std::endl;
         std::cout<<menu<<std::endl;
     }
 
