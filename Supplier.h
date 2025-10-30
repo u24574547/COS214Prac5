@@ -29,7 +29,7 @@ public:
     void setState(PlantState* state);           ///< Set the current PlantState.
     void setGrowthLevel(int growthLevel);       ///< Set the plant's growth level.
     void setSpecies(std::string species);       ///< Set the plant's species name.
-    void setWatered(bool watered);              ///< Set whether the plant has been watered today.
+    void setWatered(int amountWateredToday);              ///< Set how many ml of water was used to water the plant today.
     void setGrowthRate(double growthRate);      ///< Set the plant's growth rate.
     void setPreferredEnvironment(int env);     ///< Set the plant's preferred environment type.
     void setCurrentEnvironment(int env);       ///< Set the plant's current environment type.
@@ -40,7 +40,7 @@ public:
     PlantState* getState();                     ///< Get the current PlantState.
     int getGrowthLevel();                       ///< Get the plant's growth level.
     std::string getSpecies();                   ///< Get the plant's species name.
-    bool getWatered();                          ///< Get whether the plant has been watered today.
+    int getAmountWateredToday();                     ///< Get how many ml of water was used to water the plant today.
     double getGrowthRate();                     ///< Get the plant's growth rate.
     int getPreferredEnvironment();              ///< Get the plant's preferred environment type.
     int getCurrentEnvironment();                ///< Get the plant's current environment type.
@@ -68,7 +68,7 @@ public:
 protected:
     int growthLevel;                 ///< Current growth level of the plant.
     std::string species;             ///< Species name of the plant.
-    bool isWatered;                  ///< Whether the plant has been watered today.
+    int amountWateredToday;          ///< How much the plant has been watered today.
     double growthRate;               ///< Growth rate multiplier.
     int preferredEnvironment;        ///< Preferred environment type.
     int currentEnvironment;          ///< Current environment type.

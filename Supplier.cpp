@@ -6,7 +6,7 @@
 Supplier::Supplier() {
     this->growthLevel= 0;
     this->species="unknown";
-    this->isWatered=false;
+    this->amountWateredToday=0;
     this->growthRate=1.0;
     this->preferredEnvironment=0;
     this->currentEnvironment=0;
@@ -30,8 +30,8 @@ void Supplier::setSpecies(std::string species) {
     this->species = species;
 }
 
-void Supplier::setWatered(bool watered) {
-    this->isWatered = watered;
+void Supplier::setWatered(int amountWateredToday) {
+    this->amountWateredToday=amountWateredToday;
 }
 
 void Supplier::setGrowthRate(double growthRate) {
@@ -58,8 +58,8 @@ std::string Supplier::getSpecies() {
     return this->species;
 }
 
-bool Supplier::getWatered() {
-    return this->isWatered;
+int Supplier::getAmountWateredToday() {
+    return this->amountWateredToday;
 }
 
 double Supplier::getGrowthRate() {
