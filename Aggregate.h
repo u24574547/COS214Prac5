@@ -21,7 +21,12 @@ class Aggregate {
         /**
          * @brief Constructs an Aggregate with the given items.
          */
-        Aggregate(){};
+        Aggregate(vector<T> items){this->items=items;}
+
+        /**
+         * @brief Constructs an Aggregate with the given items.
+         */
+        Aggregate(){this->items=vector<T>();}
 
         /**
          * @brief Virtual destructor.
