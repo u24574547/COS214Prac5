@@ -39,8 +39,10 @@ public:
      * @brief Waters the decorated plant.
      * 
      * Delegates the watering operation to the underlying plant.
+     *
+     * @param waterAmount Waters the plant with this much water.
      */
-    void water() override;
+    void water(int waterAmount) override;
 
     /**
      * @brief Sets a new state for the decorated plant.
@@ -72,10 +74,10 @@ public:
     std::string getSpecies() override;
 
     /**
-     * @brief Checks if the decorated plant has been watered today.
-     * @return True if watered, false otherwise.
+     * @brief Checks if the plant has been watered today.
+     * @return Amount of water used to water the plant today.
      */
-    bool isWateredToday() override;
+    int getAmountWateredToday() override;
 
     /**
      * @brief Returns the preferred environment type of the decorated plant.

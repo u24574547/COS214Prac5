@@ -1,9 +1,9 @@
 #include "BasePlant.h"
 
-BasePlant::BasePlant(std::string species, int currentEnvironment, int growthLevel=0,  bool isWatered=false, double growthRate=10.0, int preferredEnvironment=0, PlantState* state = new UnplantedState()) : Plant() {
+BasePlant::BasePlant(std::string species, int currentEnvironment, int growthLevel=0,  int amountWateredToday=0, double growthRate=10.0, int preferredEnvironment=0, PlantState* state = new UnplantedState()) : Plant() {
     this->growthLevel = growthLevel;
     this->species = species;
-    this->isWatered=isWatered;
+    this->amountWateredToday=amountWateredToday;
     this->growthRate=growthRate;
     this->preferredEnvironment=preferredEnvironment;
     this->currentEnvironment=currentEnvironment;
@@ -43,8 +43,8 @@ std::string BasePlant::getSpecies() {
     return this->species;
 }
 
-bool BasePlant::isWateredToday() {
-    return this->isWatered;
+int BasePlant::getAmountWateredToday() {
+    return this->amountWateredToday;
 }
 
 int BasePlant::getPreferredEnvironment() {
@@ -57,12 +57,12 @@ void BasePlant::setCurrentEnvironment(int newEnv) {
 
 void BasePlant::endDay() {
     grow();
-    this->isWatered=false;
+    this->amountWateredToday=0;
 }
 
 void BasePlant::grow() {
     if (state) {
-        if (isWatered) growthLevel += getGrowthMultiplier() * (growthRate - abs(preferredEnvironment - currentEnvironment));
+        if (amountWateredToday!=0) growthLevel += getGrowthMultiplier() * (growthRate - abs(preferredEnvironment - currentEnvironment));
         state->grow(this); // delegates to current state
     } else {
         std::cout << "No state assigned to plant. Cannot grow." << std::endl;

@@ -35,7 +35,7 @@ public:
     /**
      * @brief Waters the plant, affecting growth and state.
      */
-    virtual void water() = 0;
+    virtual void water(int waterAmount) = 0;
 
     // Sales-related functions
 
@@ -66,9 +66,9 @@ public:
 
     /**
      * @brief Checks if the plant has been watered today.
-     * @return True if watered, false otherwise.
+     * @return Amount of water used to water the plant today.
      */
-    virtual bool isWateredToday() = 0;
+    virtual int getAmountWateredToday() = 0;
 
     /**
      * @brief Retrieves the plant's preferred environment.

@@ -8,8 +8,8 @@ PlantDecorator::~PlantDecorator() {
     delete plant;
 }
 
-void PlantDecorator::water() {
-    plant->water();
+void PlantDecorator::water(int waterAmount) {
+    plant->water(waterAmount);
 }
 
 void PlantDecorator::setState(PlantState *newState) {
@@ -36,8 +36,8 @@ std::string PlantDecorator::getSpecies() {
     return plant->getSpecies();
 }
 
-bool PlantDecorator::isWateredToday() {
-    return plant->isWateredToday();
+int PlantDecorator::getAmountWateredToday() {
+    return plant->getAmountWateredToday();
 }
 
 int PlantDecorator::getPreferredEnvironment() {

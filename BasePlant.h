@@ -28,7 +28,7 @@ public:
      * @param preferredEnvironment Environment type preferred by the plant.
      * @param state Initial state of the plant.
      */
-    BasePlant(std::string species, int currentEnvironment, int growthLevel, bool isWatered, double growthRate, int preferredEnvironment, PlantState* state);
+    BasePlant(std::string species, int currentEnvironment, int growthLevel, int amountWateredToday, double growthRate, int preferredEnvironment, PlantState* state);
 
     /**
      * @brief Destructor for BasePlant.
@@ -48,7 +48,7 @@ public:
      * 
      * Must be implemented by derived concrete plant classes.
      */
-    virtual void water() = 0;
+    virtual void water(int waterAmount);
 
     // Sales functions
 
@@ -105,9 +105,9 @@ public:
 
     /**
      * @brief Checks if the plant has been watered today.
-     * @return True if watered, false otherwise.
+     * @return Amount of water used to water the plant today.
      */
-    bool isWateredToday() override;
+    int getAmountWateredToday() override;
 
     // Setters
 
@@ -137,7 +137,7 @@ private:
 protected:
     int growthLevel;             ///< Current growth level
     std::string species;         ///< Species name
-    bool isWatered;              ///< Whether the plant has been watered today
+    int amountWateredToday;      ///< How much water was used to water this plant
     double growthRate;           ///< Growth rate multiplier
     int preferredEnvironment;    ///< Preferred environment type
     int currentEnvironment;      ///< Current environment type

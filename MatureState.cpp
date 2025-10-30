@@ -10,7 +10,7 @@ void MatureState::nextState(Plant* plant) {
 
 
 void MatureState::grow(Plant* plant) {
-    if (plant->isWateredToday()) {
+    if (plant->getAmountWateredToday()) {
         std::cout << "Mature plant growing... growth level: " << plant->getGrowthLevel() << std::endl;
 
         if (plant->getGrowthLevel() >= 50) { // threshold for ReadyForSale

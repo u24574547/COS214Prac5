@@ -9,7 +9,7 @@ void UnplantedState::nextState(Plant* plant) {
 }
 
 void UnplantedState::grow(Plant* plant) {
-    if (plant->isWateredToday()) {
+    if (plant->getAmountWateredToday()) {
         std::cout << "Seed has been watered! It starts sprouting." << std::endl;
         nextState(plant); // move to Seedling
     } else {

@@ -21,12 +21,12 @@ public:
      * @param species Name of the species.
      * @param currentEnvironment Current environment index.
      * @param growthLevel Initial growth level.
-     * @param isWatered Whether the plant has been watered today.
+     * @param amountWateredToday How much water was used to water this plant.
      * @param growthRate Growth rate multiplier.
      * @param preferredEnvironment Preferred environment type.
      * @param state Initial PlantState object.
      */
-    Flowering(std::string species, int currentEnvironment, int growthLevel, bool isWatered, double growthRate, int preferredEnvironment, PlantState* state);
+    Flowering(std::string species, int currentEnvironment, int growthLevel, int amountWateredToday, double growthRate, int preferredEnvironment, PlantState* state);
 
     /**
      * @brief Destructor for Flowering.
@@ -38,13 +38,6 @@ public:
      * @return String description of the Flowering object.
      */
     std::string toString() const override;
-
-    /**
-     * @brief Waters the Flowering plant.
-     * 
-     * Updates the state and watering flag accordingly.
-     */
-    void water() override;
 
     /**
      * @brief Returns the growth multiplier for Flowering plants.

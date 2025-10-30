@@ -27,7 +27,7 @@ Plant* Inventory::getPlant(string name) {
 void Inventory::water(int environment) {
     for (auto it = items.begin(); it != items.end(); ++it) {
         if ((*it)->getCurrentEnvironment() == environment) {
-            (*it)->water();
+            (*it)->water(10);
         }
     }
 }

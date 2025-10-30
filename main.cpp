@@ -203,7 +203,7 @@ void testPlantLifecycle() {
     
     for (int day = 1; day <= 5; ++day) {
         std::cout << "\nDay " << day << ":\n";
-        plant->water();
+        plant->water(1);//TODO what amount should it water?
         std::cout << "Watered - current state: " << plant->getStateName() << "\n";
         plant->endDay();
         std::cout << "After growth - state: " << plant->getStateName() 
