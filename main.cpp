@@ -130,8 +130,8 @@ void customerMenu(Customer* customer) {
         if (c=='1') plantInquiry(customer);
         else if (c == '2') orderPlant(customer);
         else if (c == '3') customer->refund();
-        else if (c == '4') std::cout<<customer->toString();
-        else if (c == '5') std::cout<<customer->transactionHistoryToString();
+        else if (c == '4') std::cout<<customer->toString()<<std::endl;
+        else if (c == '5') std::cout<<customer->transactionHistoryToString()<<std::endl;
         else if (c == 'b') break;
         else std::cout << "Not implemented yet\n";
         std::cout<<menu<<std::endl;
@@ -350,6 +350,8 @@ void createPlant(Inventory * inv) {
         default:
             throw std::invalid_argument("Invalid plant type.");
     }
+    supp->setSpecies(name);
+
     //set state and growthLevel
     while (true) {
         std::cout<<"Enter 0 for default.\nWhat stage in its lifecycle is the plant(Unplanted/Seedling/Mature/ReadyForSale):";
