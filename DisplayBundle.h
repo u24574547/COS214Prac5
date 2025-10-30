@@ -32,7 +32,7 @@ public:
     /**
      * @brief Displays the bundle and all its components.
      */
-    std::string toString() const;
+    std::string toString() const override;
 
     /**
      * @brief Destructor to clean up allocated resources.

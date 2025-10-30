@@ -12,7 +12,16 @@ void Director::constructGiftBundle(){
     Plant* tulip = inventory->getPlant("Tulip");
     Plant* rose = inventory->getPlant("Rose");
     Plant* fern = inventory->getPlant("Fern");
-    
+    // Debugging checks
+    if(tulip == NULL){
+        std::cout << "Tulip not found in inventory.\n";
+    }
+    if(rose == NULL){
+        std::cout << "Rose not found in inventory.\n";
+    }
+    if(fern == NULL){
+        std::cout << "Fern not found in inventory.\n";
+    }
     if (tulip && rose && fern) {
         // Add decorative plants with ribbons for gift presentation
         builder->addDecorativePlant(tulip);  // Will be decorated with ribbon
@@ -25,10 +34,18 @@ void Director::constructGiftBundle(){
 }
 void Director::constructFrostReadyBundle(){
     builder->reset();
-    Plant* nonFlowering = inventory->getPlant("NonFlowering");
+    Plant* nonFlowering = inventory->getPlant("Riccia fluitans");
     Plant* fern = inventory->getPlant("Fern");
     Plant* moss = inventory->getPlant("Moss");
-    
+    if(nonFlowering == NULL){
+        std::cout << "Riccia fluitan not found in inventory.\n";
+    }
+    if(fern == NULL){
+        std::cout << "Fern not found in inventory.\n";
+    }
+    if(moss == NULL){
+        std::cout << "Moss not found in inventory.\n";
+    }
     if (nonFlowering && fern && moss) {
         // All plants need frost protection
         builder->addFrostNetPlant(nonFlowering);
@@ -41,7 +58,6 @@ void Director::constructFrostReadyBundle(){
 }
 
 void Director::constructTerrariumBundle(){
-    builder->reset();
     builder->reset();
     Plant* moss = inventory->getPlant("Moss");
     Plant* fern = inventory->getPlant("Fern");
