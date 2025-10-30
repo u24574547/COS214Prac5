@@ -42,6 +42,12 @@ public:
      * @param plant Pointer to the Plant object to add.
      */
     void addFertilisedPlant(Plant* plant) override;
+    /**
+     * @brief Adds a frost-protected plant to the gift bundle.
+     * 
+     * @param plant Pointer to the Plant object to add.
+     */
+    void addFrostNetPlant(Plant* plant) override;
 
     /**
      * @brief Retrieves the constructed gift bundle.

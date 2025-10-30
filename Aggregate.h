@@ -20,9 +20,8 @@ class Aggregate {
     public:
         /**
          * @brief Constructs an Aggregate with the given items.
-         * @param items A vector containing the initial elements.
          */
-        Aggregate(vector<T> items) : items(items) {};
+        Aggregate(){};
 
         /**
          * @brief Virtual destructor.

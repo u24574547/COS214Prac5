@@ -1,10 +1,11 @@
 #include "PlantIterator.h" 
 #include "Inventory.h"
 
-PlantIterator::PlantIterator(Aggregate<Plant*>* plants) : Iterator(plants) {
-    this->plants = plants->getItems();
-    this->index = 0;
-}
+PlantIterator::PlantIterator(Aggregate<Plant*>* plantsAggregate) 
+    : Iterator<Plant*>(plantsAggregate),
+      plants(plantsAggregate->getItems()),  
+      index(0)
+{}
 
 PlantIterator::~PlantIterator() {
 

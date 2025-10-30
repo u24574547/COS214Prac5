@@ -24,6 +24,7 @@ class TransactionHistory : public Aggregate<Command*> {
         /**
          * @brief Constructs an empty TransactionHistory object.
          */
+        TransactionHistory(){};
         TransactionHistory(std::vector<Command*> transactions);
 
         /**
