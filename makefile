@@ -5,8 +5,8 @@ CXXFLAGS ?= -std=c++11 -Wall -Wextra -g -O0
 CPPFLAGS ?= -I.
 LDFLAGS  ?=
 
-# Provided by you
-SRCS := Aggregate.cpp BasePlant.cpp  Command.cpp Customer.cpp Director.cpp DisplayBundle.cpp Employee.cpp Fern.cpp FernExpert.cpp FernSupplier.cpp Fertiliser.cpp Flowering.cpp FloweringExpert.cpp FloweringSupplier.cpp FrostNet.cpp FrostReadyBuilder.cpp Gardener.cpp GiftBuilder.cpp InquiryCommand.cpp Inventory.cpp Iterator.cpp MatureState.cpp Moss.cpp MossExpert.cpp MossSupplier.cpp NonFlowering.cpp NonfloweringExpert.cpp NonFloweringSupplier.cpp OrderCommand.cpp Plant.cpp PlantDecorator.cpp PlantIterator.cpp PlantState.cpp ReadyForSale.cpp RefundCommand.cpp SeedlingState.cpp SoldState.cpp Supplier.cpp TerrariumBuilder.cpp TransactionCaretaker.cpp TransactionHistory.cpp TransactionIterator.cpp TransactionMemento.cpp UnplantedState.cpp
+# Provided by you - with Observer and Day added
+SRCS := Aggregate.cpp BasePlant.cpp Command.cpp Customer.cpp Day.cpp Director.cpp DisplayBundle.cpp Employee.cpp Fern.cpp FernExpert.cpp FernSupplier.cpp Fertiliser.cpp Flowering.cpp FloweringExpert.cpp FloweringSupplier.cpp FrostNet.cpp FrostReadyBuilder.cpp Gardener.cpp GiftBuilder.cpp InquiryCommand.cpp Inventory.cpp Iterator.cpp MatureState.cpp Moss.cpp MossExpert.cpp MossSupplier.cpp NonFlowering.cpp NonfloweringExpert.cpp NonFloweringSupplier.cpp Observer.cpp OrderCommand.cpp Plant.cpp PlantDecorator.cpp PlantIterator.cpp PlantState.cpp ReadyForSale.cpp RefundCommand.cpp SeedlingState.cpp SoldState.cpp Supplier.cpp TerrariumBuilder.cpp TransactionCaretaker.cpp TransactionHistory.cpp TransactionIterator.cpp TransactionMemento.cpp UnplantedState.cpp
 
 TEST := main.cpp
 CLI  := CLI.cpp
@@ -14,8 +14,16 @@ CLI  := CLI.cpp
 BUILD_DIR := build
 BIN_DIR   := bin
 
-# object lists
-OBJS := $(patsubst %.cpp,$(BUILD_DIR)/%.o,$(SRCS))
+# Filter out source files that don't exist to avoid errors
+EXISTING_SRCS := $(wildcard $(SRCS))
+MISSING_SRCS := $(filter-out $(EXISTING_SRCS),$(SRCS))
+
+ifneq ($(MISSING_SRCS),)
+    $(warning The following source files were not found: $(MISSING_SRCS))
+endif
+
+# object lists - only for existing sources
+OBJS := $(patsubst %.cpp,$(BUILD_DIR)/%.o,$(EXISTING_SRCS))
 TEST_OBJ := $(patsubst %.cpp,$(BUILD_DIR)/%.o,$(TEST))
 CLI_OBJ  := $(patsubst %.cpp,$(BUILD_DIR)/%.o,$(CLI))
 
@@ -89,7 +97,7 @@ gcov:
 	./$(BIN_TEST) $(ARGS)
 	@mkdir -p coverage
 	@echo "Running gcov..."
-	@for f in $(SRCS) $(TEST) $(CLI); do \
+	@for f in $(EXISTING_SRCS) $(TEST) $(CLI); do \
 	  gcov -o $(BUILD_DIR) $$f >/dev/null || true; \
 	done
 	@mv *.gcov coverage/ 2>/dev/null || true
