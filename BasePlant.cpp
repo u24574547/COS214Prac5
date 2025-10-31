@@ -81,3 +81,8 @@ void BasePlant::water(int waterAmount) {
 int BasePlant::getRequiredWaterPerDay() {
     return requiredWaterPerDay;
 }
+
+void BasePlant::update()
+{
+    this->endDay();
+}

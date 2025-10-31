@@ -9,13 +9,14 @@ class RefundCommand;
 class Customer;
 
 #include "Inventory.h"
+#include "Observer.h"
 
 #include <vector>
 #include <iostream>
 
 using namespace std;
 
-class Employee
+class Employee : public Observer
 {
 public:
     Employee(string name, Inventory *inventory);
@@ -26,6 +27,8 @@ public:
     void handleRefund(Command *command);
     virtual void handleInquiry(Command *command) = 0;
     virtual void handleWater(int environment) = 0;
+
+    void update() override;
 
 protected:
     string name;

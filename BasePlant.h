@@ -6,6 +6,8 @@
 #include <iostream>
 #include <sstream>
 
+#include "Observer.h"
+
 /**
  * @class BasePlant
  * @brief Concrete base class for plants providing core functionality.
@@ -15,7 +17,8 @@
  * can inherit from BasePlant and implement specialized behavior.
  */
 
-class BasePlant: public Plant {
+class BasePlant : public Plant, public Observer
+{
 public:
     /**
      * @brief Constructs a BasePlant object with the given attributes.
@@ -134,6 +137,8 @@ public:
      * @brief Ends the day for the plant, updating growth and state.
      */
     void endDay() override;
+
+    void update() override;
 
 private:
     /**
