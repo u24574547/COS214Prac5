@@ -72,3 +72,7 @@ void BasePlant::grow() {
 int BasePlant::getCurrentEnvironment() {
     return currentEnvironment;
 }
+
+void BasePlant::water(int waterAmount) {
+    this->amountWateredToday+=waterAmount;
+}
