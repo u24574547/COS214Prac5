@@ -285,7 +285,7 @@ void plantMenu(Plant* plant) {
         if (c=='1') std::cout<<plant->toString()<<std::endl;
         else if (c == '2') movePlant(plant);
         else if (c == '3') {
-            plant->water();
+            plant->water(200);
             std::cout<<"Plant watered!"<<std::endl;
         }
         else if (c == 'b') break;

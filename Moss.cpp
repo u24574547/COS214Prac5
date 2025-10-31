@@ -1,6 +1,6 @@
 #include "Moss.h"
 
-Moss::Moss(std::string species, int currentEnvironment, int growthLevel=0,  int amountWateredToday=0, double growthRate=10.0, int preferredEnvironment=0, PlantState* state = new UnplantedState()): BasePlant(species, currentEnvironment, growthLevel, amountWateredToday, growthRate, preferredEnvironment, state) {
+Moss::Moss(std::string species, int currentEnvironment, int requiredWaterPerDay, int growthLevel=0,  int amountWateredToday=0, double growthRate=10.0, int preferredEnvironment=0, PlantState* state = new UnplantedState()): BasePlant(species, currentEnvironment, requiredWaterPerDay, growthLevel, amountWateredToday, growthRate, preferredEnvironment, state) {
 }
 
 Moss::~Moss() {

@@ -86,6 +86,12 @@ public:
     int getPreferredEnvironment() override;
 
     /**
+     * @brief Get how much water is needed per day to make the plant grow.
+     * @return Amount of water need by the plant per day.
+     */
+    int getRequiredWaterPerDay() override;
+
+    /**
      * @brief Retrieves the plant's current environment.
      * @return Integer representing the current environment type.
      */

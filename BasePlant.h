@@ -23,12 +23,13 @@ public:
      * @param species Name of the species.
      * @param currentEnvironment Current environment index.
      * @param growthLevel Initial growth level.
-     * @param isWatered Whether the plant has been watered.
+     * @param amountWateredToday Whether the plant has been watered.
+     * @param requiredWaterPerDay How much water the plant needs per day to grow.
      * @param growthRate Growth rate multiplier.
      * @param preferredEnvironment Environment type preferred by the plant.
      * @param state Initial state of the plant.
      */
-    BasePlant(std::string species, int currentEnvironment, int growthLevel, int amountWateredToday, double growthRate, int preferredEnvironment, PlantState* state);
+    BasePlant(std::string species, int currentEnvironment, int requiredWaterPerDay, int growthLevel, int amountWateredToday, double growthRate, int preferredEnvironment, PlantState* state);
 
     /**
      * @brief Destructor for BasePlant.
@@ -104,10 +105,16 @@ public:
     virtual double getGrowthMultiplier() = 0;
 
     /**
-     * @brief Checks if the plant has been watered today.
+     * @brief Get how much water was used to water this plant today.
      * @return Amount of water used to water the plant today.
      */
     int getAmountWateredToday() override;
+
+    /**
+     * @brief Get how much water is needed per day to make the plant grow.
+     * @return Amount of water need by the plant per day.
+     */
+    int getRequiredWaterPerDay() override;
 
     // Setters
 
@@ -138,6 +145,7 @@ protected:
     int growthLevel;             ///< Current growth level
     std::string species;         ///< Species name
     int amountWateredToday;      ///< How much water was used to water this plant
+    int requiredWaterPerDay;     ///< How much water is needed by this plant per day to grow
     double growthRate;           ///< Growth rate multiplier
     int preferredEnvironment;    ///< Preferred environment type
     int currentEnvironment;      ///< Current environment type

@@ -71,6 +71,12 @@ public:
     virtual int getAmountWateredToday() = 0;
 
     /**
+     * @brief Get how much water is needed per day to make the plant grow.
+     * @return Amount of water need by the plant per day.
+     */
+    virtual int getRequiredWaterPerDay()=0;
+
+    /**
      * @brief Retrieves the plant's preferred environment.
      * @return Integer representing the preferred environment type.
      */

@@ -9,5 +9,5 @@ MossSupplier::~MossSupplier() {
 Plant * MossSupplier::getPlant() {
     PlantState* oldState = state;
     state = new UnplantedState();
-    return new Moss(species, currentEnvironment, growthLevel, amountWateredToday, growthRate, preferredEnvironment, oldState);
+    return new Moss(species, currentEnvironment, requiredWaterPerDay, growthLevel, amountWateredToday, growthRate, preferredEnvironment, oldState);
 }

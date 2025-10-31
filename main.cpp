@@ -147,9 +147,9 @@ void testInventory() {
     PlantState* state = new UnplantedState();
     
     // Create test plants
-    Plant* fern = new Fern("TestFern", 2, 0, false, 1.0, 2, state);
-    Plant* moss = new Moss("TestMoss", 2, 0, false, 1.0, 2, state);
-    Plant* flowering = new Flowering("TestFlower", 2, 0, false, 1.0, 2, state);
+    Plant* fern = new Fern("TestFern", 2, 140,0, false, 1.0, 2, state);
+    Plant* moss = new Moss("TestMoss", 2, 5, 0, false, 1.0, 2, state);
+    Plant* flowering = new Flowering("TestFlower", 2, 100, 0, false, 1.0, 2, state);
     
     std::cout << "Adding plants to inventory...\n";
     inv->addPlant(fern);
@@ -181,7 +181,7 @@ void testTransactions() {
     Customer* customer = new Customer("TestCustomer", mediator, "TEST001");
     
     // Add some plants to inventory
-    inv->addPlant(new Fern("TestFern", 0, 0, false, 1.0, 0, new UnplantedState()));
+    inv->addPlant(new Fern("TestFern", 0, 140,0, false, 1.0, 0, new UnplantedState()));
     
     std::cout << "Testing order command...\n";
     customer->order("TestFern");
@@ -197,13 +197,13 @@ void testTransactions() {
 void testPlantLifecycle() {
     std::cout << "\n=== Testing Plant Lifecycle ===\n";
     
-    Plant* plant = new Fern("LifecycleFern", 0, 0, false, 1.0, 0, new UnplantedState());
+    Plant* plant = new Fern("LifecycleFern", 0, 140, 0, false, 1.0, 0, new UnplantedState());
     
     std::cout << "Initial state: " << plant->getStateName() << "\n";
     
     for (int day = 1; day <= 5; ++day) {
         std::cout << "\nDay " << day << ":\n";
-        plant->water(1);//TODO what amount should it water?
+        plant->water(200);//TODO what amount should it water?
         std::cout << "Watered - current state: " << plant->getStateName() << "\n";
         plant->endDay();
         std::cout << "After growth - state: " << plant->getStateName() 
@@ -218,9 +218,9 @@ void testBuilderPattern() {
     
     Inventory* inv = new Inventory();
     // Add plants for the builders to use
-    inv->addPlant(new Fern("BuilderFern", 0, 0, false, 1.0, 0, new UnplantedState()));
-    inv->addPlant(new Moss("BuilderMoss", 0, 0, false, 1.0, 0, new UnplantedState()));
-    inv->addPlant(new Flowering("BuilderFlower", 0, 0, false, 1.0, 0, new UnplantedState()));
+    inv->addPlant(new Fern("BuilderFern", 0, 140, 0, false, 1.0, 0, new UnplantedState()));
+    inv->addPlant(new Moss("BuilderMoss", 0, 140, 0, false, 1.0, 0, new UnplantedState()));
+    inv->addPlant(new Flowering("BuilderFlower", 0, 140, 0, false, 1.0, 0, new UnplantedState()));
     
     Builder* giftBuilder = new GiftBuilder();
     Director* giftDirector = new Director(giftBuilder, inv);

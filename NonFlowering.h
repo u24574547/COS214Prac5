@@ -22,11 +22,12 @@ public:
      * @param currentEnvironment Current environment index.
      * @param growthLevel Initial growth level.
      * @param amountWateredToday How much water was used to water this plant.
+     * @param requiredWaterPerDay How much water the plant needs per day to grow.
      * @param growthRate Growth rate multiplier.
      * @param preferredEnvironment Preferred environment type.
      * @param state Initial PlantState object.
      */
-    NonFlowering(std::string species, int currentEnvironment, int growthLevel, int amountWateredToday, double growthRate, int preferredEnvironment, PlantState* state);
+    NonFlowering(std::string species, int currentEnvironment, int requiredWaterPerDay, int growthLevel, int amountWateredToday, double growthRate, int preferredEnvironment, PlantState* state);
 
     /**
      * @brief Destructor for NonFlowering.

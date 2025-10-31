@@ -7,6 +7,7 @@ Supplier::Supplier() {
     this->growthLevel= 0;
     this->species="unknown";
     this->amountWateredToday=0;
+    this->requiredWaterPerDay = 50;
     this->growthRate=1.0;
     this->preferredEnvironment=0;
     this->currentEnvironment=0;
@@ -30,7 +31,7 @@ void Supplier::setSpecies(std::string species) {
     this->species = species;
 }
 
-void Supplier::setWatered(int amountWateredToday) {
+void Supplier::setAmountWateredToday(int amountWateredToday) {
     this->amountWateredToday=amountWateredToday;
 }
 
@@ -80,4 +81,12 @@ Plant * Supplier::addFertiliser(Plant *plant) {
 
 Plant * Supplier::addFrostNet(Plant *plant) {
     return new FrostNet(plant);
+}
+
+void Supplier::setRequiredWaterPerDay(int requiredWaterPerDay) {
+    this->requiredWaterPerDay = requiredWaterPerDay;
+}
+
+int Supplier::getRequiredWaterPerDay() {
+    return this->requiredWaterPerDay;
 }

@@ -59,3 +59,7 @@ double PlantDecorator::getGrowthMultiplier() {
 int PlantDecorator::getCurrentEnvironment() {
     return plant->getCurrentEnvironment();
 }
+
+int PlantDecorator::getRequiredWaterPerDay() {
+    return plant->getRequiredWaterPerDay();
+}
