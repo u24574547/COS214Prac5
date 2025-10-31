@@ -3,6 +3,7 @@
 #include <sstream>
 #include "FrostNet.h"
 #include "Fertiliser.h"
+#include "Ribbon.h"
 
 FrostReadyBuilder::FrostReadyBuilder() {
     bundle = new DisplayBundle();
@@ -17,9 +18,8 @@ void FrostReadyBuilder::addBasicPlant(Plant* name) {
     bundle->add(name);    
 }
 void FrostReadyBuilder::addDecorativePlant(Plant* name) {
-    //I need to decorate the plants
-    // For now till i get that decorator class ill add normal
-    bundle->add(name);
+    Ribbon* decoratedPlant = new Ribbon(name);
+    bundle->add(decoratedPlant);
     
     
 }
