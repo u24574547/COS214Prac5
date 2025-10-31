@@ -49,5 +49,9 @@ void Employee::handleRefund(Command *command)
         cmd->getCustomer()->refundReceive(true);
     }
 }
+void Employee::update()
+{
+    cout << name << " has ended the day to rest at home before immediately coming back.";
+}
 
 #endif

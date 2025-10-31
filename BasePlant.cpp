@@ -1,74 +1,99 @@
 #include "BasePlant.h"
 
-BasePlant::BasePlant(std::string species, int currentEnvironment, int growthLevel=0,  bool isWatered=false, double growthRate=10.0, int preferredEnvironment=0, PlantState* state = new UnplantedState()) : Plant() {
+BasePlant::BasePlant(std::string species, int currentEnvironment, int growthLevel = 0, bool isWatered = false, double growthRate = 10.0, int preferredEnvironment = 0, PlantState *state = new UnplantedState()) : Plant()
+{
     this->growthLevel = growthLevel;
     this->species = species;
-    this->isWatered=isWatered;
-    this->growthRate=growthRate;
-    this->preferredEnvironment=preferredEnvironment;
-    this->currentEnvironment=currentEnvironment;
+    this->isWatered = isWatered;
+    this->growthRate = growthRate;
+    this->preferredEnvironment = preferredEnvironment;
+    this->currentEnvironment = currentEnvironment;
     this->state = state;
 }
 
-BasePlant::~BasePlant() {
+BasePlant::~BasePlant()
+{
     delete this->state;
 }
 
-void BasePlant::setState(PlantState *newState) {
-    if (newState != this->state) delete this->state;
+void BasePlant::setState(PlantState *newState)
+{
+    if (newState != this->state)
+        delete this->state;
     this->state = newState;
 }
 
-std::string BasePlant::getStateName() {
-    if (this->state==nullptr) {
-        this->state=new UnplantedState();
+std::string BasePlant::getStateName()
+{
+    if (this->state == nullptr)
+    {
+        this->state = new UnplantedState();
     }
     return this->state->getName();
 }
 
-void BasePlant::markSold() {
+void BasePlant::markSold()
+{
     delete this->state;
-    this->state=new SoldState();
+    this->state = new SoldState();
 }
 
-bool BasePlant::isSold() {
-    return state!=nullptr && state->getName()=="Sold";
+bool BasePlant::isSold()
+{
+    return state != nullptr && state->getName() == "Sold";
 }
 
-int BasePlant::getGrowthLevel() {
+int BasePlant::getGrowthLevel()
+{
     return this->growthLevel;
 }
 
-std::string BasePlant::getSpecies() {
+std::string BasePlant::getSpecies()
+{
     return this->species;
 }
 
-bool BasePlant::isWateredToday() {
+bool BasePlant::isWateredToday()
+{
     return this->isWatered;
 }
 
-int BasePlant::getPreferredEnvironment() {
+int BasePlant::getPreferredEnvironment()
+{
     return this->preferredEnvironment;
 }
 
-void BasePlant::setCurrentEnvironment(int newEnv) {
-    this->currentEnvironment=newEnv;
+void BasePlant::setCurrentEnvironment(int newEnv)
+{
+    this->currentEnvironment = newEnv;
 }
 
-void BasePlant::endDay() {
-    this->isWatered=false;
+void BasePlant::endDay()
+{
+    this->isWatered = false;
     grow();
 }
 
-void BasePlant::grow() {
-    if (state) {
-        if (isWatered) growthLevel += getGrowthMultiplier() * (growthRate - abs(preferredEnvironment - currentEnvironment));
+void BasePlant::grow()
+{
+    if (state)
+    {
+        if (isWatered)
+            growthLevel += getGrowthMultiplier() * (growthRate - abs(preferredEnvironment - currentEnvironment));
         state->grow(this); // delegates to current state
-    } else {
+    }
+    else
+    {
         std::cout << "No state assigned to plant. Cannot grow." << std::endl;
     }
 }
 
-int BasePlant::getCurrentEnvironment() {
+int BasePlant::getCurrentEnvironment()
+{
     return currentEnvironment;
+}
+
+void BasePlant::update()
+{
+    this->endDay();
 }

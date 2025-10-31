@@ -6,20 +6,23 @@
 #include <iostream>
 #include <sstream>
 
+#include "Observer.h"
+
 /**
  * @class BasePlant
  * @brief Concrete base class for plants providing core functionality.
- * 
+ *
  * BasePlant implements common Plant functionality such as sales tracking,
  * growth, environment management, and state handling. Specific plant types
  * can inherit from BasePlant and implement specialized behavior.
  */
 
-class BasePlant: public Plant {
+class BasePlant : public Plant, public Observer
+{
 public:
     /**
      * @brief Constructs a BasePlant object with the given attributes.
-     * 
+     *
      * @param species Name of the species.
      * @param currentEnvironment Current environment index.
      * @param growthLevel Initial growth level.
@@ -28,7 +31,7 @@ public:
      * @param preferredEnvironment Environment type preferred by the plant.
      * @param state Initial state of the plant.
      */
-    BasePlant(std::string species, int currentEnvironment, int growthLevel, bool isWatered, double growthRate, int preferredEnvironment, PlantState* state);
+    BasePlant(std::string species, int currentEnvironment, int growthLevel, bool isWatered, double growthRate, int preferredEnvironment, PlantState *state);
 
     /**
      * @brief Destructor for BasePlant.
@@ -37,7 +40,7 @@ public:
 
     /**
      * @brief Returns a string representation of the plant.
-     * 
+     *
      * Must be implemented by derived concrete plant classes.
      * @return String description of the plant.
      */
@@ -45,7 +48,7 @@ public:
 
     /**
      * @brief Waters the plant, affecting growth and state.
-     * 
+     *
      * Must be implemented by derived concrete plant classes.
      */
     virtual void water() = 0;
@@ -97,7 +100,7 @@ public:
 
     /**
      * @brief Returns the growth multiplier for the plant.
-     * 
+     *
      * Must be implemented by derived concrete plant classes.
      * @return Growth multiplier as double.
      */
@@ -115,7 +118,7 @@ public:
      * @brief Updates the plant's state.
      * @param newState Pointer to the new PlantState object.
      */
-    void setState(PlantState* newState) override;
+    void setState(PlantState *newState) override;
 
     /**
      * @brief Sets the current environment for the plant.
@@ -128,6 +131,8 @@ public:
      */
     void endDay() override;
 
+    void update() override;
+
 private:
     /**
      * @brief Handles plant growth logic for the day.
@@ -135,14 +140,13 @@ private:
     void grow();
 
 protected:
-    int growthLevel;             ///< Current growth level
-    std::string species;         ///< Species name
-    bool isWatered;              ///< Whether the plant has been watered today
-    double growthRate;           ///< Growth rate multiplier
-    int preferredEnvironment;    ///< Preferred environment type
-    int currentEnvironment;      ///< Current environment type
-    PlantState* state;           ///< Current state object
+    int growthLevel;          ///< Current growth level
+    std::string species;      ///< Species name
+    bool isWatered;           ///< Whether the plant has been watered today
+    double growthRate;        ///< Growth rate multiplier
+    int preferredEnvironment; ///< Preferred environment type
+    int currentEnvironment;   ///< Current environment type
+    PlantState *state;        ///< Current state object
 };
 
-
-#endif //COS214PRAC5_BASEPLANT_H
+#endif // COS214PRAC5_BASEPLANT_H
