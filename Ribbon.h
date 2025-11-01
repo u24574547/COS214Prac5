@@ -14,7 +14,7 @@ public:
      * @brief Constructs a Ribbon decorator for the given Plant.
      * @param plant Pointer to the Plant being decorated.
      */
-    Ribbon(Plant* plant);
+    Ribbon(Plant* plant, double price=5);
 
     /**
      * @brief Destructor for Ribbon decorator.

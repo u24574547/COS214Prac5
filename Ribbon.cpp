@@ -1,6 +1,6 @@
 #include "Ribbon.h"
 
-Ribbon::Ribbon(Plant *plant): PlantDecorator(plant) {
+Ribbon::Ribbon(Plant *plant, double price): PlantDecorator(plant, price) {
 }
 
 Ribbon::~Ribbon() {

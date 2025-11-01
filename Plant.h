@@ -100,6 +100,12 @@ public:
      */
     virtual std::string getStateName() = 0;
 
+    /**
+     * @brief Returns the price of the plant.
+     * @return Price of the plant.
+     */
+    virtual double getPrice() = 0;
+
     // Setters
 
     /**
@@ -113,6 +119,12 @@ public:
      * @param newState Pointer to the new PlantState object.
      */
     virtual void setState(PlantState* newState) = 0;
+
+    /**
+     * @brief Updates the plant's price.
+     * @param price A double value representing the new price.
+     */
+    virtual void setPrice(double price) = 0;
 
     /**
      * @brief Ends the day for the plant, updating state and growth as necessary.

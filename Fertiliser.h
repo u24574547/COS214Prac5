@@ -14,7 +14,7 @@ public:
      * @brief Constructs a Fertiliser decorator for the given Plant.
      * @param plant Pointer to the Plant being decorated.
      */
-    Fertiliser(Plant* plant);
+    Fertiliser(Plant* plant, double price=10);
 
     /**
      * @brief Destructor for Fertiliser decorator.

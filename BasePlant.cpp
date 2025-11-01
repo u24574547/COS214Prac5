@@ -1,6 +1,6 @@
 #include "BasePlant.h"
 
-BasePlant::BasePlant(std::string species, int currentEnvironment, int requiredWaterPerDay, int growthLevel=0,  int amountWateredToday=0, double growthRate=10.0, int preferredEnvironment=0, PlantState* state = new UnplantedState()) : Plant() {
+BasePlant::BasePlant(std::string species, int currentEnvironment, int requiredWaterPerDay, int growthLevel=0,  int amountWateredToday=0, double growthRate=10.0, int preferredEnvironment=0, PlantState* state = new UnplantedState(), double price=19.99) : Plant() {
     this->growthLevel = growthLevel;
     this->species = species;
     this->amountWateredToday=amountWateredToday;
@@ -9,6 +9,7 @@ BasePlant::BasePlant(std::string species, int currentEnvironment, int requiredWa
     this->preferredEnvironment=preferredEnvironment;
     this->currentEnvironment=currentEnvironment;
     this->state = state;
+    this->price=price;
 }
 
 BasePlant::~BasePlant() {
@@ -86,4 +87,12 @@ int BasePlant::getRequiredWaterPerDay() {
 void BasePlant::update()
 {
     this->endDay();
+}
+
+double BasePlant::getPrice() {
+    return price;
+}
+
+void BasePlant::setPrice(double price) {
+    this->price=price;
 }

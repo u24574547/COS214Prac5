@@ -1,7 +1,8 @@
 #include "PlantDecorator.h"
 
-PlantDecorator::PlantDecorator(Plant* plant) {
+PlantDecorator::PlantDecorator(Plant* plant, double price=5) {
     this->plant=plant;
+    this->price=price;
 }
 
 PlantDecorator::~PlantDecorator() {
@@ -62,4 +63,12 @@ int PlantDecorator::getCurrentEnvironment() {
 
 int PlantDecorator::getRequiredWaterPerDay() {
     return plant->getRequiredWaterPerDay();
+}
+
+double PlantDecorator::getPrice() {
+    return plant->getPrice()+price;
+}
+
+void PlantDecorator::setPrice(double price) {
+    plant->setPrice(price);
 }
