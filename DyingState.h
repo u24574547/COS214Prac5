@@ -1,38 +1,33 @@
-#ifndef SEEDLINGSTATE_H
-#define SEEDLINGSTATE_H
-
+#ifndef COS214PRAC5_DYINGSTATE_H
+#define COS214PRAC5_DYINGSTATE_H
 #include "PlantState.h"
-#include "DyingState.h"
+#include "DeadState.h"
 #include "Plant.h"
-#include "MatureState.h"
 
 /**
- * @class SeedlingState
+ * @class DyingState
  * @brief Represents the state of a plant that has just started growing.
- * 
+ *
  * The SeedlingState class defines the behavior of a Plant object when it has
  * been planted and has begun early growth. In this stage, the plant can
  * transition to the Mature state once sufficient growth occurs.
- * 
+ *
  * This class is part of the State design pattern implementation, where each
  * state defines distinct behaviors for the Plant.
  */
-class SeedlingState : public PlantState {
+class DyingState : public PlantState {
 public:
     /**
      * @brief Transitions the plant to its next logical state.
-     * 
-     * Typically moves the plant from the Seedling state to the Mature state
-     * as it continues to grow.
-     * 
+     *
+     * Plant dies.
+     *
      * @param plant Pointer to the Plant object whose state will change.
      */
     void nextState(Plant* plant) override;
 
     /**
-     * @brief Plant begins dying because of negative growth.
-     *
-     * Plants can have negative growth from not being watered or being in a bad environment.
+     * @brief Plant is already dying. Nothing happens
      *
      * @param plant Pointer to the Plant object that starts dying.
      */
@@ -40,18 +35,18 @@ public:
 
     /**
      * @brief Retrieves the name of this state.
-     * 
-     * @return A string representing the current state ("Seedling").
+     *
+     * @return A string representing the current state ("Dying State").
      */
     std::string getName() override;
 
     /**
-     * @brief Simulates growth behavior specific to the Seedling state.
-     * 
-     * May include logic to strengthen the plant or prepare it for maturity.
-     * This function helps illustrate how behavior changes as the plant
-     * transitions through states.
-     * 
+     * @brief Simulates growth behavior specific to the Dying state.
+     *
+     * The plant checks if it has recovered from almost dying or not.
+     * To die, it must have negative growth for 3 days.
+     * To recover it must have positive growth for 3 days.
+     *
      * @param plant Pointer to the Plant object performing the growth action.
      */
     void grow(Plant* plant) override;
@@ -59,7 +54,10 @@ public:
     /**
      * @brief Virtual destructor for safe cleanup.
      */
-    ~SeedlingState() override {}
+    ~DyingState() override {}
+private:
+    int daysDying=0;
+    int daysTakenCareOf=0;
 };
 
-#endif // SEEDLINGSTATE_H
+#endif //COS214PRAC5_DYINGSTATE_H

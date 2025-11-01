@@ -26,6 +26,15 @@ public:
     virtual void nextState(Plant* plant) = 0;
 
     /**
+     * @brief The plant starts dying when its growthLevel decreases.
+     *
+     * Concrete states implement this to handle conditions for dying.
+     *
+     * @param plant Pointer to the Plant that begins dying.
+     */
+    virtual void startDying(Plant* plant);
+
+    /**
      * @brief Handles growth of the plant in this state.
      * 
      * Typically called when the plant is watered. Concrete states will
@@ -47,6 +56,8 @@ public:
      * @brief Virtual destructor.
      */
     virtual ~PlantState() {}
+protected:
+    int oldGrowthLevel=0;
 };
 
 #endif // PLANTSTATE_H

@@ -64,6 +64,7 @@ void BasePlant::endDay() {
 void BasePlant::grow() {
     if (state) {
         if (amountWateredToday>=requiredWaterPerDay) growthLevel += getGrowthMultiplier() * (growthRate - abs(preferredEnvironment - currentEnvironment));
+        else growthLevel*=0.95;
         state->grow(this); // delegates to current state
     } else {
         std::cout << "No state assigned to plant. Cannot grow." << std::endl;

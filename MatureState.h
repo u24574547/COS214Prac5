@@ -2,6 +2,9 @@
 #define MATURESTATE_H
 
 #include "PlantState.h"
+#include "DyingState.h"
+#include "Plant.h"
+#include "ReadyForSale.h"
 
 /**
  * @class MatureState
@@ -25,6 +28,15 @@ public:
      * @param plant Pointer to the Plant object whose state will change.
      */
     void nextState(Plant* plant) override;
+
+    /**
+     * @brief Plant begins dying because of negative growth.
+     *
+     * Plants can have negative growth from not being watered or being in a bad environment.
+     *
+     * @param plant Pointer to the Plant object that starts dying.
+     */
+    void startDying(Plant *plant) override;
 
     /**
      * @brief Retrieves the name of this state.

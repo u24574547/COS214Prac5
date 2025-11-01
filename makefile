@@ -6,7 +6,7 @@ CPPFLAGS ?= -I.
 LDFLAGS  ?=
 
 # Provided by you - with Observer and Day added
-SRCS := Aggregate.cpp BasePlant.cpp Command.cpp Customer.cpp Day.cpp Director.cpp DisplayBundle.cpp Employee.cpp Fern.cpp FernExpert.cpp FernSupplier.cpp Fertiliser.cpp Flowering.cpp FloweringExpert.cpp FloweringSupplier.cpp FrostNet.cpp FrostReadyBuilder.cpp Gardener.cpp GiftBuilder.cpp InquiryCommand.cpp Inventory.cpp Iterator.cpp MatureState.cpp Moss.cpp MossExpert.cpp MossSupplier.cpp NonFlowering.cpp NonfloweringExpert.cpp NonFloweringSupplier.cpp Observer.cpp OrderCommand.cpp Plant.cpp PlantDecorator.cpp PlantIterator.cpp PlantState.cpp ReadyForSale.cpp RefundCommand.cpp SeedlingState.cpp SoldState.cpp Supplier.cpp TerrariumBuilder.cpp TransactionCaretaker.cpp TransactionHistory.cpp TransactionIterator.cpp TransactionMemento.cpp UnplantedState.cpp Ribbon.cpp
+SRCS := Aggregate.cpp BasePlant.cpp Command.cpp Customer.cpp Day.cpp DeadState.cpp Director.cpp DisplayBundle.cpp DyingState.cpp Employee.cpp Fern.cpp FernExpert.cpp FernSupplier.cpp Fertiliser.cpp Flowering.cpp FloweringExpert.cpp FloweringSupplier.cpp FrostNet.cpp FrostReadyBuilder.cpp Gardener.cpp GiftBuilder.cpp InquiryCommand.cpp Inventory.cpp Iterator.cpp MatureState.cpp Moss.cpp MossExpert.cpp MossSupplier.cpp NonFlowering.cpp NonfloweringExpert.cpp NonFloweringSupplier.cpp Observer.cpp OrderCommand.cpp Plant.cpp PlantDecorator.cpp PlantIterator.cpp PlantState.cpp ReadyForSale.cpp RefundCommand.cpp SeedlingState.cpp SoldState.cpp Supplier.cpp TerrariumBuilder.cpp TransactionCaretaker.cpp TransactionHistory.cpp TransactionIterator.cpp TransactionMemento.cpp UnplantedState.cpp Ribbon.cpp
 
 TEST := main.cpp
 CLI  := CLI.cpp
