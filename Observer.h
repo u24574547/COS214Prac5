@@ -1,11 +1,10 @@
 /**
  * @file Observer.h
  * @author your name (you@domain.com)
- * @brief the observer participant in the observer design patter. observers the passage of time by being notified by the day subject participant. is the abstract class that defines the basic update interface.
- * @version 0.1
- * @date 2025-11-01
+ * @brief The observer participant in the observer design pattern.
+ * Observers the passage of time by being notified by the day subject participant.
+ * Observer is the abstract class that defines the basic update interface.
  *
- * @copyright Copyright (c) 2025
  *
  */
 #ifndef Observer_H
