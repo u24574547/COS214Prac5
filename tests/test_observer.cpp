@@ -120,6 +120,19 @@ TEST_CASE("Day removeObserver")
     }
 }
 
+TEST_CASE("plants update")
+{
+    Plant *plant = new Fern("fern", 0, 140, 0, false, 1.0, 0, new UnplantedState);
+    Observer *observer = dynamic_cast<Observer *>(plant);
+    observer->update();
+}
+TEST_CASE("employees update")
+{
+    Employee *employee = new FernExpert("employee", nullptr);
+    Observer *observer = dynamic_cast<Observer *>(employee);
+    observer->update();
+}
+
 TEST_CASE("day (subject) notify")
 {
     SUBCASE("notify plants")
