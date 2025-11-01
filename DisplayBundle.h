@@ -23,14 +23,31 @@ private:
     std::vector<Bundle*> components;
 public:
     /**
+     * @brief Default constructor.
+     * 
+     * Initializes the DisplayBundle with an empty component list and a price of 0.0.
+     */
+    DisplayBundle();
+    /**
      * @brief Adds a sub-bundle to the display bundle.
      * 
      * @param b Pointer to a Bundle object to add as a component.
      */
     void add(Bundle* b);
+    /**
+     * @brief Calculates the total price of this DisplayBundle.
+     * 
+     * Iterates through all contained Bundle components, sums their prices,
+     * and returns the total price for the composite bundle.
+     * @return The total price of all components within this DisplayBundle.
+     */
+    double getPrice() const;
 
     /**
-     * @brief Displays the bundle and all its components.
+     * @brief Returns a string representation of the DisplayBundle.
+     * 
+     * Should provide information about all contained components.
+     * @return A string describing the contents of this DisplayBundle.
      */
     std::string toString() const override;
 

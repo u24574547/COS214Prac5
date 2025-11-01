@@ -1,5 +1,6 @@
 #include "DisplayBundle.h"
 //manditory change for commit
+DisplayBundle::DisplayBundle() : Bundle() {}
 void DisplayBundle::add(Bundle* b) {
     components.push_back(b);
 }
@@ -13,6 +14,13 @@ std::string DisplayBundle::toString() const {
         ss<<components[i]->toString();
     }
     return ss.str();
+}
+
+double DisplayBundle::getPrice() const {
+    double total = 0.0;
+    for (size_t i = 0; i < components.size(); ++i)
+        total += components[i]->getPrice();
+    return total;
 }
 
 DisplayBundle::~DisplayBundle() {
