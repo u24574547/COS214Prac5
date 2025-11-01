@@ -191,6 +191,8 @@
 #include "Day.h"
 #include "Observer.h"
 
+
+
 void testInventory()
 {
     std::cout << "\n=== Testing Inventory Management ===\n";
@@ -370,6 +372,74 @@ void testObserver()
     }
 }
 
+void testPlantLifecycle()
+{
+    std::cout << "\n=== Testing Plant Lifecycle ===\n";
+
+    // Start with an Unplanted state
+    PlantState* startState = new UnplantedState();
+    Plant* plant = new Fern("LifecycleFern", 0, 140, 0, false, 1.0, 0, startState);
+
+    std::cout << "Initial state: " << plant->getStateName() 
+              << ", Growth: " << plant->getGrowthLevel() << "\n";
+
+    // Simulate days of watering and growth
+    for (int day = 1; day <= 5; ++day)
+    {
+        std::cout << "\nDay " << day << ":\n";
+
+        // Water the plant
+        plant->water(); // assumes your Fern::water() exists and marks it watered for the day
+        std::cout << "Watered - current state: " << plant->getStateName() << "\n";
+
+        // End of day growth/state update
+        plant->endDay();
+        std::cout << "After growth - state: " << plant->getStateName() 
+                  << ", Growth level: " << plant->getGrowthLevel() << "\n";
+
+        // Optionally, mark it sold if it reaches ReadyForSale
+        if (plant->getStateName() == "Ready For Sale State")
+        {
+            plant->markSold();
+            plant->endDay(); // transition to Sold
+        }
+    }
+
+    // Clean up
+    delete plant;
+}
+
+void testCommands()
+{
+    std::cout << "\n=== Testing Commands ===\n";
+
+    // Create a dummy customer (mediator can be nullptr for this test)
+    Customer* customer = new Customer("TestCustomer", nullptr, "CUST001");
+
+    // --- Test OrderCommand ---
+    OrderCommand* orderCmd = new OrderCommand(customer, nullptr, "Fern");
+    std::cout << "Created: " << orderCmd->toString();
+    orderCmd->execute(); // should print "Order could not be processed..." because mediator is null
+
+    // --- Test InquiryCommand ---
+    InquiryCommand* inquiryCmd = new InquiryCommand(customer, nullptr, "Moss");
+    std::cout << "Created: " << inquiryCmd->toString();
+    inquiryCmd->execute(); // should print "Inquiry could not be handled..."
+
+    // --- Test RefundCommand ---
+    RefundCommand* refundCmd = new RefundCommand(customer, nullptr, orderCmd);
+    std::cout << "Created: " << refundCmd->toString();
+    refundCmd->execute(); // should print "Refund could not be processed..."
+
+    // Cleanup
+    delete orderCmd;
+    delete inquiryCmd;
+    delete refundCmd;
+    delete customer;
+}
+
+
+
 int main()
 {
     // testInventory();
@@ -377,7 +447,9 @@ int main()
     // testPlantLifecycle();
     // testBuilderPattern();
     // testDecorators();
-    testObserver();
+    //testObserver();
+    //testPlantLifecycle();
+    testCommands();
 
     std::cout << "\nAll tests completed.\n";
     return 0;
