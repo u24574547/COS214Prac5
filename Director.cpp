@@ -6,7 +6,7 @@ Director::Director(Builder* b, Inventory* i){
     inventory = i;
 }
 
-void Director::constructGiftBundle(){
+bool Director::constructGiftBundle(){
     builder->reset();
     // I need to check if the plants exist in inventory
     Plant* tulip = inventory->getPlant("Tulipa gesneriana");
@@ -27,12 +27,11 @@ void Director::constructGiftBundle(){
         builder->addDecorativePlant(tulip);  // Will be decorated with ribbon
         builder->addDecorativePlant(rose);   // Will be decorated with ribbon
         builder->addBasicPlant(fern);        // Accent plant, no decoration
+        return true;
     }
-    
-    
-    
+    return false;
 }
-void Director::constructFrostReadyBundle(){
+bool Director::constructFrostReadyBundle(){
     builder->reset();
     Plant* nonFlowering = inventory->getPlant("Riccia fluitans");
     Plant* fern = inventory->getPlant("Nephrolepis exaltata");
@@ -54,10 +53,12 @@ void Director::constructFrostReadyBundle(){
         
         // Add some fertilizer to help winter growth
         builder->addFertilisedPlant(nonFlowering);
+        return true;
     }
+    return false;
 }
 
-void Director::constructTerrariumBundle(){
+bool Director::constructTerrariumBundle(){
     builder->reset();
     Plant* moss = inventory->getPlant("Bryum argenteum");
     Plant* fern = inventory->getPlant("Adiantum raddianum");
@@ -72,6 +73,8 @@ void Director::constructTerrariumBundle(){
         builder->addFertilisedPlant(moss);
         builder->addFertilisedPlant(fern);
         builder->addBasicPlant(fittonia);
+        return true;
     }
+    return false;
 }
 

@@ -34,18 +34,21 @@ public:
 
     /**
      * @brief Constructs a gift-ready plant bundle.
+     * @return If the construction was successful or not.
      */
-    void constructGiftBundle();
+    bool constructGiftBundle();
 
     /**
      * @brief Constructs a frost-ready plant bundle.
+     * @return If the construction was successful or not.
      */
-    void constructFrostReadyBundle();
+    bool constructFrostReadyBundle();
 
     /**
      * @brief Constructs a terrarium-style plant bundle.
+     * @return If the construction was successful or not.
      */
-    void constructTerrariumBundle();
+    bool constructTerrariumBundle();
 };
 
 #endif

@@ -9,6 +9,9 @@
 
 #include "Customer.h"
 #include "Director.h"
+#include "FrostReadyBuilder.h"
+#include "GiftBuilder.h"
+#include "TerrariumBuilder.h"
 
 Employee::Employee(string name, Inventory *inventory)
 {
@@ -26,12 +29,37 @@ void Employee::handleOrder(Command *command)
     OrderCommand *cmd = static_cast<OrderCommand *>(command);
 
     if (cmd->getSpeciesName()=="Gift Bundle") {
-        //TODO: add implementation
+        Builder* builder = new GiftBuilder();
+        Director* director = new Director(builder, inventory);
+        bool success = director->constructGiftBundle();
+        if (success) cmd->getCustomer()->orderReceive(builder->getResult(), true);
+        else cmd->getCustomer()->orderReceive(nullptr, false);
+        delete builder;
+        builder = nullptr;
+        delete director;
+        director = nullptr;
     }
     else if (cmd->getSpeciesName()=="FrostReady Bundle") {
-
+        Builder* builder = new FrostReadyBuilder();
+        Director* director = new Director(builder, inventory);
+        bool success = director->constructFrostReadyBundle();
+        if (success) cmd->getCustomer()->orderReceive(builder->getResult(), true);
+        else cmd->getCustomer()->orderReceive(nullptr, false);
+        delete builder;
+        builder = nullptr;
+        delete director;
+        director = nullptr;
     }
     else if (cmd->getSpeciesName()=="Terrarium Bundle") {
+        Builder* builder = new TerrariumBuilder();
+        Director* director = new Director(builder, inventory);
+        bool success = director->constructTerrariumBundle();
+        if (success) cmd->getCustomer()->orderReceive(builder->getResult(), true);
+        else cmd->getCustomer()->orderReceive(nullptr, false);
+        delete builder;
+        builder = nullptr;
+        delete director;
+        director = nullptr;
 
     }
     else
