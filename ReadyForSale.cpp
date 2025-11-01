@@ -1,6 +1,4 @@
 #include "ReadyForSale.h"
-#include "Plant.h"
-#include "SoldState.h"
 
 void ReadyForSaleState::nextState(Plant* plant) {
     if (plant->isSold()) {
@@ -10,6 +8,10 @@ void ReadyForSaleState::nextState(Plant* plant) {
 }
 
 void ReadyForSaleState::grow(Plant* plant) {
+    if (oldGrowthLevel>plant->getGrowthLevel()) {
+        startDying(plant);
+    }
+    oldGrowthLevel=plant->getGrowthLevel();
     if (plant->isSold()) {
         nextState(plant); // move to Sold
     }
@@ -20,4 +22,9 @@ void ReadyForSaleState::grow(Plant* plant) {
 
 std::string ReadyForSaleState::getName() {
     return "Ready For Sale State";
+}
+
+void ReadyForSaleState::startDying(Plant *plant) {
+    std::cout << "Seedling has negative growth and begins dying." << std::endl;
+    plant->setState(new DyingState());
 }

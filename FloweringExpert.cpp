@@ -26,7 +26,7 @@ void FloweringExpert::handleInquiry(Command *command)
         }
         else
         {
-            cout << "im sorry but we cannot help you, inquiry unhandled" << endl;
+            cout << "I'm sorry but we cannot help you, inquiry unhandled." << endl;
         }
     }
 }
@@ -39,7 +39,7 @@ void FloweringExpert::handleWater(int environment)
     }
     else
     {
-        cout << "it's not my job, plants unwatered" << endl;
+        cout << "The business doesn't have a gardener. Please hire one." << endl;
     }
 }
 

@@ -26,8 +26,9 @@ public:
      * @param growthRate Growth rate multiplier.
      * @param preferredEnvironment Preferred environment type.
      * @param state Initial PlantState object.
+     * @param price Selling price of the plant.
      */
-    Fern(std::string species, int currentEnvironment, int requiredWaterPerDay, int growthLevel, int amountWateredToday, double growthRate, int preferredEnvironment, PlantState* state);
+    Fern(std::string species, int currentEnvironment, int requiredWaterPerDay, int growthLevel=0,  int amountWateredToday=0, double growthRate=10.0, int preferredEnvironment=0, PlantState* state = new UnplantedState(), double price=19.99);
 
     /**
      * @brief Destructor for Fern.

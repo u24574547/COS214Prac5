@@ -1,6 +1,4 @@
 #include "SeedlingState.h"
-#include "Plant.h"
-#include "MatureState.h"
 
 void SeedlingState::nextState(Plant* plant) {
     //depending on conditions, transition to MatureState
@@ -9,6 +7,10 @@ void SeedlingState::nextState(Plant* plant) {
 }
 
 void SeedlingState::grow(Plant* plant) {
+    if (oldGrowthLevel>plant->getGrowthLevel()) {
+        startDying(plant);
+    }
+    oldGrowthLevel=plant->getGrowthLevel();
     if (plant->getAmountWateredToday()) {
         std::cout << "Seedling growing... growth level: " << plant->getGrowthLevel() << std::endl;
 
@@ -22,4 +24,9 @@ void SeedlingState::grow(Plant* plant) {
 
 std::string SeedlingState::getName() {
     return "Seedling State";
+}
+
+void SeedlingState::startDying(Plant *plant) {
+    std::cout << "Seedling has negative growth and begins dying." << std::endl;
+    plant->setState(new DyingState());
 }

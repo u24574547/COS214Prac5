@@ -31,8 +31,9 @@ public:
      * @param growthRate Growth rate multiplier.
      * @param preferredEnvironment Environment type preferred by the plant.
      * @param state Initial state of the plant.
+     * @param price Selling price of the plant.
      */
-    BasePlant(std::string species, int currentEnvironment, int requiredWaterPerDay, int growthLevel, int amountWateredToday, double growthRate, int preferredEnvironment, PlantState *state);
+    BasePlant(std::string species, int currentEnvironment, int requiredWaterPerDay, int growthLevel, int amountWateredToday, double growthRate, int preferredEnvironment, PlantState *state, double price);
 
     /**
      * @brief Destructor for BasePlant.
@@ -74,6 +75,12 @@ public:
      * @return State name as string.
      */
     std::string getStateName() override;
+
+    /**
+     * @brief Returns the price of the plant.
+     * @return Price of the plant.
+     */
+    double getPrice() override;
 
     /**
      * @brief Returns the current growth level of the plant.
@@ -134,6 +141,12 @@ public:
     void setCurrentEnvironment(int newEnv) override;
 
     /**
+     * @brief Updates the plant's price.
+     * @param price A double value representing the new price.
+     */
+    void setPrice(double price) override;
+
+    /**
      * @brief Ends the day for the plant, updating growth and state.
      */
     void endDay() override;
@@ -159,6 +172,7 @@ protected:
     int preferredEnvironment; ///< Preferred environment type
     int currentEnvironment;   ///< Current environment type
     PlantState *state;        ///< Current state object
+    double price;             ///< Price of the plant
 };
 
 #endif // COS214PRAC5_BASEPLANT_H

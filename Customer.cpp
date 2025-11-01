@@ -31,16 +31,17 @@ void Customer::inquiryReceive(const std::string &plantType, const std::string &i
               << " - " << inquiryResponse << "\n";
 }
 
-void Customer::orderReceive(Plant *plant, bool success)
+void Customer::orderReceive(Bundle *plant, bool success)
 {
     if (success)
     {
-        std::cout << name << " received order confirmation for " << plant->getSpecies() << endl;
+        std::cout << name << " received order confirmation for: {\n" << plant->toString() <<"\n} with a value of R"<< plant->getPrice() << endl;
     }
     else
     {
         std::cout << name << "'s order failed"<< endl;
     }
+    //delete plant; if it isnt going to be used in refunds or anything
 }
 
 void Customer::refundReceive(bool success)
@@ -52,7 +53,7 @@ void Customer::refundReceive(bool success)
     }
     else
     {
-        std::cout << name << " has failed to recieve a refund" << endl;
+        std::cout << name << " has failed to receive a refund" << endl;
     }
 }
 

@@ -8,6 +8,10 @@
 #include "RefundCommand.h"
 
 #include "Customer.h"
+#include "Director.h"
+#include "FrostReadyBuilder.h"
+#include "GiftBuilder.h"
+#include "TerrariumBuilder.h"
 
 Employee::Employee(string name, Inventory *inventory)
 {
@@ -24,14 +28,51 @@ void Employee::handleOrder(Command *command)
 {
     OrderCommand *cmd = static_cast<OrderCommand *>(command);
 
-    Plant *plant = inventory->getPlant(cmd->getSpeciesName());
-    if (plant == nullptr)
-    {
-        cmd->getCustomer()->orderReceive(nullptr, false);
+    if (cmd->getSpeciesName()=="Gift Bundle") {
+        Builder* builder = new GiftBuilder();
+        Director* director = new Director(builder, inventory);
+        bool success = director->constructGiftBundle();
+        if (success) cmd->getCustomer()->orderReceive(builder->getResult(), true);
+        else cmd->getCustomer()->orderReceive(nullptr, false);
+        delete builder;
+        builder = nullptr;
+        delete director;
+        director = nullptr;
+    }
+    else if (cmd->getSpeciesName()=="FrostReady Bundle") {
+        Builder* builder = new FrostReadyBuilder();
+        Director* director = new Director(builder, inventory);
+        bool success = director->constructFrostReadyBundle();
+        if (success) cmd->getCustomer()->orderReceive(builder->getResult(), true);
+        else cmd->getCustomer()->orderReceive(nullptr, false);
+        delete builder;
+        builder = nullptr;
+        delete director;
+        director = nullptr;
+    }
+    else if (cmd->getSpeciesName()=="Terrarium Bundle") {
+        Builder* builder = new TerrariumBuilder();
+        Director* director = new Director(builder, inventory);
+        bool success = director->constructTerrariumBundle();
+        if (success) cmd->getCustomer()->orderReceive(builder->getResult(), true);
+        else cmd->getCustomer()->orderReceive(nullptr, false);
+        delete builder;
+        builder = nullptr;
+        delete director;
+        director = nullptr;
+
     }
     else
     {
-        cmd->getCustomer()->orderReceive(plant, true);
+        Plant *plant = inventory->getPlant(cmd->getSpeciesName());
+        if (plant == nullptr)
+        {
+            cmd->getCustomer()->orderReceive(nullptr, false);
+        }
+        else
+        {
+            cmd->getCustomer()->orderReceive(plant, true);
+        }
     }
 }
 void Employee::handleRefund(Command *command)
@@ -51,7 +92,7 @@ void Employee::handleRefund(Command *command)
 }
 void Employee::update()
 {
-    cout << name << " has ended the day to rest at home before immediately coming back." << endl;
+    cout << name << "'s working day is finished." << endl;
 }
 
 #endif

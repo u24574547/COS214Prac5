@@ -86,7 +86,7 @@ public:
      * @param speciesName The name of the ordered species.
      * @param success Indicates whether the order was successful.
      */
-    void orderReceive(Plant* plant, bool success);
+    void orderReceive(Bundle* plant, bool success);
 
     /**
      * @brief Receives confirmation or failure feedback after requesting a refund.

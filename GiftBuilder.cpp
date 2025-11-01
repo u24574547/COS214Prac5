@@ -3,6 +3,7 @@
 #include <sstream>
 #include "Fertiliser.h"
 #include "FrostNet.h"
+#include "Ribbon.h"
 
 GiftBuilder::GiftBuilder() {
     bundle = new DisplayBundle();
@@ -17,9 +18,8 @@ void GiftBuilder::addBasicPlant(Plant* name) {
     bundle->add(name);    
 }
 void GiftBuilder::addDecorativePlant(Plant* name) {
-    //I need to decorate the plants
-    // For now till i get that decorator class ill add normal
-    bundle->add(name);
+    Ribbon* decoratedPlant = new Ribbon(name);
+    bundle->add(decoratedPlant);
     
 }
 void GiftBuilder::addFertilisedPlant(Plant* name){

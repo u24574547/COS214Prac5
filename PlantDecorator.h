@@ -15,12 +15,13 @@
 class PlantDecorator: public Plant {
 protected:
     Plant* plant; ///< Pointer to the wrapped Plant object.
+    double price;
 public:
     /**
      * @brief Constructs a PlantDecorator with a given Plant.
      * @param plant Pointer to the Plant object being decorated.
      */
-    PlantDecorator(Plant* plant);
+    PlantDecorator(Plant* plant, double price);
 
     /**
      * @brief Virtual destructor.
@@ -110,10 +111,22 @@ public:
     std::string getStateName() override;
 
     /**
+     * @brief Returns the price of the plant.
+     * @return Price of the plant.
+     */
+    double getPrice() override;
+
+    /**
      * @brief Sets the current environment for the decorated plant.
      * @param newEnv Integer representing the new environment type.
      */
     void setCurrentEnvironment(int newEnv) override;
+
+    /**
+     * @brief Updates the plant's price.
+     * @param price A double value representing the new price.
+     */
+    void setPrice(double price) override;
 
     /**
      * @brief Ends the day for the decorated plant.

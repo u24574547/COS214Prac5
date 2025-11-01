@@ -1,6 +1,6 @@
 #include "Fertiliser.h"
 
-Fertiliser::Fertiliser(Plant *plant): PlantDecorator(plant) {
+Fertiliser::Fertiliser(Plant *plant, double price): PlantDecorator(plant, price) {
 }
 
 Fertiliser::~Fertiliser() {

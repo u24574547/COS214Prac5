@@ -52,6 +52,7 @@
 //     TransactionHistory* history = new TransactionHistory();
 //     Inventory* inv = new Inventory();
 
+
 //     PlantState* state = new UnplantedState();
 //     Plant* fern = new Fern("Ferb", 2, 0, false, 1.0, 2, state);
 //     Plant* moss = new Moss("Boss", 2, 0, false, 1.0, 2, state);
@@ -116,18 +117,14 @@
 //     return 0;
 // }
 
-// Comment out or delete existing test functions ==============================================================================================================
+// Comment out or delete existing test functions
 
-// customer
-#include "Customer.h"
-
-// command classes
-#include "Command.h" //command classes
+#include "TransactionHistory.h"
+#include "Command.h"
 #include "OrderCommand.h"
 #include "RefundCommand.h"
 #include "InquiryCommand.h"
-
-// mediator/chain classes
+#include "Customer.h"
 #include "Employee.h"
 #include "FernExpert.h"
 #include "MossExpert.h"
@@ -183,25 +180,28 @@
 // state classes
 #include "PlantState.h"
 #include "UnplantedState.h"
-#include "SeedlingState.h"
-#include "MatureState.h"
-#include "SoldState.h"
+#include "Director.h"
+#include "GiftBuilder.h"
+#include "FrostReadyBuilder.h"
+#include "TerrariumBuilder.h"
+#include "FernSupplier.h"
+#include "Fertiliser.h"
+#include "FrostNet.h"
 
-// observer classes
+//
 #include "Day.h"
 #include "Observer.h"
 
-void testInventory()
-{
+void testInventory() {
     std::cout << "\n=== Testing Inventory Management ===\n";
 
-    Inventory *inv = new Inventory();
-    PlantState *state = new UnplantedState();
+    Inventory* inv = new Inventory();
+    PlantState* state = new UnplantedState();
 
     // Create test plants
-    Plant *fern = new Fern("TestFern", 2, 140, 0, false, 1.0, 2, state);
-    Plant *moss = new Moss("TestMoss", 2, 5, 0, false, 1.0, 2, state);
-    Plant *flowering = new Flowering("TestFlower", 2, 100, 0, false, 1.0, 2, state);
+    Plant* fern = new Fern("TestFern", 2, 140,0, false, 1.0, 2, state);
+    Plant* moss = new Moss("TestMoss", 2, 5, 0, false, 1.0, 2, state);
+    Plant* flowering = new Flowering("TestFlower", 2, 100, 0, false, 1.0, 2, state);
 
     std::cout << "Adding plants to inventory...\n";
     inv->addPlant(fern);
@@ -209,16 +209,14 @@ void testInventory()
     inv->addPlant(flowering);
 
     std::cout << "\nIterating through inventory:\n";
-    Iterator<Plant *> *it = inv->createIterator();
-    for (it->first(); !it->isDone(); it->next())
-    {
+    Iterator<Plant*>* it = inv->createIterator();
+    for (it->first(); !it->isDone(); it->next()) {
         std::cout << "- " << it->current()->getSpecies() << "\n";
     }
 
     std::cout << "\nRemoving TestMoss...\n";
-    Plant *removed = inv->getPlant("TestMoss");
-    if (removed)
-    {
+    Plant* removed = inv->getPlant("TestMoss");
+    if (removed) {
         std::cout << "Successfully removed: " << removed->getSpecies() << "\n";
         delete removed;
     }
@@ -227,16 +225,15 @@ void testInventory()
     delete it;
 }
 
-void testTransactions()
-{
+void testTransactions() {
     std::cout << "\n=== Testing Transaction System ===\n";
 
-    Inventory *inv = new Inventory();
-    Employee *mediator = new FernExpert("TestEmployee", inv);
-    Customer *customer = new Customer("TestCustomer", mediator, "TEST001");
+    Inventory* inv = new Inventory();
+    Employee* mediator = new FernExpert("TestEmployee", inv);
+    Customer* customer = new Customer("TestCustomer", mediator, "TEST001");
 
     // Add some plants to inventory
-    inv->addPlant(new Fern("TestFern", 0, 140, 0, false, 1.0, 0, new UnplantedState()));
+    inv->addPlant(new Fern("TestFern", 0, 140,0, false, 1.0, 0, new UnplantedState()));
 
     std::cout << "Testing order command...\n";
     customer->order("TestFern");
@@ -249,66 +246,42 @@ void testTransactions()
     delete inv;
 }
 
-void testPlantLifecycle()
-{
-    std::cout << "\n=== Testing Plant Lifecycle ===\n";
 
-    Plant *plant = new Fern("LifecycleFern", 0, 140, 0, false, 1.0, 0, new UnplantedState());
 
-    std::cout << "Initial state: " << plant->getStateName() << "\n";
-
-    for (int day = 1; day <= 5; ++day)
-    {
-        std::cout << "\nDay " << day << ":\n";
-        plant->water(200); // TODO what amount should it water?
-        std::cout << "Watered - current state: " << plant->getStateName() << "\n";
-        plant->endDay();
-        std::cout << "After growth - state: " << plant->getStateName()
-                  << ", growth level: " << plant->getGrowthLevel() << "\n";
-    }
-
-    delete plant;
-}
-
-void testBuilderPattern()
-{
+void testBuilderPattern() {
     std::cout << "\n=== Testing Builder Pattern ===\n";
 
-    Inventory *inv = new Inventory();
+    Inventory* inv = new Inventory();
     // Add plants for the builders to use
-    inv->addPlant(new Fern("BuilderFern", 0, 140, 0, false, 1.0, 0, new UnplantedState()));
-    inv->addPlant(new Moss("BuilderMoss", 0, 140, 0, false, 1.0, 0, new UnplantedState()));
-    inv->addPlant(new Flowering("BuilderFlower", 0, 140, 0, false, 1.0, 0, new UnplantedState()));
+    inv->addPlant(new Fern("Fern", 0, 140, 0, false, 1.0, 0, new UnplantedState()));
+    inv->addPlant(new Flowering("Rose", 0, 140, 0, false, 1.0, 0, new UnplantedState()));
+    inv->addPlant(new Flowering("Tulip", 0, 140, 0, false, 1.0, 0, new UnplantedState()));
 
-    Builder *giftBuilder = new GiftBuilder();
-    Director *giftDirector = new Director(giftBuilder, inv);
+    Builder* giftBuilder = new GiftBuilder();
+    Director* giftDirector = new Director(giftBuilder, inv);
 
     std::cout << "Building gift bundle...\n";
     giftDirector->constructGiftBundle();
-    DisplayBundle *gift = giftBuilder->getResult();
-    if (gift)
-    {
+
+    DisplayBundle* gift = giftBuilder->getResult();
+    if (gift != NULL) {
         std::cout << gift->toString() << "\n";
         delete gift;
     }
 }
 
-void testDecorators()
-{
+void testDecorators() {
     std::cout << "\n=== Testing Decorators ===\n";
 
     FernSupplier supplier;
-    Plant *basePlant = supplier.getPlant();
-    std::cout << "Base plant:\n"
-              << basePlant->toString() << "\n";
+    Plant* basePlant = supplier.getPlant();
+    std::cout << "Base plant:\n" << basePlant->toString() << "\n";
 
-    Plant *fertilizedPlant = supplier.addFertiliser(basePlant);
-    std::cout << "\nFertilized plant:\n"
-              << fertilizedPlant->toString() << "\n";
+    Plant* fertilizedPlant = supplier.addFertiliser(basePlant);
+    std::cout << "\nFertilized plant:\n" << fertilizedPlant->toString() << "\n";
 
-    Plant *protectedPlant = supplier.addFrostNet(fertilizedPlant);
-    std::cout << "\nFrost protected plant:\n"
-              << protectedPlant->toString() << "\n";
+    Plant* protectedPlant = supplier.addFrostNet(fertilizedPlant);
+    std::cout << "\nFrost protected plant:\n" << protectedPlant->toString() << "\n";
 
     delete protectedPlant; // Will cascade delete through decorators
 }
@@ -370,6 +343,74 @@ void testObserver()
     }
 }
 
+void testPlantLifecycle()
+{
+    std::cout << "\n=== Testing Plant Lifecycle ===\n";
+
+    // Start with an Unplanted state
+    PlantState* startState = new UnplantedState();
+    Plant* plant = new Fern("LifecycleFern", 0, 140, 0, false, 1.0, 0, startState);
+
+    std::cout << "Initial state: " << plant->getStateName()
+              << ", Growth: " << plant->getGrowthLevel() << "\n";
+
+    // Simulate days of watering and growth
+    for (int day = 1; day <= 5; ++day)
+    {
+        std::cout << "\nDay " << day << ":\n";
+
+        // Water the plant
+        plant->water(200); // assumes your Fern::water() exists and marks it watered for the day
+        std::cout << "Watered - current state: " << plant->getStateName() << "\n";
+
+        // End of day growth/state update
+        plant->endDay();
+        std::cout << "After growth - state: " << plant->getStateName()
+                  << ", Growth level: " << plant->getGrowthLevel() << "\n";
+
+        // Optionally, mark it sold if it reaches ReadyForSale
+        if (plant->getStateName() == "Ready For Sale State")
+        {
+            plant->markSold();
+            plant->endDay(); // transition to Sold
+        }
+    }
+
+    // Clean up
+    delete plant;
+}
+
+void testCommands()
+{
+    std::cout << "\n=== Testing Commands ===\n";
+
+    // Create a dummy customer (mediator can be nullptr for this test)
+    Customer* customer = new Customer("TestCustomer", nullptr, "CUST001");
+
+    // --- Test OrderCommand ---
+    OrderCommand* orderCmd = new OrderCommand(customer, nullptr, "Fern");
+    std::cout << "Created: " << orderCmd->toString();
+    orderCmd->execute(); // should print "Order could not be processed..." because mediator is null
+
+    // --- Test InquiryCommand ---
+    InquiryCommand* inquiryCmd = new InquiryCommand(customer, nullptr, "Moss");
+    std::cout << "Created: " << inquiryCmd->toString();
+    inquiryCmd->execute(); // should print "Inquiry could not be handled..."
+
+    // --- Test RefundCommand ---
+    RefundCommand* refundCmd = new RefundCommand(customer, nullptr, orderCmd);
+    std::cout << "Created: " << refundCmd->toString();
+    refundCmd->execute(); // should print "Refund could not be processed..."
+
+    // Cleanup
+    delete orderCmd;
+    delete inquiryCmd;
+    delete refundCmd;
+    delete customer;
+}
+
+
+
 int main()
 {
     // testInventory();
@@ -377,7 +418,9 @@ int main()
     // testPlantLifecycle();
     // testBuilderPattern();
     // testDecorators();
-    // testObserver();
+    //testObserver();
+    //testPlantLifecycle();
+    testCommands();
 
     std::cout << "\nAll tests completed.\n";
     return 0;

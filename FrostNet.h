@@ -14,7 +14,7 @@ public:
      * @brief Constructs a FrostNet decorator for the given Plant.
      * @param plant Pointer to the Plant being decorated.
      */
-    FrostNet(Plant* plant);
+    FrostNet(Plant* plant, double price=5);
 
     /**
      * @brief Destructor for FrostNet decorator.

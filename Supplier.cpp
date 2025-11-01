@@ -1,8 +1,5 @@
 #include "Supplier.h"
 
-#include "Fertiliser.h"
-#include "FrostNet.h"
-
 Supplier::Supplier() {
     this->growthLevel= 0;
     this->species="unknown";
@@ -12,6 +9,7 @@ Supplier::Supplier() {
     this->preferredEnvironment=0;
     this->currentEnvironment=0;
     this->state = new UnplantedState();
+    this->price = 19.99;
 }
 
 Supplier::~Supplier() {
@@ -75,12 +73,12 @@ int Supplier::getCurrentEnvironment() {
     return this->currentEnvironment;
 }
 
-Plant * Supplier::addFertiliser(Plant *plant) {
-    return new Fertiliser(plant);
+Plant * Supplier::addFertiliser(Plant *plant, double price) {
+    return new Fertiliser(plant, price);
 }
 
-Plant * Supplier::addFrostNet(Plant *plant) {
-    return new FrostNet(plant);
+Plant * Supplier::addFrostNet(Plant *plant, double price) {
+    return new FrostNet(plant, price);
 }
 
 void Supplier::setRequiredWaterPerDay(int requiredWaterPerDay) {
@@ -89,4 +87,16 @@ void Supplier::setRequiredWaterPerDay(int requiredWaterPerDay) {
 
 int Supplier::getRequiredWaterPerDay() {
     return this->requiredWaterPerDay;
+}
+
+void Supplier::setPrice(double price) {
+    this->price=price;
+}
+
+double Supplier::getPrice() {
+    return this->price;
+}
+
+Plant * Supplier::addRibbon(Plant *plant, double price) {
+    return new Ribbon(plant, price);
 }

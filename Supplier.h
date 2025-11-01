@@ -3,6 +3,9 @@
 #include "Plant.h"
 #include "SeedlingState.h"
 #include "UnplantedState.h"
+#include "Ribbon.h"
+#include "Fertiliser.h"
+#include "FrostNet.h"
 
 /**
  * @class Supplier
@@ -34,6 +37,7 @@ public:
     void setGrowthRate(double growthRate);      ///< Set the plant's growth rate.
     void setPreferredEnvironment(int env);      ///< Set the plant's preferred environment type.
     void setCurrentEnvironment(int env);        ///< Set the plant's current environment type.
+    void setPrice(double price);                ///< Set the plant's price.
     ///@}
 
     /** @name Getters */
@@ -46,6 +50,7 @@ public:
     double getGrowthRate();                     ///< Get the plant's growth rate.
     int getPreferredEnvironment();              ///< Get the plant's preferred environment type.
     int getCurrentEnvironment();                ///< Get the plant's current environment type.
+    double getPrice();                          ///< Get the plant's price.
     ///@}
 
     /**
@@ -53,14 +58,21 @@ public:
      * @param plant Pointer to the Plant to decorate.
      * @return Decorated Plant pointer.
      */
-    Plant* addFertiliser(Plant* plant);
+    Plant* addFertiliser(Plant* plant, double price=10);
 
     /**
      * @brief Decorates a plant with a frost net.
      * @param plant Pointer to the Plant to decorate.
      * @return Decorated Plant pointer.
      */
-    Plant* addFrostNet(Plant* plant);
+    Plant* addFrostNet(Plant* plant, double price=5);
+
+    /**
+     * @brief Decorates a plant with a ribbon.
+     * @param plant Pointer to the Plant to decorate.
+     * @return Decorated Plant pointer.
+     */
+    Plant* addRibbon(Plant* plant, double price=5);
 
     /**
      * @brief Abstract method to return a Plant object.
@@ -76,6 +88,7 @@ protected:
     int preferredEnvironment;        ///< Preferred environment type.
     int currentEnvironment;          ///< Current environment type.
     PlantState* state;               ///< Current state of the plant.
+    double price;                    ///< Price of the plant;
 };
 
 

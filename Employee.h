@@ -1,11 +1,7 @@
 /**
- * @file Employee.h
- * @author your name (you@domain.com)
- * @brief handler, mediator and receiver participants in the chain of command, mediator and command design patterns respectively. defines the abstract employees hold pointers to another employee and pass on recieved commands depending on the concrete employee's ability to handle them.
- * @version 0.1
- * @date 2025-11-01
+ * @brief handler, mediator and receiver participants in the chain of command, mediator and command design patterns respectively.
+ * Defines the abstract employees hold pointers to another employee and pass on received commands depending on the concrete employee's ability to handle them.
  *
- * @copyright Copyright (c) 2025
  *
  */
 #ifndef Employee_H
