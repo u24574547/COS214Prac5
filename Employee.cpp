@@ -51,7 +51,7 @@ void Employee::handleRefund(Command *command)
 }
 void Employee::update()
 {
-    cout << name << " has ended the day to rest at home before immediately coming back." << endl;
+    cout << name << "'s working day is finished." << endl;
 }
 
 #endif
