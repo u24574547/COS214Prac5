@@ -2,3 +2,4 @@
 #include "doctest.h"
 #include "test_transaction_history.cpp"
 #include "test_observer.cpp"
+#include "test_factory_method.cpp"
