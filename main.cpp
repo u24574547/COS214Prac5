@@ -346,6 +346,9 @@ void testObserver()
         day->addObserver(o);
     }
 
+    Observer *o = dynamic_cast<Observer *>(employees[0]);
+    day->removeObserver(o);
+
     int d = 4; // number of days
     for (int i = 0; i < d; i++)
     {
