@@ -1,7 +1,7 @@
 #include "DyingState.h"
 
 void DyingState::nextState(Plant *plant) {
-    std::cout << "Transitioning from Seedling to Mature" << std::endl;
+    std::cout <<"A "<< plant->getSpecies()<<" dies." << std::endl;
     plant->setState(new DeadState());
 }
 
@@ -27,6 +27,14 @@ void DyingState::grow(Plant *plant) {
         this->nextState(plant);
     }
     if (daysTakenCareOf>=3) {
-        //return to a normal state
+        if (plant->getGrowthLevel()<20) {
+            plant->setState(new SeedlingState());
+        }
+        else if (plant->getGrowthLevel()<50) {
+            plant->setState(new MatureState());
+        }
+        else {
+            plant->setState(new ReadyForSaleState());
+        }
     }
 }
