@@ -315,7 +315,7 @@ void testDecorators()
 
 void testObserver()
 {
-    cout << "== testDecorators ==" << endl;
+    cout << "== testObserver ==" << endl;
 
     int nPlants = 2;    // number of observer plants
     int nEmployees = 2; // number of observer employees
@@ -377,7 +377,7 @@ int main()
     // testPlantLifecycle();
     // testBuilderPattern();
     // testDecorators();
-    testObserver();
+    // testObserver();
 
     std::cout << "\nAll tests completed.\n";
     return 0;
