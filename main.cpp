@@ -140,7 +140,7 @@
 #include "TransactionHistory.h"
 #include "Inventory.h"
 
-#include "iterator"
+#include "Iterator.h"
 #include "TransactionIterator.h"
 #include "PlantIterator.h"
 
