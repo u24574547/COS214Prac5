@@ -22,7 +22,7 @@ protected:
      * Initialises the price to 0.0 to ensure derived bundles start with
      * a defined value.
      */
-    Bundle() : price(0.0) {}
+    Bundle(double price=0.0) {this->price=price;}
 
 
 public:
@@ -42,7 +42,7 @@ public:
      * 
      * @return The total price of this bundle.
      */
-    virtual double getPrice() const = 0;
+    virtual double getPrice() = 0;
 
     /**
      * @brief Virtual destructor for proper cleanup of derived classes.

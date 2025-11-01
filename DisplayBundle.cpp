@@ -16,7 +16,7 @@ std::string DisplayBundle::toString() const {
     return ss.str();
 }
 
-double DisplayBundle::getPrice() const {
+double DisplayBundle::getPrice() {
     double total = 0.0;
     for (size_t i = 0; i < components.size(); ++i)
         total += components[i]->getPrice();

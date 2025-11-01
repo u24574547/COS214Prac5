@@ -41,7 +41,7 @@ public:
      * and returns the total price for the composite bundle.
      * @return The total price of all components within this DisplayBundle.
      */
-    double getPrice() const;
+    double getPrice();
 
     /**
      * @brief Returns a string representation of the DisplayBundle.
