@@ -188,6 +188,10 @@
 #include "Fertiliser.h"
 #include "FrostNet.h"
 
+//
+#include "Day.h"
+#include "Observer.h"
+
 void testInventory() {
     std::cout << "\n=== Testing Inventory Management ===\n";
     
@@ -251,7 +255,7 @@ void testPlantLifecycle() {
     
     for (int day = 1; day <= 5; ++day) {
         std::cout << "\nDay " << day << ":\n";
-        plant->water(200);//TODO what amount should it water?
+        plant->water(200);
         std::cout << "Watered - current state: " << plant->getStateName() << "\n";
         plant->endDay();
         std::cout << "After growth - state: " << plant->getStateName() 
@@ -301,7 +305,7 @@ void testDecorators() {
 
 void testObserver()
 {
-    cout << "== testDecorators ==" << endl;
+    cout << "== test Observer ==" << endl;
 
     int nPlants = 2;    // number of observer plants
     int nEmployees = 2; // number of observer employees
@@ -358,12 +362,12 @@ void testObserver()
 
 int main()
 {
-    // testInventory();
-    // testTransactions();
-    // testPlantLifecycle();
-    // testBuilderPattern();
-    // testDecorators();
-    //testObserver();
+    testInventory();
+    testTransactions();
+    testPlantLifecycle();
+    testBuilderPattern();
+    testDecorators();
+    testObserver();
 
     std::cout << "\nAll tests completed.\n";
     return 0;
