@@ -8,6 +8,7 @@
 #include "RefundCommand.h"
 
 #include "Customer.h"
+#include "Director.h"
 
 Employee::Employee(string name, Inventory *inventory)
 {
@@ -24,14 +25,26 @@ void Employee::handleOrder(Command *command)
 {
     OrderCommand *cmd = static_cast<OrderCommand *>(command);
 
-    Plant *plant = inventory->getPlant(cmd->getSpeciesName());
-    if (plant == nullptr)
-    {
-        cmd->getCustomer()->orderReceive(nullptr, false);
+    if (cmd->getSpeciesName()=="Gift Bundle") {
+        //TODO: add implementation
+    }
+    else if (cmd->getSpeciesName()=="FrostReady Bundle") {
+
+    }
+    else if (cmd->getSpeciesName()=="Terrarium Bundle") {
+
     }
     else
     {
-        cmd->getCustomer()->orderReceive(plant, true);
+        Plant *plant = inventory->getPlant(cmd->getSpeciesName());
+        if (plant == nullptr)
+        {
+            cmd->getCustomer()->orderReceive(nullptr, false);
+        }
+        else
+        {
+            cmd->getCustomer()->orderReceive(plant, true);
+        }
     }
 }
 void Employee::handleRefund(Command *command)
