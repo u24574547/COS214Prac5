@@ -47,6 +47,12 @@ public:
      *
      */
     void notify();
+    /**
+     * @brief Get the list of observers
+     *
+     * @return vector<Observer *>
+     */
+    vector<Observer *> getObservers();
 
 protected:
 private:
