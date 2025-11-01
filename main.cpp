@@ -218,20 +218,22 @@ void testBuilderPattern() {
     
     Inventory* inv = new Inventory();
     // Add plants for the builders to use
-    inv->addPlant(new Fern("BuilderFern", 0, 140, 0, false, 1.0, 0, new UnplantedState()));
-    inv->addPlant(new Moss("BuilderMoss", 0, 140, 0, false, 1.0, 0, new UnplantedState()));
-    inv->addPlant(new Flowering("BuilderFlower", 0, 140, 0, false, 1.0, 0, new UnplantedState()));
+    inv->addPlant(new Fern("Fern", 0, 140, 0, false, 1.0, 0, new UnplantedState()));
+    inv->addPlant(new Flowering("Rose", 0, 140, 0, false, 1.0, 0, new UnplantedState()));
+    inv->addPlant(new Flowering("Tulip", 0, 140, 0, false, 1.0, 0, new UnplantedState()));
     
     Builder* giftBuilder = new GiftBuilder();
     Director* giftDirector = new Director(giftBuilder, inv);
     
     std::cout << "Building gift bundle...\n";
     giftDirector->constructGiftBundle();
+
     DisplayBundle* gift = giftBuilder->getResult();
-    if (gift) {
+    if (gift != NULL) {
         std::cout << gift->toString() << "\n";
         delete gift;
     }
+
 }
 
 void testDecorators() {

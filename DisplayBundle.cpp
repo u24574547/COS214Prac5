@@ -7,8 +7,11 @@ void DisplayBundle::add(Bundle* b) {
 std::string DisplayBundle::toString() const {
     std::stringstream ss;
     ss<< "Display Bundle contains:" << std::endl;
-    for (size_t i = 0; i < components.size(); ++i)
+    // std::cout<<"SIZE: "<<components.size()<<std::endl;
+    for (size_t i = 0; i < components.size(); i++){
+        // std::cout<<"HERE"<<std::endl;
         ss<<components[i]->toString();
+    }
     return ss.str();
 }
 

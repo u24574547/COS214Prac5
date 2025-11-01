@@ -3,6 +3,7 @@
 #include <sstream>
 #include "Fertiliser.h"
 #include "FrostNet.h"
+#include "Ribbon.h"
 TerrariumBuilder::TerrariumBuilder() {
     bundle = new DisplayBundle();
 }
@@ -16,9 +17,8 @@ void TerrariumBuilder::addBasicPlant(Plant* name) {
     bundle->add(name);    
 }
 void TerrariumBuilder::addDecorativePlant(Plant* name) {
-    //I need to decorate the plants
-    // For now till i get that decorator class ill add normal
-    bundle->add(name);
+    Ribbon* decoratedPlant = new Ribbon(name);
+    bundle->add(decoratedPlant);
     
 }
 void TerrariumBuilder::addFertilisedPlant(Plant* name){
