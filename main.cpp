@@ -127,9 +127,57 @@
 #include "Customer.h"
 #include "Employee.h"
 #include "FernExpert.h"
+#include "MossExpert.h"
+#include "FloweringExpert.h"
+#include "NonfloweringExpert.h"
+#include "Gardener.h"
+
+// iterator classes
+#include "Aggregate.h"
+#include "TransactionHistory.h"
+#include "Inventory.h"
+
+#include "iterator"
+#include "TransactionIterator.h"
+#include "PlantIterator.h"
+
+// memento classes
+#include "TransactionMemento.h"
+#include "TransactionCaretaker.h"
+
+// builder classes
+#include "Director.h"
+
+#include "Builder.h"
+#include "FrostReadyBuilder.h"
+#include "GiftBuilder.h"
+#include "TerrariumBuilder.h"
+
+// composite classes
+#include "Bundle.h"
+#include "DisplayBundle.h"
+
+// decorator classes
+#include "Plant.h"
+
+#include "PlantDecorator.h"
+#include "FrostNet.h"
+#include "Fertiliser.h"
+#include "BasePlant.h"
+
+// factory method classes
+#include "Supplier.h"
+#include "FernSupplier.h"
+#include "MossSupplier.h"
+#include "FloweringSupplier.h"
+#include "NonFloweringSupplier.h"
+
 #include "Fern.h"
 #include "Moss.h"
 #include "Flowering.h"
+#include "NonFlowering.h"
+
+// state classes
 #include "PlantState.h"
 #include "UnplantedState.h"
 #include "Director.h"
@@ -233,7 +281,6 @@ void testBuilderPattern() {
         std::cout << gift->toString() << "\n";
         delete gift;
     }
-
 }
 
 void testDecorators() {
@@ -252,13 +299,72 @@ void testDecorators() {
     delete protectedPlant; // Will cascade delete through decorators
 }
 
-int main() {
+void testObserver()
+{
+    cout << "== testDecorators ==" << endl;
+
+    int nPlants = 2;    // number of observer plants
+    int nEmployees = 2; // number of observer employees
+
+    Plant **plants = new Plant *[nPlants]; // creating plants
+    for (int i = 0; i < nPlants; i++)
+    {
+        plants[i] = new Fern("fern_" + to_string(i), 0, 140, 0, false, 1.0, 0, new UnplantedState);
+    }
+
+    Employee **employees = new Employee *[nEmployees]; // creating employees
+    for (int i = 0; i < nEmployees; i++)
+    {
+        employees[i] = new FernExpert("employee_" + to_string(i), nullptr);
+    }
+
+    Day *day = new Day(); // day subject
+
+    for (int i = 0; i < nPlants; i++) // attaching plants (observers) to day (subject)
+    {
+        Observer *o = dynamic_cast<Observer *>(plants[i]);
+        day->addObserver(o);
+    }
+
+    for (int i = 0; i < nPlants; i++) // attaching employees (observers) to day (subject)
+    {
+        Observer *o = dynamic_cast<Observer *>(employees[i]);
+        day->addObserver(o);
+    }
+
+    Observer *o = dynamic_cast<Observer *>(employees[0]);
+    day->removeObserver(o);
+
+    int d = 4; // number of days
+    for (int i = 0; i < d; i++)
+    {
+        cout << "day number : " << i << endl;
+
+        for (int j = 0; j < nPlants; j++) // water all plants
+        {
+            plants[j]->water(200);
+        }
+
+        for (int j = 0; j < nPlants; j++) // output plant growth progress
+        {
+            cout << plants[j]->getSpecies() << " : " << plants[j]->getStateName() << " : " << plants[j]->getGrowthLevel() << endl;
+        }
+
+        day->notify(); // next day
+        cout << endl
+             << endl;
+    }
+}
+
+int main()
+{
     // testInventory();
     // testTransactions();
     // testPlantLifecycle();
     // testBuilderPattern();
     // testDecorators();
-    
+    //testObserver();
+
     std::cout << "\nAll tests completed.\n";
     return 0;
 }
