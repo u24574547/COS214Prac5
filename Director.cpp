@@ -1,5 +1,6 @@
 #include "Director.h"
 #include <string>
+#include "PlantIterator.h"
 
 Director::Director(Builder* b, Inventory* i){
     builder = b;
@@ -8,51 +9,63 @@ Director::Director(Builder* b, Inventory* i){
 
 bool Director::constructGiftBundle(){
     builder->reset();
-    // I need to check if the plants exist in inventory
-    Plant* tulip = inventory->getPlant("Tulipa gesneriana");
-    Plant* rose = inventory->getPlant("Rosa chinensis");
-    Plant* fern = inventory->getPlant("Nephrolepis exaltata");
-    // Debugging checks
-    if(tulip == NULL){
-        std::cout << "Tulipa gesneriana not found in inventory.\n";
+
+    // Use iterator to only check availability (no removals)
+    Iterator<Plant*>* it = inventory->createIterator();
+    bool hasTulip = false;
+    bool hasRose = false;
+    bool hasFern = false;
+
+    for (it->first(); !it->isDone(); it->next()) {
+        Plant* p = it->current();
+        if (!p) continue;
+        std::string species = p->getSpecies();
+        if (species == "Tulipa gesneriana") hasTulip = true;
+        else if (species == "Rosa chinensis") hasRose = true;
+        else if (species == "Nephrolepis exaltata") hasFern = true;
     }
-    if(rose == NULL){
-        std::cout << "Rosa chinensis not found in inventory.\n";
-    }
-    if(fern == NULL){
-        std::cout << "Nephrolepis exaltata not found in inventory.\n";
-    }
-    if (tulip && rose && fern) {
-        // Add decorative plants with ribbons for gift presentation
-        builder->addDecorativePlant(tulip);  // Will be decorated with ribbon
-        builder->addDecorativePlant(rose);   // Will be decorated with ribbon
-        builder->addBasicPlant(fern);        // Accent plant, no decoration
+    delete it;
+
+    if(!hasTulip) std::cout << "Tulipa gesneriana not found in inventory.\n";
+    if(!hasRose)  std::cout << "Rosa chinensis not found in inventory.\n";
+    if(!hasFern)  std::cout << "Nephrolepis exaltata not found in inventory.\n";
+
+    if (hasTulip && hasRose && hasFern) {
+        builder->addDecorativePlant(inventory);  // GiftBuilder will get tulip
+        builder->addDecorativePlant(inventory);  // GiftBuilder will get rose 
+        builder->addBasicPlant(inventory);       // GiftBuilder will get fern
         return true;
     }
     return false;
 }
+
 bool Director::constructFrostReadyBundle(){
     builder->reset();
-    Plant* nonFlowering = inventory->getPlant("Riccia fluitans");
-    Plant* fern = inventory->getPlant("Nephrolepis exaltata");
-    Plant* moss = inventory->getPlant("Bryum argenteum");
-    if(nonFlowering == NULL){
-        std::cout << "Riccia fluitan not found in inventory.\n";
+
+    Iterator<Plant*>* it = inventory->createIterator();
+    bool hasRiccia = false;
+    bool hasFern = false;
+    bool hasMoss = false;
+
+    for (it->first(); !it->isDone(); it->next()) {
+        Plant* p = it->current();
+        if (!p) continue;
+        std::string species = p->getSpecies();
+        if (species == "Riccia fluitans") hasRiccia = true;
+        else if (species == "Nephrolepis exaltata") hasFern = true;
+        else if (species == "Bryum argenteum") hasMoss = true;
     }
-    if(fern == NULL){
-        std::cout << "Nephrolepis exaltata not found in inventory.\n";
-    }
-    if(moss == NULL){
-        std::cout << "Bryum argenteum not found in inventory.\n";
-    }
-    if (nonFlowering && fern && moss) {
-        // All plants need frost protection
-        builder->addFrostNetPlant(nonFlowering);
-        builder->addFrostNetPlant(fern);
-        builder->addBasicPlant(moss);  // Moss is naturally frost resistant
-        
-        // Add some fertilizer to help winter growth
-        builder->addFertilisedPlant(nonFlowering);
+    delete it;
+
+    if(!hasRiccia) std::cout << "Riccia fluitans not found in inventory.\n";
+    if(!hasFern) std::cout << "Nephrolepis exaltata not found in inventory.\n";
+    if(!hasMoss) std::cout << "Bryum argenteum not found in inventory.\n";
+    
+    if (hasRiccia && hasFern && hasMoss) {
+        builder->addFrostNetPlant(inventory);    // FrostBuilder will get riccia
+        builder->addFrostNetPlant(inventory);    // FrostBuilder will get fern
+        builder->addBasicPlant(inventory);       // FrostBuilder will get moss
+        builder->addFertilisedPlant(inventory);  // FrostBuilder will get riccia again
         return true;
     }
     return false;
@@ -60,21 +73,31 @@ bool Director::constructFrostReadyBundle(){
 
 bool Director::constructTerrariumBundle(){
     builder->reset();
-    Plant* moss = inventory->getPlant("Bryum argenteum");
-    Plant* fern = inventory->getPlant("Adiantum raddianum");
-    Plant* fittonia = inventory->getPlant("Fittonia albivenis");
-
-    if (!moss) std::cout << "Bryum argenteum (Moss) not found in inventory.\n";
-    if (!fern) std::cout << "Adiantum raddianum (Fern) not found in inventory.\n";
-    if (!fittonia) std::cout << "Fittonia albivenis (Nerve plant) not found in inventory.\n";
     
-    if (moss && fern && fittonia) {
-        // Terrarium plants need proper nutrients
-        builder->addFertilisedPlant(moss);
-        builder->addFertilisedPlant(fern);
-        builder->addBasicPlant(fittonia);
+    Iterator<Plant*>* it = inventory->createIterator();
+    bool hasMoss = false;
+    bool hasFern = false;
+    bool hasFittonia = false;
+
+    for (it->first(); !it->isDone(); it->next()) {
+        Plant* p = it->current();
+        if (!p) continue;
+        std::string species = p->getSpecies();
+        if (species == "Bryum argenteum") hasMoss = true;
+        else if (species == "Adiantum raddianum") hasFern = true;
+        else if (species == "Fittonia albivenis") hasFittonia = true;
+    }
+    delete it;
+
+    if (!hasMoss) std::cout << "Bryum argenteum not found in inventory.\n";
+    if (!hasFern) std::cout << "Adiantum raddianum not found in inventory.\n";
+    if (!hasFittonia) std::cout << "Fittonia albivenis not found in inventory.\n";
+    
+    if (hasMoss && hasFern && hasFittonia) {
+        builder->addFertilisedPlant(inventory);  // TerrariumBuilder will get moss
+        builder->addFertilisedPlant(inventory);  // TerrariumBuilder will get fern
+        builder->addBasicPlant(inventory);       // TerrariumBuilder will get fittonia
         return true;
     }
     return false;
 }
-

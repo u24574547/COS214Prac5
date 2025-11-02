@@ -1,9 +1,8 @@
 #include "TerrariumBuilder.h"
 #include <iostream>
-#include <sstream>
 #include "Fertiliser.h"
-#include "FrostNet.h"
-#include "Ribbon.h"
+#include "Inventory.h"
+
 TerrariumBuilder::TerrariumBuilder() {
     bundle = new DisplayBundle();
 }
@@ -13,31 +12,45 @@ void TerrariumBuilder::reset() {
     bundle = new DisplayBundle();
 }
 
-void TerrariumBuilder::addBasicPlant(Plant* name) {
-    bundle->add(name);    
-}
-void TerrariumBuilder::addDecorativePlant(Plant* name) {
-    Ribbon* decoratedPlant = new Ribbon(name);
-    bundle->add(decoratedPlant);
-    
-}
-void TerrariumBuilder::addFertilisedPlant(Plant* name){
-    // decorate the plant and add it to the bundle
-    Fertiliser* decoratedPlant = new Fertiliser(name);
-    bundle->add(decoratedPlant);
-    
-}
-void TerrariumBuilder::addFrostNetPlant(Plant* name){
-    // decorate the plant and add it to the bundle
-    FrostNet* decoratedPlant = new FrostNet(name);
-    bundle->add(decoratedPlant);
-    
+void TerrariumBuilder::addBasicPlant(Inventory* inventory) {
+    // Get fittonia as accent plant
+    Plant* fittonia = inventory->getPlant("Fittonia albivenis");
+    if (fittonia) {
+        std::cout << "TerrariumBuilder: Adding fittonia as accent plant\n";
+        bundle->add(fittonia);
+    }
 }
 
+void TerrariumBuilder::addDecorativePlant(Inventory* inventory) {
+    // Terrariums don't use decorative plants
+}
+
+void TerrariumBuilder::addFertilisedPlant(Inventory* inventory) {
+    static bool firstCall = true;
+    if (firstCall) {
+        Plant* moss = inventory->getPlant("Bryum argenteum");
+        if (moss) {
+            std::cout << "TerrariumBuilder: Adding fertilised moss\n";
+            bundle->add(new Fertiliser(moss));
+        }
+        firstCall = false;
+    } else {
+        Plant* fern = inventory->getPlant("Adiantum raddianum");
+        if (fern) {
+            std::cout << "TerrariumBuilder: Adding fertilised fern\n";
+            bundle->add(new Fertiliser(fern));
+        }
+        firstCall = true;
+    }
+}
+
+void TerrariumBuilder::addFrostNetPlant(Inventory* inventory) {
+    // Terrariums don't use frost protection
+}
 
 DisplayBundle* TerrariumBuilder::getResult() {
     DisplayBundle* result = bundle;
-    bundle = 0;
+    bundle = nullptr;
     return result;
 }
 

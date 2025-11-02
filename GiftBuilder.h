@@ -11,6 +11,10 @@ private:
      * @brief The DisplayBundle being constructed by this builder.
      */
     DisplayBundle* bundle;
+    /**
+     * @brief Flag to track if the first decorative plant has been added.
+     */
+    bool firstDecorative;
 public:
     /**
      * @brief Constructs a GiftBuilder and initializes internal state.
@@ -27,27 +31,27 @@ public:
      * 
      * @param plant Pointer to the Plant object to add.
      */
-    void addBasicPlant(Plant* plant) override;
+    void addBasicPlant(Inventory* plant) override;
 
     /**
      * @brief Adds a decorative plant to the gift bundle.
      * 
      * @param plant Pointer to the Plant object to add.
      */
-    void addDecorativePlant(Plant* plant) override;
+    void addDecorativePlant(Inventory* plant) override;
 
     /**
      * @brief Adds a fertilised plant to the gift bundle.
      * 
      * @param plant Pointer to the Plant object to add.
      */
-    void addFertilisedPlant(Plant* plant) override;
+    void addFertilisedPlant(Inventory* plant) override;
     /**
      * @brief Adds a frost-protected plant to the gift bundle.
      * 
      * @param plant Pointer to the Plant object to add.
      */
-    void addFrostNetPlant(Plant* plant) override;
+    void addFrostNetPlant(Inventory* plant) override;
 
     /**
      * @brief Retrieves the constructed gift bundle.

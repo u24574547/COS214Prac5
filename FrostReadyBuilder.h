@@ -35,28 +35,28 @@ public:
      * 
      * @param plant Pointer to the Plant object to add.
      */
-    void addBasicPlant(Plant* plant) override;
+    void addBasicPlant(Inventory* plant) override;
 
     /**
      * @brief Adds a decorative plant to the frost-ready bundle.
      * 
      * @param plant Pointer to the Plant object to add.
      */
-    void addDecorativePlant(Plant* plant) override;
+    void addDecorativePlant(Inventory* plant) override;
 
     /**
      * @brief Adds a fertilised plant to the frost-ready bundle.
      * 
      * @param plant Pointer to the Plant object to add.
      */
-    void addFertilisedPlant(Plant* plant) override;
+    void addFertilisedPlant(Inventory* plant) override;
 
     /**
      * @brief Adds a frost-protected plant to the frost-ready bundle.
      * 
      * @param plant Pointer to the Plant object to add.
      */
-    void addFrostNetPlant(Plant* plant) override;
+    void addFrostNetPlant(Inventory* plant) override;
 
     /**
      * @brief Retrieves the constructed frost-ready bundle.

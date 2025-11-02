@@ -26,28 +26,28 @@ public:
      * 
      * @param plant Pointer to the Plant object to add.
      */
-    virtual void addBasicPlant(Plant* plant) = 0;
+    virtual void addBasicPlant(Inventory* plant) = 0;
 
     /**
      * @brief Adds a decorative plant to the bundle.
      * 
      * @param plant Pointer to the Plant object to add.
      */
-    virtual void addDecorativePlant(Plant* plant) = 0;
+    virtual void addDecorativePlant(Inventory* plant) = 0;
 
     /**
      * @brief Adds a fertilised plant to the bundle.
      * 
      * @param plant Pointer to the Plant object to add.
      */
-    virtual void addFertilisedPlant(Plant* plant) = 0;
+    virtual void addFertilisedPlant(Inventory* plant) = 0;
 
     /**
      * @brief Adds a frost-protected plant to the bundle.
      * 
      * @param plant Pointer to the Plant object to add.
      */
-    virtual void addFrostNetPlant(Plant* plant) = 0;
+    virtual void addFrostNetPlant(Inventory* plant) = 0;
 
     /**
      * @brief Retrieves the final constructed bundle.
