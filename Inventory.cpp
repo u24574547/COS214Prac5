@@ -2,6 +2,8 @@
 #include "Inventory.h"
 #include <iostream>
 
+#include "BasePlant.h"
+
 
 Iterator<Plant*>* Inventory::createIterator() {
     return new PlantIterator(this);
@@ -32,9 +34,8 @@ void Inventory::water(int environment) {
     }
 }
 
-void Inventory::endDay() {
-    Iterator<Plant*>* iter = createIterator();
-    while (!iter->isDone()) {
-        iter->next()->endDay();
+void Inventory::observeTime(Day *time) {
+    for (auto it = items.begin(); it != items.end(); ++it) {
+        time->addObserver((*it)->getBase());
     }
 }
