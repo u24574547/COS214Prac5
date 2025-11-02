@@ -34,7 +34,7 @@ public:
      *
      * @param command
      */
-    void handleInquiry(InquiryCommand *command);
+    void handleInquiry(Command *command);
     /**
      * @brief waters all the plants in the inventory that belong to a certain environment
      *

@@ -7,7 +7,7 @@
 Gardener::Gardener(string name, Inventory *inventory) : Employee(name, inventory) {}
 Gardener::~Gardener() {}
 
-void Gardener::handleInquiry(InquiryCommand *command)
+void Gardener::handleInquiry(Command *command)
 {
     if (next != nullptr)
     {
