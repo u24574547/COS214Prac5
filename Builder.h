@@ -3,6 +3,7 @@
 
 #include <string>
 #include "Plant.h"
+#include "Inventory.h"
 
 // Forward declaration
 class DisplayBundle;
