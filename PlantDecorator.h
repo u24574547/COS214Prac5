@@ -134,6 +134,12 @@ public:
      * Delegates the end-of-day behavior to the underlying plant.
      */
     void endDay() override;
+
+    /**
+     * @brief Returns the base plant of the Plant Decorator.
+     * @return BasePlant pointer.
+     */
+    BasePlant* getBase() override;
 };
 
 

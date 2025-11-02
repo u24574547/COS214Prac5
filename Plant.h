@@ -4,7 +4,7 @@
 #include "PlantState.h"
 #include "Bundle.h"
 #include <string>
-
+class BasePlant;
 /**
  * @class Plant
  * @brief Abstract base class representing a plant in the system.
@@ -130,6 +130,12 @@ public:
      * @brief Ends the day for the plant, updating state and growth as necessary.
      */
     virtual void endDay() = 0;
+
+    /**
+     * @brief Returns the base plant of the Plant Decorator.
+     * @return BasePlant pointer.
+     */
+    virtual BasePlant* getBase() = 0;
 };
 
 #endif // PLANT_H

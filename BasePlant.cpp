@@ -96,3 +96,7 @@ double BasePlant::getPrice() {
 void BasePlant::setPrice(double price) {
     this->price=price;
 }
+
+BasePlant * BasePlant::getBase() {
+    return this;
+}

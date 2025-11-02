@@ -72,3 +72,7 @@ double PlantDecorator::getPrice() {
 void PlantDecorator::setPrice(double price) {
     plant->setPrice(price);
 }
+
+BasePlant * PlantDecorator::getBase() {
+    return plant->getBase();
+}
