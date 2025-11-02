@@ -39,3 +39,13 @@ void Inventory::observeTime(Day *time) {
         time->addObserver((*it)->getBase());
     }
 }
+void Inventory::removeDead()
+{
+    for (size_t i = 0; i < items.size(); i++)
+    {
+        if (items[i]->getStateName() == "Dead State") {
+            items.erase(items.begin() + i);
+            i = 0;
+        }
+    }
+}

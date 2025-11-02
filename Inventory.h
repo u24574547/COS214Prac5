@@ -62,6 +62,11 @@ class Inventory : public Aggregate<Plant*> {
          * @param environment The environment to have its plants watered.
          */
         void water(int environment);
+        /**
+         * @brief removes all the plants in the dead state from the inventory
+         * 
+         */
+        void removeDead();
 };
 
 #endif
