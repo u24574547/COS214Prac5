@@ -95,4 +95,11 @@ void Employee::update()
     cout << name << "'s working day is finished." << endl;
 }
 
+std::string Employee::toString() {
+    std::stringstream ss;
+    ss<<"Name: "<<name;
+    if (next!=nullptr)ss<<"\nPasses requests on to:\n"<<next->toString();
+    return ss.str();
+}
+
 #endif

@@ -43,4 +43,8 @@ void FloweringExpert::handleWater(int environment)
     }
 }
 
+std::string FloweringExpert::toString() {
+    return "Role: Salesman & Flowering plant Expert\n"+Employee::toString();
+}
+
 #endif

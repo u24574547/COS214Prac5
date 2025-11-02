@@ -43,4 +43,8 @@ void FernExpert::handleWater(int environment)
     }
 }
 
+std::string FernExpert::toString() {
+    return "Role: Salesman & Fern Expert\n"+Employee::toString();
+}
+
 #endif

@@ -43,4 +43,8 @@ void MossExpert::handleWater(int environment)
     }
 }
 
+std::string MossExpert::toString() {
+    return "Role: Salesman & Moss Expert\n"+Employee::toString();
+}
+
 #endif

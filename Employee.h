@@ -75,6 +75,12 @@ public:
      */
     void update() override;
 
+    /**
+     * @brief Prints the employees details and the next employee in the Chain of Responsibility
+     * @return a string representing the employee.
+     */
+    virtual std::string toString();
+
 protected:
     /// @brief name of employee
     string name;

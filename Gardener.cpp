@@ -25,4 +25,8 @@ void Gardener::handleWater(int environment)
     inventory->water(environment);
 }
 
+std::string Gardener::toString() {
+    return "Role: Gardener\n"+Employee::toString();
+}
+
 #endif
