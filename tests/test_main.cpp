@@ -4,3 +4,4 @@
 #include "test_builder.cpp"
 #include "test_observer.cpp"
 #include "test_factory_method.cpp"
+#include "test_mediator.cpp"
