@@ -101,5 +101,17 @@ std::string Employee::toString() {
     if (next!=nullptr)ss<<"\nPasses requests on to:\n"<<next->toString();
     return ss.str();
 }
+void Employee::removeDead(){
+        if (next != nullptr)
+    {
+        cout << name << " is forwarding the task of removing the dead plants." << endl;
+        next->removeDead();
+    }
+    else
+    {
+        cout << "The business doesn't have a gardener to remove the dead plants in the inventory. Please hire one." << endl;
+    }
+
+}
 
 #endif
