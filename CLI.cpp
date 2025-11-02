@@ -6,14 +6,25 @@
 #include <unistd.h>
 
 #include "Customer.h"
+#include "Day.h"
+#include "FernExpert.h"
 #include "FernSupplier.h"
+#include "FloweringExpert.h"
 #include "FloweringSupplier.h"
+#include "Gardener.h"
 #include "Inventory.h"
 #include "MatureState.h"
 #include "MossExpert.h"
 #include "MossSupplier.h"
 #include "NonFloweringSupplier.h"
 #include "ReadyForSale.h"
+
+const std::string reset  = "\033[0m";
+const std::string red    = "\033[31m";
+const std::string green  = "\033[32m";
+const std::string yellow = "\033[33m";
+const std::string blue   = "\033[34m";
+const std::string bold   = "\033[1m";
 
 void setBufferedInput(bool enable) {
     static bool enabled = true;
@@ -553,33 +564,194 @@ void plantSelectionMenu(Inventory* inv) {
     }
 }
 
-void endDay(Inventory* inv) {
-    //for now we just call inventories end day
-    inv->endDay();
+void makeSeeds(vector<Plant *>& plants, Supplier **suppliers, int n, int supplier, double price, std::string species, int requiredWaterPerDay, double growthRate, int prefferedEnvironment) {
+    suppliers[supplier]->setPrice(price);
+    suppliers[supplier]->setSpecies(species);
+    suppliers[supplier]->setRequiredWaterPerDay(requiredWaterPerDay);
+    suppliers[supplier]->setGrowthRate(2*growthRate);
+    suppliers[supplier]->setPreferredEnvironment(prefferedEnvironment);
+    int divisor = n/4;
+    for (int i=0;i<n;i++) {
+        suppliers[supplier]->setCurrentEnvironment(1+i/divisor);
+        plants.push_back(suppliers[supplier]->getPlant());
+    }
+}
+
+vector<Plant *> getStartingPlants() {
+    vector<Plant *> plants;
+    /*
+     *===Gift Bundle===
+     * Tulipa gesneriana - flowering done
+     * Rosa chinensis - flowering done
+     * Nephrolepis exaltata - fern done
+     *
+     * ===FrostReady Bundle===
+     * Riccia fluitans - nonflowering done
+     * Nephrolepis exaltata - fern done
+     * Bryum argenteum - moss done
+     *
+     * ===Terrarium Bundle===
+     * Bryum argenteum - moss done
+     * Adiantum raddianum - fern done
+     * Fittonia albivenis - flowering
+     *
+     * environments(1-4): Tropical/Temperate/Continental/Dry
+     */
+    Supplier** suppliers = new Supplier*[4];
+    suppliers[0]=new FernSupplier();
+    suppliers[1]=new FloweringSupplier();
+    suppliers[2]=new MossSupplier();
+    suppliers[3]=new NonFloweringSupplier();
+
+    //Tulipa gesneriana - flowering
+    double price=100.0;
+    std::string species="Tulipa gesneriana";
+    int requiredWaterPerDay=32;
+    double growthRate=0.9;
+    int preferredEnvironment=2;
+
+    makeSeeds(plants, suppliers, 12, 1, price, species, requiredWaterPerDay, growthRate, preferredEnvironment);
+
+    //Rosa chinensis - flowering
+    price=165.0;
+    species="Rosa chinensis";
+    requiredWaterPerDay=93;
+    growthRate=1.1;
+    preferredEnvironment=2;
+
+    makeSeeds(plants, suppliers, 12, 1, price, species, requiredWaterPerDay, growthRate, preferredEnvironment);
+
+    //Nephrolepis exaltata - fern
+    price=120.0;
+    species="Nephrolepis exaltata";
+    requiredWaterPerDay=121;
+    growthRate=1.2;
+    preferredEnvironment=1;
+
+    makeSeeds(plants, suppliers, 24, 0, price, species, requiredWaterPerDay, growthRate, preferredEnvironment);
+
+    //Riccia fluitans - aquatic non flowering
+    price=85.0;
+    species="Riccia fluitans";
+    requiredWaterPerDay=500;
+    growthRate=1.3;
+    preferredEnvironment=1;
+
+    makeSeeds(plants, suppliers, 12, 3, price, species, requiredWaterPerDay, growthRate, preferredEnvironment);
+
+    //Bryum argenteum - moss
+    price=65.0;
+    species="Bryum argenteum";
+    requiredWaterPerDay=10;
+    growthRate=1.0;
+    preferredEnvironment=3;
+
+    makeSeeds(plants, suppliers, 24, 2, price, species, requiredWaterPerDay, growthRate, preferredEnvironment);
+
+    //Adiantum raddianum - fern
+    price=130.0;
+    species="Adiantum raddianum";
+    requiredWaterPerDay=121;
+    growthRate=1.1;
+    preferredEnvironment=1;
+
+    makeSeeds(plants, suppliers, 12, 0, price, species, requiredWaterPerDay, growthRate, preferredEnvironment);
+
+    //Fittonia albivenis - non flowering
+    price=115.0;
+    species="Fittonia albivenis";
+    requiredWaterPerDay=125;
+    growthRate=1.05;
+    preferredEnvironment=1;
+
+    makeSeeds(plants, suppliers, 12, 3, price, species, requiredWaterPerDay, growthRate, preferredEnvironment);
+    for (int i=0; i<4;i++) {
+        delete suppliers[i];
+    }
+    delete[] suppliers;
+    return plants;
+}
+
+void employeeMenu(Employee * employee) {
+    std::string menu =  "Options:\n"
+    "1. View employee details\n"
+    "2. Hire a new employee\n"
+    "b to return to main menu\n";
+    std::cout<<menu<<std::endl;
+    char c;
+    while (true) {
+        c = getchar();
+        if (c == '1') {
+            cout<<employee->toString()<<"\n"<<endl;
+        }
+        else if (c == '2') {
+            cout<<"Not implemented yet";
+        }
+        else if (c == 'b') break;
+        std::cout<<menu<<std::endl;
+    }
+}
+
+void autoWatering(Employee * employee) {
+    // Iterator<Plant*>* iter = inv->createIterator();
+    // Plant* curr;
+    // while ((curr=iter->next())!=nullptr) {
+    //     employee
+    // }
+    employee->handleWater(1);
+    cout<<endl;
+    employee->handleWater(2);
+    cout<<endl;
+    employee->handleWater(3);
+    cout<<endl;
+    employee->handleWater(4);
 }
 
 int main() {
-    Inventory* inv = new Inventory(vector<Plant*>());
-    Employee* employee = new MossExpert("John Employee",inv);
+    Day* day = new Day();
+    Inventory* inv = new Inventory(getStartingPlants());
+    inv->observeTime(day);
+    Employee* employee = new MossExpert("John Mossman",inv);
+    Employee* gardener = new Gardener("Sound Gardener", inv);
+    employee->setNext(gardener);
+
+    Employee* ferb = new FernExpert("Ferb Ferman", inv);
+    gardener->setNext(ferb);
+
+    Employee* rose = new FloweringExpert("Rose Knower", inv);
+    ferb->setNext(rose);
     std::vector<Customer*> customers = vector<Customer*>();
+
     std::string menu =  "Choose an action type:\n"
     "1. Customer\n"
     "2. Plant\n"
     "3. Employee\n"
-    "4. Inventory\n"
+    "4. Toggle automatic watering\n"
     "n to end the day\n"
     "q to quit the simulation\n";
     std::cout<<menu<<std::endl;
     char c;
+    bool autoManagementEnabled = false;
+    int dayNumber = 1;
     setBufferedInput(false);
     while (true) {
         c = getchar();
         if (c == '1') customerSelectionMenu(customers, employee);
         else if (c == '2') plantSelectionMenu(inv);
-        else if (c == 'n') endDay(inv);
+        else if (c == '3') employeeMenu(employee);
+        else if (c == '4') {
+            autoManagementEnabled=!autoManagementEnabled;
+            cout<<"Auto Management "<<(autoManagementEnabled?"Enabled":"Disabled")<<endl;
+        }
+        else if (c == 'n') {
+            dayNumber++;
+            if (autoManagementEnabled) autoWatering(employee);
+            day->notify();
+            cout<<endl;
+        }
         else if (c == 'q') break;
-        else std::cout<<"Not implemented yet."<<std::endl;
-        std::cout<<menu<<std::endl;
+        else std::cout<<"Invalid input."<<std::endl;
+        std::cout<<"Day: "<<dayNumber<<"\t"<<menu<<std::endl;
     }
 
     setBufferedInput(true);

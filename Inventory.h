@@ -5,6 +5,7 @@
 #include "Command.h"
 #include "Plant.h"
 #include "PlantIterator.h"
+#include "Day.h"
 #include <string>
 
 /**
@@ -48,9 +49,24 @@ class Inventory : public Aggregate<Plant*> {
          */
         Plant* getPlant(string name);
 
-        void water(int environment);
+        /**
+         * @brief Links each plant with the passed in Day object.
+         *
+         * @param time The Day object that controls time.
+         */
+        void observeTime(Day* time);
 
-        void endDay();
+        /**
+         * @brief Waters all plants in the specified environment.
+         *
+         * @param environment The environment to have its plants watered.
+         */
+        void water(int environment);
+        /**
+         * @brief removes all the plants in the dead state from the inventory
+         * 
+         */
+        void removeDead();
 };
 
 #endif

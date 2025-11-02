@@ -7,7 +7,7 @@
 Gardener::Gardener(string name, Inventory *inventory) : Employee(name, inventory) {}
 Gardener::~Gardener() {}
 
-void Gardener::handleInquiry(InquiryCommand *command)
+void Gardener::handleInquiry(Command *command)
 {
     if (next != nullptr)
     {
@@ -23,6 +23,15 @@ void Gardener::handleWater(int environment)
 {
     cout << " Gardener is watering the plants in environment "<<environment << endl;
     inventory->water(environment);
+}
+
+std::string Gardener::toString() {
+    return "Role: Gardener\n"+Employee::toString();
+}
+void Gardener::removeDead()
+{
+    cout << "Gardener is removing all dead plants" << endl;
+    inventory->removeDead();
 }
 
 #endif

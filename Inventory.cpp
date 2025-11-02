@@ -2,6 +2,8 @@
 #include "Inventory.h"
 #include <iostream>
 
+#include "BasePlant.h"
+
 
 Iterator<Plant*>* Inventory::createIterator() {
     return new PlantIterator(this);
@@ -27,14 +29,23 @@ Plant* Inventory::getPlant(string name) {
 void Inventory::water(int environment) {
     for (auto it = items.begin(); it != items.end(); ++it) {
         if ((*it)->getCurrentEnvironment() == environment) {
-            (*it)->water(10);
+            (*it)->water(1000);
         }
     }
 }
 
-void Inventory::endDay() {
-    Iterator<Plant*>* iter = createIterator();
-    while (!iter->isDone()) {
-        iter->next()->endDay();
+void Inventory::observeTime(Day *time) {
+    for (auto it = items.begin(); it != items.end(); ++it) {
+        time->addObserver((*it)->getBase());
+    }
+}
+void Inventory::removeDead()
+{
+    for (size_t i = 0; i < items.size(); i++)
+    {
+        if (items[i]->getStateName() == "Dead State") {
+            items.erase(items.begin() + i);
+            i = 0;
+        }
     }
 }

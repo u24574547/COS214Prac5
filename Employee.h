@@ -75,6 +75,17 @@ public:
      */
     void update() override;
 
+    /**
+     * @brief Prints the employees details and the next employee in the Chain of Responsibility
+     * @return a string representing the employee.
+     */
+    virtual std::string toString();
+    /**
+     * @brief handler method that removes all the plants in the inventory that are in the dead state. to be performed by the handler.
+     * 
+     */
+    virtual void removeDead();
+
 protected:
     /// @brief name of employee
     string name;

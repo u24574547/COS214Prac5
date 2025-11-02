@@ -157,6 +157,12 @@ public:
      */
     void update() override;
 
+    /**
+     * @brief Returns the base plant of the Plant Decorator.
+     * @return BasePlant pointer.
+     */
+    BasePlant* getBase() override;
+
 private:
     /**
      * @brief Handles plant growth logic for the day.

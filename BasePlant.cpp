@@ -64,8 +64,17 @@ void BasePlant::endDay() {
 
 void BasePlant::grow() {
     if (state) {
-        if (amountWateredToday>=requiredWaterPerDay) growthLevel += getGrowthMultiplier() * (growthRate - abs(preferredEnvironment - currentEnvironment));
-        else growthLevel*=0.95;
+        if (amountWateredToday>=requiredWaterPerDay) {
+            int grewBy = getGrowthMultiplier() * (growthRate - abs(preferredEnvironment - currentEnvironment))-1;
+            growthLevel += grewBy;
+            // std::cout<<"Grew by: "<<grewBy<<std::endl;
+            // std::cout<<"Base Growth: "<<growthRate - abs(preferredEnvironment - currentEnvironment)+1<<std::endl;
+            // std::cout<<"Growth Rate: "<<growthRate<<std::endl;
+            // std::cout<<"Modifier: "<<-abs(preferredEnvironment - currentEnvironment)+1<<std::endl;
+        }
+        else {
+            growthLevel*=0.95;
+        }
         state->grow(this); // delegates to current state
     } else {
         std::cout << "No state assigned to plant. Cannot grow." << std::endl;
@@ -95,4 +104,8 @@ double BasePlant::getPrice() {
 
 void BasePlant::setPrice(double price) {
     this->price=price;
+}
+
+BasePlant * BasePlant::getBase() {
+    return this;
 }
