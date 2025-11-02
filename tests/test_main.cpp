@@ -5,3 +5,4 @@
 #include "test_observer.cpp"
 #include "test_factory_method.cpp"
 #include "test_mediator.cpp"
+#include "test_cor.cpp"
