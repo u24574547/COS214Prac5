@@ -47,6 +47,11 @@ public:
      * @return a string representing the employee.
      */
     virtual std::string toString();
+    /**
+     * @brief removes all the plants with the dead state from the inventory.
+     * 
+     */
+    void removeDead() override;
 
 protected:
 private:

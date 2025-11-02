@@ -28,5 +28,10 @@ void Gardener::handleWater(int environment)
 std::string Gardener::toString() {
     return "Role: Gardener\n"+Employee::toString();
 }
+void Gardener::removeDead()
+{
+    cout << "Gardener is removing all dead plants" << endl;
+    inventory->removeDead();
+}
 
 #endif
