@@ -56,6 +56,11 @@ class Inventory : public Aggregate<Plant*> {
          */
         void observeTime(Day* time);
 
+        /**
+         * @brief Waters all plants in the specified environment.
+         *
+         * @param environment The environment to have its plants watered.
+         */
         void water(int environment);
 };
 

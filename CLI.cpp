@@ -726,7 +726,7 @@ int main() {
     "1. Customer\n"
     "2. Plant\n"
     "3. Employee\n"
-    "4. Toggle automatic management\n"
+    "4. Toggle automatic watering\n"
     "n to end the day\n"
     "q to quit the simulation\n";
     std::cout<<menu<<std::endl;
