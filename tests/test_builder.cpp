@@ -9,6 +9,8 @@
 #include "../Flowering.h"
 #include <vector>
 #include <string>
+
+#include "ReadyForSale.h"
 #include "../DisplayBundle.h"
 #include "../GiftBuilder.h"
 #include "../FrostReadyBuilder.h"
@@ -59,9 +61,9 @@ TEST_CASE("Director constructs bundles correctly") {
     Inventory* inv = new Inventory();
 
     // Create and add plants
-    PlantState* tulipState = new UnplantedState();
-    PlantState* roseState  = new UnplantedState();
-    PlantState* fernState  = new UnplantedState();
+    PlantState* tulipState = new ReadyForSaleState();
+    PlantState* roseState  = new ReadyForSaleState();
+    PlantState* fernState  = new ReadyForSaleState();
 
     Plant* tulip = new Flowering("Tulipa gesneriana", 0, 50, 0, 0, 1.0, 0, tulipState);
     Plant* rose  = new Flowering("Rosa chinensis", 0, 50, 0, 0, 1.0, 0, roseState);
@@ -105,9 +107,9 @@ TEST_CASE("Concrete Builders implement different behaviors") {
     Inventory* inv = new Inventory();
 
     // Add test plants
-    PlantState* state1 = new UnplantedState();
-    PlantState* state2 = new UnplantedState();
-    PlantState* state3 = new UnplantedState();
+    PlantState* state1 = new ReadyForSaleState();
+    PlantState* state2 = new ReadyForSaleState();
+    PlantState* state3 = new ReadyForSaleState();
 
     Plant* tulip = new Flowering("Tulipa gesneriana", 0, 50, 0, 0, 1.0, 0, state1);
     Plant* rose  = new Flowering("Rosa chinensis", 0, 50, 0, 0, 1.0, 0, state2);
@@ -132,8 +134,8 @@ TEST_CASE("Concrete Builders implement different behaviors") {
     }
 
     SUBCASE("FrostReadyBuilder adds frost net protection") {
-        PlantState* ricciaState = new UnplantedState();
-        PlantState* mossState   = new UnplantedState();
+        PlantState* ricciaState = new ReadyForSaleState();
+        PlantState* mossState   = new ReadyForSaleState();
 
         Plant* riccia = new NonFlowering("Riccia fluitans", 0, 50, 0, 0, 1.0, 0, ricciaState);
         Plant* moss   = new Moss("Bryum argenteum", 0, 50, 0, 0, 1.0, 0, mossState);

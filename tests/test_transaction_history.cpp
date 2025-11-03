@@ -31,10 +31,10 @@ TEST_CASE("Transaction History add and remove orders") {
 
     //add orders
     history->addOrder(order);
-    // history->addOrder(anotherOrder);
+    history->addOrder(anotherOrder);
 
     auto& items = history->getItems();
-    CHECK(items.size() == 1);
+    CHECK(items.size() == 2);
     CHECK(items[0] == order);
     CHECK(items[1] == anotherOrder);
 
