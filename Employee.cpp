@@ -64,7 +64,7 @@ void Employee::handleOrder(Command *command)
     }
     else
     {
-        Plant *plant = inventory->getPlant(cmd->getSpeciesName());
+        Plant *plant = inventory->getReadyForSalePlant(cmd->getSpeciesName());
         if (plant == nullptr)
         {
             cmd->getCustomer()->orderReceive(nullptr, false);
