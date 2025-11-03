@@ -11,12 +11,14 @@ std::string NonFlowering::toString() const {
     ss << "Plant Information:\n";
     ss << "  Plant sub-kingdom: Gymnosperms\n";
     ss << "  Species: " << species << "\n";
-    ss << "  Growth Level: " << growthLevel << "\n";
-    ss << "  Growth Rate: " << growthRate << "\n";
+    //ss << "  Growth Level: " << growthLevel << "\n";
+    //ss << "  Growth Rate: " << growthRate << "\n";
     ss << "  Amount watered today: " << amountWateredToday << "\n";
-    ss << "  Preferred Environment: " << preferredEnvironment << "\n";
-    ss << "  Current Environment: " << currentEnvironment << "\n";
+    ss << "  Required water per today: " << requiredWaterPerDay << "\n";
+    ss << "  Preferred Environment: " << ((preferredEnvironment==1)?"Tropical":(preferredEnvironment==2)?"Temperate":(preferredEnvironment==3)?"Continental":(preferredEnvironment==4)?"Dry":"unknown") << "\n";//Tropical/Temperate/Continental/Dry
+    ss << "  Current Environment: " << ((currentEnvironment==1)?"Greenhouse":(currentEnvironment==2)?"Shadenet":(currentEnvironment==3)?"Semi-shaded":(currentEnvironment==4)?"Sunny":"unknown") << "\n";//Greenhouse/Shadenet/Semi-shaded/Sunny
     ss << "  Life-cycle Stage: " << state->getName() << "\n";
+    ss << "  Price: R" << price << "\n";
     ss << "  Extras:";
     return ss.str();
 }
