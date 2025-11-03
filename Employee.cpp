@@ -98,7 +98,7 @@ void Employee::update()
 std::string Employee::toString() {
     std::stringstream ss;
     ss<<"Name: "<<name;
-    if (next!=nullptr)ss<<"\nPasses requests on to:\n"<<next->toString();
+    if (next!=nullptr)ss<<"\n\nPasses requests on to:\n"<<next->toString();
     return ss.str();
 }
 void Employee::removeDead(){

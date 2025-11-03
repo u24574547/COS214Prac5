@@ -705,6 +705,7 @@ vector<Plant *> getStartingPlants() {
 }
 
 void employeeMenu(Employee * employee) {
+    //TODO: implement employee menu
     std::string menu =  "Options:\n"
     "1. View employee details\n"
     "2. Hire a new employee\n"
@@ -743,6 +744,8 @@ int main() {
     Day* day = new Day();
     Inventory* inv = new Inventory(getStartingPlants());
     inv->observeTime(day);
+
+    //employees
     Employee* employee = new MossExpert("Johnathan Mossman",inv);
     day->addObserver(employee);
     Employee* gardener = new Gardener("Sound Gardener", inv);
@@ -754,7 +757,10 @@ int main() {
 
     Employee* rose = new FloweringExpert("Rose Knower", inv);
     ferb->setNext(rose);
+
+    //customers
     std::vector<Customer*> customers = vector<Customer*>();
+    customers.push_back(new Customer("Benny Buyer",employee, "000000") );
 
     std::string menu =  "Choose an action type:\n"
     "1. Customer\n"
