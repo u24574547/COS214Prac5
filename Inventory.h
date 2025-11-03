@@ -50,6 +50,14 @@ class Inventory : public Aggregate<Plant*> {
         Plant* getPlant(string name);
 
         /**
+             * @brief Retrieves a plant from the inventory by name that is ready for sale.
+             *
+             * @param name The name of the plant to find.
+             * @return Pointer to the Plant object if found and ready for sale, otherwise nullptr.
+             */
+        Plant* getReadyForSalePlant(string name);
+
+        /**
          * @brief Links each plant with the passed in Day object.
          *
          * @param time The Day object that controls time.

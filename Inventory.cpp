@@ -50,3 +50,15 @@ void Inventory::removeDead()
         }
     }
 }
+
+Plant * Inventory::getReadyForSalePlant(string name) {
+    Plant* plant = nullptr;
+    for (auto it = items.begin(); it != items.end(); ++it) {
+        if ((*it)->getSpecies() == name && (*it)->getStateName()=="Ready For Sale State") {
+            plant = (*it);
+            items.erase(it);
+            break;
+        }
+    }
+    return plant;
+}

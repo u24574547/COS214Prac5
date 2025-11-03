@@ -17,7 +17,7 @@ void GiftBuilder::reset() {
 
 void GiftBuilder::addBasicPlant(Inventory* inventory) {
     // Gift bundles use fern as accent plant
-    Plant* fern = inventory->getPlant("Nephrolepis exaltata");
+    Plant* fern = inventory->getReadyForSalePlant("Nephrolepis exaltata");
     if (fern) {
         std::cout << "GiftBuilder: Adding fern as accent plant\n";
         bundle->add(fern);
@@ -27,7 +27,7 @@ void GiftBuilder::addBasicPlant(Inventory* inventory) {
 void GiftBuilder::addDecorativePlant(Inventory* inventory) {
     if (firstDecorative) {
         // First decorative plant is always tulip
-        Plant* tulip = inventory->getPlant("Tulipa gesneriana");
+        Plant* tulip = inventory->getReadyForSalePlant("Tulipa gesneriana");
         if (tulip) {
             std::cout << "GiftBuilder: Adding tulip with ribbon\n";
             bundle->add(new Ribbon(tulip));
@@ -35,7 +35,7 @@ void GiftBuilder::addDecorativePlant(Inventory* inventory) {
         firstDecorative = false;
     } else {
         // Second decorative plant is always rose
-        Plant* rose = inventory->getPlant("Rosa chinensis");
+        Plant* rose = inventory->getReadyForSalePlant("Rosa chinensis");
         if (rose) {
             std::cout << "GiftBuilder: Adding rose with ribbon\n";
             bundle->add(new Ribbon(rose));

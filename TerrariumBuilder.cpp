@@ -14,7 +14,7 @@ void TerrariumBuilder::reset() {
 
 void TerrariumBuilder::addBasicPlant(Inventory* inventory) {
     // Get fittonia as accent plant
-    Plant* fittonia = inventory->getPlant("Fittonia albivenis");
+    Plant* fittonia = inventory->getReadyForSalePlant("Fittonia albivenis");
     if (fittonia) {
         std::cout << "TerrariumBuilder: Adding fittonia as accent plant\n";
         bundle->add(fittonia);
@@ -28,14 +28,14 @@ void TerrariumBuilder::addDecorativePlant(Inventory* inventory) {
 void TerrariumBuilder::addFertilisedPlant(Inventory* inventory) {
     static bool firstCall = true;
     if (firstCall) {
-        Plant* moss = inventory->getPlant("Bryum argenteum");
+        Plant* moss = inventory->getReadyForSalePlant("Bryum argenteum");
         if (moss) {
             std::cout << "TerrariumBuilder: Adding fertilised moss\n";
             bundle->add(new Fertiliser(moss));
         }
         firstCall = false;
     } else {
-        Plant* fern = inventory->getPlant("Adiantum raddianum");
+        Plant* fern = inventory->getReadyForSalePlant("Adiantum raddianum");
         if (fern) {
             std::cout << "TerrariumBuilder: Adding fertilised fern\n";
             bundle->add(new Fertiliser(fern));

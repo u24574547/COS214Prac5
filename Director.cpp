@@ -20,15 +20,18 @@ bool Director::constructGiftBundle(){
         Plant* p = it->current();
         if (!p) continue;
         std::string species = p->getSpecies();
-        if (species == "Tulipa gesneriana") hasTulip = true;
-        else if (species == "Rosa chinensis") hasRose = true;
-        else if (species == "Nephrolepis exaltata") hasFern = true;
+        std::string state = p->getStateName();
+        if (state=="Ready For Sale State") {
+            if (species == "Tulipa gesneriana") hasTulip = true;
+            else if (species == "Rosa chinensis") hasRose = true;
+            else if (species == "Nephrolepis exaltata") hasFern = true;
+        }
     }
     delete it;
 
-    if(!hasTulip) std::cout << "Tulipa gesneriana not found in inventory.\n";
-    if(!hasRose)  std::cout << "Rosa chinensis not found in inventory.\n";
-    if(!hasFern)  std::cout << "Nephrolepis exaltata not found in inventory.\n";
+    if(!hasTulip) std::cout << "No Tulipa gesneriana ready for sale were found in inventory.\n";
+    if(!hasRose)  std::cout << "No Rosa chinensis ready for sale were found in inventory.\n";
+    if(!hasFern)  std::cout << "No Nephrolepis exaltata ready for sale were found in inventory.\n";
 
     if (hasTulip && hasRose && hasFern) {
         builder->addDecorativePlant(inventory);  // GiftBuilder will get tulip
@@ -51,15 +54,18 @@ bool Director::constructFrostReadyBundle(){
         Plant* p = it->current();
         if (!p) continue;
         std::string species = p->getSpecies();
-        if (species == "Riccia fluitans") hasRiccia = true;
-        else if (species == "Nephrolepis exaltata") hasFern = true;
-        else if (species == "Bryum argenteum") hasMoss = true;
+        std::string state = p->getStateName();
+        if (state=="Ready For Sale State") {
+            if (species == "Riccia fluitans") hasRiccia = true;
+            else if (species == "Nephrolepis exaltata") hasFern = true;
+            else if (species == "Bryum argenteum") hasMoss = true;
+        }
     }
     delete it;
 
-    if(!hasRiccia) std::cout << "Riccia fluitans not found in inventory.\n";
-    if(!hasFern) std::cout << "Nephrolepis exaltata not found in inventory.\n";
-    if(!hasMoss) std::cout << "Bryum argenteum not found in inventory.\n";
+    if(!hasRiccia) std::cout << "No Riccia fluitans ready for sale were found in inventory.\n";
+    if(!hasFern) std::cout << "No Nephrolepis exaltata ready for sale were found in inventory.\n";
+    if(!hasMoss) std::cout << "No Bryum argenteum ready for sale were found in inventory.\n";
     
     if (hasRiccia && hasFern && hasMoss) {
         builder->addFrostNetPlant(inventory);    // FrostBuilder will get riccia
@@ -83,15 +89,18 @@ bool Director::constructTerrariumBundle(){
         Plant* p = it->current();
         if (!p) continue;
         std::string species = p->getSpecies();
-        if (species == "Bryum argenteum") hasMoss = true;
-        else if (species == "Adiantum raddianum") hasFern = true;
-        else if (species == "Fittonia albivenis") hasFittonia = true;
+        std::string state = p->getStateName();
+        if (state=="Ready For Sale State") {
+            if (species == "Bryum argenteum") hasMoss = true;
+            else if (species == "Adiantum raddianum") hasFern = true;
+            else if (species == "Fittonia albivenis") hasFittonia = true;
+        }
     }
     delete it;
 
-    if (!hasMoss) std::cout << "Bryum argenteum not found in inventory.\n";
-    if (!hasFern) std::cout << "Adiantum raddianum not found in inventory.\n";
-    if (!hasFittonia) std::cout << "Fittonia albivenis not found in inventory.\n";
+    if (!hasMoss) std::cout << "No Bryum argenteum ready for sale were found in inventory.\n";
+    if (!hasFern) std::cout << "No Adiantum raddianum ready for sale were found in inventory.\n";
+    if (!hasFittonia) std::cout << "No Fittonia albivenis ready for sale were found in inventory.\n";
     
     if (hasMoss && hasFern && hasFittonia) {
         builder->addFertilisedPlant(inventory);  // TerrariumBuilder will get moss
