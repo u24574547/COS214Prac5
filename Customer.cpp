@@ -22,7 +22,7 @@ void Customer::order(const std::string &speciesName)
     order->execute();
 
     // Add the order to the customer's transaction history
-    // history->addOrder(order);
+    history->addOrder(order);
 }
 
 void Customer::inquiryReceive(const std::string &plantType, const std::string &inquiryResponse)
