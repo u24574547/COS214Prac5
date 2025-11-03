@@ -1,11 +1,11 @@
 // language: cpp
 #include "doctest.h"
-#include "Director.h"
-#include "Inventory.h"
-#include "UnplantedState.h"
-#include "NonFlowering.h"
-#include "Fern.h"
-#include "Moss.h"
+#include "../Director.h"
+#include "../Inventory.h"
+#include "../UnplantedState.h"
+#include "../NonFlowering.h"
+#include "../Fern.h"
+#include "../Moss.h"
 #include <vector>
 #include <string>
 
@@ -42,9 +42,9 @@ TEST_CASE("Director::constructFrostReadyBundle calls builder methods correctly")
     PlantState* s2 = new UnplantedState();
     PlantState* s3 = new UnplantedState();
 
-    Plant* nonFlowering = new NonFlowering("Riccia fluitans", 0, 0, false, 1.0, 0, s1);
-    Plant* fern = new Fern("Fern", 0, 0, false, 1.0, 0, s2);
-    Plant* moss = new Moss("Moss", 0, 0, false, 1.0, 0, s3);
+    Plant* nonFlowering = new NonFlowering("Riccia fluitans",2, 0, 0, 1, 1.0, 2, s1);
+    Plant* fern = new Fern("Ferb", 2, 0, 0, 1, 1.0, 2, s3);
+    Plant* moss = new Moss("Moss", 2, 0, 0, 1, 1.0, 2, s3);
 
     // Add plants to inventory
     inv->addPlant(nonFlowering);

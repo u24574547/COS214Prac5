@@ -17,7 +17,7 @@ TEST_CASE("Transaction History add and remove orders") {
 
     
     PlantState* state = new UnplantedState(); 
-    Plant* fern = new Fern("Ferb", 2, 0, false, 1.0, 2, state);
+    Plant* fern = new Fern("Ferb", 2, 0, 0, 1, 1.0, 2, state);
 
     inv->addPlant(fern);
 
@@ -35,18 +35,18 @@ TEST_CASE("Transaction History add and remove orders") {
 
     auto& items = history->getItems();
     CHECK(items.size() == 1);
-    // CHECK(items[0] == order);
-    // CHECK(items[1] == anotherOrder);
+    CHECK(items[0] == order);
+    CHECK(items[1] == anotherOrder);
 
-    //remove order
-    // history->removeOrder(order);
-    // CHECK(items.size() == 1);
-    // CHECK(items[0] == anotherOrder);
+    // remove order
+    history->removeOrder(order);
+    CHECK(items.size() == 1);
+    CHECK(items[0] == anotherOrder);
 
-    delete inv;
-    delete state;
-    delete fern;
-    delete mediator;
-    delete order;
-    delete anotherOrder;
+    // delete inv;
+    // delete state;
+    // delete fern;
+    // delete mediator;
+    // delete order;
+    // delete anotherOrder;
 }
