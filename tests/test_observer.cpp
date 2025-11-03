@@ -122,15 +122,43 @@ TEST_CASE("Day removeObserver")
 
 TEST_CASE("plants update")
 {
-    Plant *plant = new Fern("fern", 0, 140, 0, false, 1.0, 0, new UnplantedState);
-    Observer *observer = dynamic_cast<Observer *>(plant);
-    observer->update();
+    SUBCASE("watered plant")
+    {
+        stringstream buffer;
+        streambuf *old = cout.rdbuf(buffer.rdbuf());
+
+        Plant *plant = new Fern("fern", 0, 140, 0, false, 1.0, 0, new UnplantedState);
+        Observer *observer = dynamic_cast<Observer *>(plant);
+        plant->water(1000);
+        observer->update();
+
+        cout.rdbuf(old);
+        CHECK(buffer.str() == "Seed has been watered! It starts sprouting.\nTransitioning from Unplanted to Seedling\n");
+    }
+    SUBCASE("unwatered plant")
+    {
+        stringstream buffer;
+        streambuf *old = cout.rdbuf(buffer.rdbuf());
+
+        Plant *plant = new Fern("fern", 0, 140, 0, false, 1.0, 0, new UnplantedState);
+        Observer *observer = dynamic_cast<Observer *>(plant);
+        observer->update();
+
+        cout.rdbuf(old);
+        CHECK(buffer.str() == "Seed is dry. Water it to start growing.\n");
+    }
 }
 TEST_CASE("employees update")
 {
+    stringstream buffer;
+    streambuf *old = cout.rdbuf(buffer.rdbuf());
+
     Employee *employee = new FernExpert("employee", nullptr);
     Observer *observer = dynamic_cast<Observer *>(employee);
     observer->update();
+
+    cout.rdbuf(old);
+    CHECK(buffer.str() == "employee's working day is finished.\n");
 }
 
 TEST_CASE("day (subject) notify")
