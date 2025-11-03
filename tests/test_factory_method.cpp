@@ -119,7 +119,7 @@ TEST_CASE("Supplier setters")
 
         supplier->setRequiredWaterPerDay(42);
 
-        CHECK(supplier->getAmountWateredToday() == 42);
+        CHECK(supplier->getRequiredWaterPerDay() == 42);
     }
     SUBCASE("setGrowthRate")
     {
