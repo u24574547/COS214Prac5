@@ -7,3 +7,4 @@
 #include "test_mediator.cpp"
 #include "test_cor.cpp"
 #include "test_state.cpp"
+#include "test_decorator.cpp"
