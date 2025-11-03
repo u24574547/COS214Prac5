@@ -26,3 +26,7 @@ std::string NonFlowering::toString() const {
 double NonFlowering::getGrowthMultiplier() {
     return GROWTH_MULTIPLIER;
 }
+
+std::string NonFlowering::getSubKingdom() {
+    return "Gymnosperms";
+}

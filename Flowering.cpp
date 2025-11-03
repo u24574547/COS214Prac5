@@ -26,3 +26,7 @@ std::string Flowering::toString() const {
 double Flowering::getGrowthMultiplier() {
     return GROWTH_MULTIPLIER;
 }
+
+std::string Flowering::getSubKingdom() {
+    return "Angiosperms";
+}

@@ -26,3 +26,7 @@ std::string Fern::toString() const {
 double Fern::getGrowthMultiplier() {
     return GROWTH_MULTIPLIER;
 }
+
+std::string Fern::getSubKingdom() {
+    return "Pteridophyta";
+}

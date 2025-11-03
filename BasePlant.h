@@ -169,6 +169,12 @@ public:
      */
     std::string getObserverType() override;
 
+    /**
+     * @brief Returns the sub-kingdom of the plant.
+     * @return std::string representing the sub-kingdom.
+     */
+    virtual std::string getSubKingdom() = 0;
+
 private:
     /**
      * @brief Handles plant growth logic for the day.

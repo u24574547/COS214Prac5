@@ -26,3 +26,7 @@ std::string Moss::toString() const {
 double Moss::getGrowthMultiplier() {
     return GROWTH_MULTIPLIER;
 }
+
+std::string Moss::getSubKingdom() {
+    return"Bryophyta";
+}

@@ -136,6 +136,12 @@ public:
      * @return BasePlant pointer.
      */
     virtual BasePlant* getBase() = 0;
+
+    /**
+     * @brief Returns the sub-kingdom of the plant.
+     * @return std::string representing the sub-kingdom.
+     */
+    virtual std::string getSubKingdom() = 0;
 };
 
 #endif // PLANT_H
