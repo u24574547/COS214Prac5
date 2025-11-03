@@ -15,7 +15,8 @@ void MossExpert::handleInquiry(Command *command)
     if (cmd->getType() == "Moss")
     {
         cout << name << " is happy to help you." << endl;
-        cmd->getCustomer()->inquiryReceive(cmd->getType(), "*a response about Moss plants");
+        std::string response = inventory->stockSummary("Bryophyta")+"Did you know that Mosses (like Bryum argenteum) can actually come back to life after drying out completely?";
+        cmd->getCustomer()->inquiryReceive(cmd->getType(), response);
     }
     else
     {

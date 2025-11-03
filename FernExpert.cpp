@@ -15,7 +15,8 @@ void FernExpert::handleInquiry(Command *command)
     if (cmd->getType() == "Fern")
     {
         cout << name << " is happy to help you." << endl;
-        cmd->getCustomer()->inquiryReceive(cmd->getType(), "*a response about Fern");
+        std::string response = inventory->stockSummary("Pteridophyta")+"\n Did you know that ferns reproduce using tiny spores, not seeds or flowers — and some species can produce millions of spores on a single leaf?";
+        cmd->getCustomer()->inquiryReceive(cmd->getType(), response);
     }
     else
     {

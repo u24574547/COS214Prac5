@@ -15,7 +15,8 @@ void FloweringExpert::handleInquiry(Command *command)
     if (cmd->getType() == "Flowering")
     {
         cout << name << " is happy to help you." << endl;
-        cmd->getCustomer()->inquiryReceive(cmd->getType(), "*a response about Flowering plants");
+        std::string response = inventory->stockSummary("Angiosperms")+"Did you know that The Titan Arum (Amorphophallus titanum), also called the corpse flower, produces one of the largest flowers in the world? It can grow over 3 meters tall!";
+        cmd->getCustomer()->inquiryReceive(cmd->getType(), response);
     }
     else
     {

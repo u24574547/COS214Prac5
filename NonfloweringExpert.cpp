@@ -15,7 +15,8 @@ void NonfloweringExpert::handleInquiry(Command *command)
     if (cmd->getType() == "Nonflowering")
     {
         cout << name << " is happy to help you." << endl;
-        cmd->getCustomer()->inquiryReceive(cmd->getType(), "*a response about nonflowering plants");
+        std::string response = inventory->stockSummary("Gymnosperms")+"Did you know that ginkgo biloba, often called a “living fossil,” is the only surviving species of an entire ancient plant group that dates back over 270 million years — even before dinosaurs?";
+        cmd->getCustomer()->inquiryReceive(cmd->getType(), response);
     }
     else
     {
