@@ -115,7 +115,7 @@ void orderPlant(Customer * customer) {
     while (true) {
         std::cout<<"Enter plant species to order:";
         std::string species;
-        std::cin>>species;
+        std::getline(std::cin,species);
         customer->order(species);
         std::cout<<"Order another plant?(Y/N):";
         std::cin>>species;
@@ -126,13 +126,38 @@ void orderPlant(Customer * customer) {
     setBufferedInput(false);
 }
 
+void orderBundle(Customer * customer) {
+    std::string menu =  "Choose a bundle:\n"
+    "1. Terrarium\n"
+    "2. Frost Ready\n"
+    "3. Gift\n"
+    "b to go back\n";
+    std::cout<<menu<<std::endl;
+    char c;
+    while (true) {
+        c = getchar();
+        if (c == '1') {
+            customer->order("Gift Bundle");
+        }
+        else if (c == '2') {
+            customer->order("FrostReady Bundle");
+        }
+        else if (c == '3') {
+            customer->order("Terrarium Bundle");
+        }
+        else if (c == 'b') break;
+        std::cout<<menu<<std::endl;
+    }
+}
+
 void customerMenu(Customer* customer) {
     std::string menu =  "Customer actions:\n"
     "1. Plant Inquiry\n"
     "2. Order a Plant\n"
-    "3. Refund\n"
-    "4. View Customer details\n"
-    "5. View Customer transaction history\n"
+    "3. Order a Bundle\n"
+    "4. Refund\n"
+    "5. View Customer details\n"
+    "6. View Customer transaction history\n"
     "b to return to customer selection menu\n";
     std::cout<<menu<<std::endl;
     char c;
@@ -140,11 +165,12 @@ void customerMenu(Customer* customer) {
         c = getchar();
         if (c=='1') plantInquiry(customer);
         else if (c == '2') orderPlant(customer);
-        else if (c == '3') customer->refund();
-        else if (c == '4') std::cout<<customer->toString()<<std::endl;
-        else if (c == '5') std::cout<<customer->transactionHistoryToString()<<std::endl;
+        else if (c == '3') orderBundle(customer);
+        else if (c == '4') customer->refund();
+        else if (c == '5') std::cout<<customer->toString()<<std::endl;
+        else if (c == '6') std::cout<<customer->transactionHistoryToString()<<std::endl;
         else if (c == 'b') break;
-        else std::cout << "Not implemented yet\n";
+        else std::cout << "Invalid input.Please Try again\n"<<std::endl;
         std::cout<<menu<<std::endl;
     }
 }
@@ -233,7 +259,7 @@ void createCustomer(vector<Customer *> &customers, Employee *employee) {
 }
 
 void customerSelectionMenu(vector<Customer *>& customers, Employee* employee) {
-    std::string menu =  "Choose/Create Customer:\n"
+    std::string menu =  "\nChoose/Create Customer:\n"
     "1. Choose a customer\n"
     "2. Create a new customer\n"
     "b to return to main menu\n";
@@ -257,6 +283,7 @@ void customerSelectionMenu(vector<Customer *>& customers, Employee* employee) {
 }
 
 void movePlant(Plant * plant) {
+    setBufferedInput(true);
     int plantType;
     while (true) {
         std::cout<<"Enter plant's storage location(Greenhouse/Shadenet/Semi-shaded/Sunny):";
@@ -281,6 +308,8 @@ void movePlant(Plant * plant) {
         std::cout<<"Invalid environment type. Please retry"<<std::endl;
     }
     plant->setCurrentEnvironment(plantType);
+    std::cout<<"Successfully moved plant\n"<<std::endl;
+    setBufferedInput(false);
 }
 
 void plantMenu(Plant* plant) {
@@ -288,19 +317,22 @@ void plantMenu(Plant* plant) {
     "1. View plant details\n"
     "2. Move Plant\n"
     "3. Water plant\n"
-    "b to return to customer selection menu\n";
+    "b to return to main selection menu\n";
     std::cout<<menu<<std::endl;
     char c;
     while (true) {
         c = getchar();
         if (c=='1') std::cout<<plant->toString()<<std::endl;
-        else if (c == '2') movePlant(plant);
+        else if (c == '2') {
+            movePlant(plant);
+            setBufferedInput(false);
+        }
         else if (c == '3') {
-            plant->water(200);
+            plant->water(1000);
             std::cout<<"Plant watered!"<<std::endl;
         }
         else if (c == 'b') break;
-        else std::cout << "Not implemented yet\n";
+        else std::cout << "Invalid input. Please retry.\n\n";
         std::cout<<menu<<std::endl;
     }
 }
@@ -507,8 +539,8 @@ Plant * choosePlant(Inventory * inv) {
             //output plants
             int counter=1;
             while (!iter->isDone()) {
-                std::cout<<"=============="<<counter<<"=============="<<std::endl;
-                std::cout<<iter->next()->toString()<<std::endl;
+                std::cout<<counter<<": ";
+                std::cout<<iter->next()->getSpecies()<<std::endl;
                 counter++;
             }
             //choose plant
@@ -521,7 +553,7 @@ Plant * choosePlant(Inventory * inv) {
             else {//fetch plant pointer
                 iter->first();
                 int value;
-                if (tryParseInt(id, value)) {
+                if (tryParseInt(id, value) && value>=1 && value<=counter) {
                     for (int i=0;i<value-1;i++) {
                         iter->next();
                     }
@@ -743,7 +775,7 @@ int main() {
         else if (c == '3') employeeMenu(employee);
         else if (c == '4') {
             autoManagementEnabled=!autoManagementEnabled;
-            cout<<"Auto Management "<<(autoManagementEnabled?"Enabled":"Disabled")<<endl;
+            cout<<"Auto watering "<<(autoManagementEnabled?"Enabled":"Disabled")<<endl;
         }
         else if (c == 'n') {
             dayNumber++;
