@@ -62,3 +62,19 @@ Plant * Inventory::getReadyForSalePlant(string name) {
     }
     return plant;
 }
+
+std::string Inventory::stockSummary(std::string type) {
+    std::map<std::string, int> counts;
+
+    for (const auto& item : items) {
+        if (item->getSubKingdom()==type && item->getStateName()=="Ready For Sale State")++counts[item->getSpecies()];
+    }
+
+    std::stringstream ss;
+    for (const pair<const string, int>& pair : counts) {
+        ss << pair.first << ": " << pair.second << "\n";
+    }
+
+    if (!ss.str().empty())return ss.str();
+    return "No "+type+" plants are for sale at the moment.";
+}

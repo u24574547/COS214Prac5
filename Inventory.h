@@ -7,6 +7,7 @@
 #include "PlantIterator.h"
 #include "Day.h"
 #include <string>
+#include <map>
 
 /**
  * @class Inventory
@@ -75,6 +76,14 @@ class Inventory : public Aggregate<Plant*> {
          * 
          */
         void removeDead();
+
+        /**
+        * @brief Creates a summary of the stock availability
+        *
+        * @param type The type of plant for which the stock summary is being generated.
+        * @return an std::string representing the stock summary.
+        */
+        std::string stockSummary(std::string type);
 };
 
 #endif
