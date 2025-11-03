@@ -80,32 +80,114 @@ using namespace std;
 
 TEST_CASE("employee order")
 {
-    Inventory *inventory = new Inventory();
-    inventory->addPlant(new Fern("fern", 0, 140, 0, false, 1.0, 0, new UnplantedState));
-    inventory->addPlant(new Moss("moss", 0, 140, 0, false, 1.0, 0, new UnplantedState));
-    inventory->addPlant(new Flowering("flowering", 0, 140, 0, false, 1.0, 0, new UnplantedState));
-    inventory->addPlant(new NonFlowering("nonFlowering", 0, 140, 0, false, 1.0, 0, new UnplantedState));
+    SUBCASE("order plant")
+    {
+        SUBCASE("not ready for sale plant")
+        {
+            stringstream buffer;
+            streambuf *old = cout.rdbuf(buffer.rdbuf());
 
-    Employee *employee = new FernExpert("emp_name", inventory);
+            Inventory *inventory = new Inventory();
+            inventory->addPlant(new Fern("fern", 0, 140, 0, false, 1.0, 0, new UnplantedState));
+            inventory->addPlant(new Moss("moss", 0, 140, 0, false, 1.0, 0, new UnplantedState));
+            inventory->addPlant(new Flowering("flowering", 0, 140, 0, false, 1.0, 0, new UnplantedState));
+            inventory->addPlant(new NonFlowering("nonFlowering", 0, 140, 0, false, 1.0, 0, new UnplantedState));
+            Employee *employee = new FernExpert("emp_name", inventory);
+            Customer *customer = new Customer("cus_name", employee, "0");
+            customer->order("fern");
 
-    Customer *customer = new Customer("cus_name", employee, "0");
+            cout.rdbuf(old);
+            CHECK(buffer.str().find("order failed") != string::npos);
+        }
+        SUBCASE("ready for sale plant")
+        {
+            stringstream buffer;
+            streambuf *old = cout.rdbuf(buffer.rdbuf());
 
-    customer->order("fern");
+            Inventory *inventory = new Inventory();
+            inventory->addPlant(new Fern("fern", 0, 140, 0, false, 1.0, 0, new ReadyForSaleState));
+            inventory->addPlant(new Moss("moss", 0, 140, 0, false, 1.0, 0, new UnplantedState));
+            inventory->addPlant(new Flowering("flowering", 0, 140, 0, false, 1.0, 0, new UnplantedState));
+            inventory->addPlant(new NonFlowering("nonFlowering", 0, 140, 0, false, 1.0, 0, new UnplantedState));
+            Employee *employee = new FernExpert("emp_name", inventory);
+            Customer *customer = new Customer("cus_name", employee, "0");
+            customer->order("fern");
+
+            cout.rdbuf(old);
+            CHECK(buffer.str().find("received order") != string::npos);
+        }
+    }
+    SUBCASE("order bundle")
+    {
+        SUBCASE("not ready for sale bundle")
+        {
+            stringstream buffer;
+            streambuf *old = cout.rdbuf(buffer.rdbuf());
+
+            Inventory *inventory = new Inventory();
+            inventory->addPlant(new Fern("fern", 0, 140, 0, false, 1.0, 0, new ReadyForSaleState));
+            inventory->addPlant(new Moss("moss", 0, 140, 0, false, 1.0, 0, new UnplantedState));
+            inventory->addPlant(new Flowering("flowering", 0, 140, 0, false, 1.0, 0, new UnplantedState));
+            inventory->addPlant(new NonFlowering("nonFlowering", 0, 140, 0, false, 1.0, 0, new UnplantedState));
+            Employee *employee = new FernExpert("emp_name", inventory);
+            Customer *customer = new Customer("cus_name", employee, "0");
+            customer->order("Gift Bundle");
+
+            cout.rdbuf(old);
+            CHECK(buffer.str().find("order failed") != string::npos);
+        }
+        SUBCASE("ready for sale bundle")
+        {
+            stringstream buffer;
+            streambuf *old = cout.rdbuf(buffer.rdbuf());
+
+            Inventory *inventory = new Inventory();
+            inventory->addPlant(new Flowering("Tulipa gesneriana", 0, 140, 0, false, 1.0, 0, new ReadyForSaleState));
+            inventory->addPlant(new Flowering("Rosa chinensis", 0, 140, 0, false, 1.0, 0, new ReadyForSaleState));
+            inventory->addPlant(new Flowering("Rosa chinensis", 0, 140, 0, false, 1.0, 0, new ReadyForSaleState));
+            inventory->addPlant(new Flowering("nonFlowering", 0, 140, 0, false, 1.0, 0, new ReadyForSaleState));
+            inventory->addPlant(new Flowering("Nephrolepis exaltata", 0, 140, 0, false, 1.0, 0, new ReadyForSaleState));
+            Employee *employee = new FernExpert("emp_name", inventory);
+            Customer *customer = new Customer("cus_name", employee, "0");
+            customer->order("Gift Bundle");
+
+            cout.rdbuf(old);
+            CHECK(buffer.str().find("received order") != string::npos);
+        }
+    }
 }
 
 TEST_CASE("employee refund")
 {
-    Inventory *inventory = new Inventory();
-    inventory->addPlant(new Fern("fern", 0, 140, 0, false, 1.0, 0, new UnplantedState));
-    inventory->addPlant(new Moss("moss", 0, 140, 0, false, 1.0, 0, new UnplantedState));
-    inventory->addPlant(new Flowering("flowering", 0, 140, 0, false, 1.0, 0, new UnplantedState));
-    inventory->addPlant(new NonFlowering("nonFlowering", 0, 140, 0, false, 1.0, 0, new UnplantedState));
+    SUBCASE("refund given")
+    {
+        stringstream buffer;
+        streambuf *old = cout.rdbuf(buffer.rdbuf());
 
-    Employee *employee = new FernExpert("emp_name", inventory);
+        Inventory *inventory = new Inventory();
+        inventory->addPlant(new Fern("fern", 0, 140, 0, false, 1.0, 0, new ReadyForSaleState));
+        inventory->addPlant(new Moss("moss", 0, 140, 0, false, 1.0, 0, new UnplantedState));
+        inventory->addPlant(new Flowering("flowering", 0, 140, 0, false, 1.0, 0, new UnplantedState));
+        inventory->addPlant(new NonFlowering("nonFlowering", 0, 140, 0, false, 1.0, 0, new UnplantedState));
+        Employee *employee = new FernExpert("emp_name", inventory);
+        Customer *customer = new Customer("cus_name", employee, "0");
+        customer->order("fern");
+        customer->refund();
 
-    Customer *customer = new Customer("cus_name", employee, "0");
+        cout.rdbuf(old);
+        CHECK(buffer.str().find("given a refund") != string::npos);
+    }
+    SUBCASE("no refund given")
+    {
+        stringstream buffer;
+        streambuf *old = cout.rdbuf(buffer.rdbuf());
 
-    customer->order("fern");
+        Inventory *inventory = new Inventory();
+        Employee *employee = new FernExpert("emp_name", inventory);
+        Customer *customer = new Customer("cus_name", employee, "0");
+        customer->refund();
 
-    customer->refund();
+        cout.rdbuf(old);
+        CHECK(buffer.str().find("no orders to refund.") != string::npos);
+    }
 }
