@@ -94,7 +94,7 @@ public:
      * @param speciesName The name of the species being refunded.
      * @param success Indicates whether the refund was successful.
      */
-    void refundReceive(bool success);
+    void refundReceive(bool success, Command* command);
 
     /**
      * @brief Destructor that cleans up the customer's transaction history.

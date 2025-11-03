@@ -11,6 +11,7 @@
 #include "Director.h"
 #include "FrostReadyBuilder.h"
 #include "GiftBuilder.h"
+#include "SoldState.h"
 #include "TerrariumBuilder.h"
 
 Employee::Employee(string name, Inventory *inventory)
@@ -83,11 +84,11 @@ void Employee::handleRefund(Command *command)
     if (refund == nullptr)
     {
         // cout << "sorry, there is no record of this transaction.";
-        cmd->getCustomer()->refundReceive(false);
+        cmd->getCustomer()->refundReceive(false, refund);
     }
     else
     {
-        cmd->getCustomer()->refundReceive(true);
+        cmd->getCustomer()->refundReceive(true, nullptr);
     }
 }
 void Employee::update()

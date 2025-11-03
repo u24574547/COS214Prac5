@@ -56,6 +56,7 @@ Plant * Inventory::getReadyForSalePlant(string name) {
     for (auto it = items.begin(); it != items.end(); ++it) {
         if ((*it)->getSpecies() == name && (*it)->getStateName()=="Ready For Sale State") {
             plant = (*it);
+            plant->setState(new SoldState());
             items.erase(it);
             break;
         }

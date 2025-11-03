@@ -32,7 +32,7 @@ void Day::notify()
         if (observers[i]->getObserverType()=="Plant") {
             observers[i]->update();
             BasePlant* plant = dynamic_cast<BasePlant*>(observers[i]);
-            if (plant->getStateName()=="Dead State") {
+            if (plant->getStateName()=="Dead State" || plant->getStateName()=="Sold State") {
                 observers.erase(observers.begin() + i);
                 i--;
             }

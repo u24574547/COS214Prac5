@@ -76,3 +76,7 @@ void PlantDecorator::setPrice(double price) {
 BasePlant * PlantDecorator::getBase() {
     return plant->getBase();
 }
+
+std::string PlantDecorator::getSubKingdom() {
+    return plant->getSubKingdom();
+}

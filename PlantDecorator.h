@@ -140,6 +140,12 @@ public:
      * @return BasePlant pointer.
      */
     BasePlant* getBase() override;
+
+    /**
+     * @brief Returns the sub-kingdom of the plant.
+     * @return std::string representing the sub-kingdom.
+     */
+    std::string getSubKingdom() override;
 };
 
 

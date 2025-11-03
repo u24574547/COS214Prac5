@@ -22,7 +22,7 @@ void Customer::order(const std::string &speciesName)
     order->execute();
 
     // Add the order to the customer's transaction history
-    // history->addOrder(order);
+    history->addOrder(order);
 }
 
 void Customer::inquiryReceive(const std::string &plantType, const std::string &inquiryResponse)
@@ -44,12 +44,12 @@ void Customer::orderReceive(Bundle *plant, bool success)
     //delete plant; if it isnt going to be used in refunds or anything
 }
 
-void Customer::refundReceive(bool success)
+void Customer::refundReceive(bool success, Command* command)
 {
     if (success)
     {
+        history->removeOrder(command);
         std::cout << name << " has been given a refund" << endl;
-        // history->removeOrder(speciesName);
     }
     else
     {
