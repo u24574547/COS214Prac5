@@ -34,4 +34,9 @@ void Gardener::removeDead()
     inventory->removeDead();
 }
 
+void Gardener::update() {
+    removeDead();
+    Employee::update();
+}
+
 #endif

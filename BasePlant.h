@@ -163,6 +163,12 @@ public:
      */
     BasePlant* getBase() override;
 
+    /**
+     * @brief fetches the type of Observer as a string
+     *@return a string ("Plant" or "Employee")
+     */
+    std::string getObserverType() override;
+
 private:
     /**
      * @brief Handles plant growth logic for the day.

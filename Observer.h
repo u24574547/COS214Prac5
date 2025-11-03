@@ -9,7 +9,7 @@
  */
 #ifndef Observer_H
 #define Observer_H
-
+#include <string>
 class Observer
 {
 public:
@@ -19,6 +19,12 @@ public:
      *
      */
     virtual void update() = 0;
+
+    /**
+     * @brief fetches the type of Observer as a string
+     *@return a string ("Plant" or "Employee")
+     */
+    virtual std::string getObserverType() = 0;
 
 protected:
 private:

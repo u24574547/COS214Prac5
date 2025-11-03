@@ -121,4 +121,7 @@ void Employee::removeDead(){
         }
     }
 
+std::string Employee::getObserverType() {
+    return "Employee";
+}
 #endif

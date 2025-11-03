@@ -109,3 +109,7 @@ void BasePlant::setPrice(double price) {
 BasePlant * BasePlant::getBase() {
     return this;
 }
+
+std::string BasePlant::getObserverType() {
+    return "Plant";
+}

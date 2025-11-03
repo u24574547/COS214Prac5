@@ -73,7 +73,7 @@ public:
      * @brief function that represents the actions performed by the employee when a day passes.
      *
      */
-    void update() override;
+    virtual void update();
 
     /**
      * @brief Prints the employees details and the next employee in the Chain of Responsibility
@@ -91,6 +91,12 @@ public:
      * @param employee 
      */
     void add(Employee *employee);
+
+    /**
+     * @brief fetches the type of Observer as a string
+     *@return a string ("Plant" or "Employee")
+     */
+    std::string getObserverType() override;
 
 protected:
     /// @brief name of employee

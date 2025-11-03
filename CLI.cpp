@@ -214,7 +214,7 @@ void createCustomer(vector<Customer *> &customers, Employee *employee) {
     setBufferedInput(true);
     std::cout << "Enter new customers name:";
     std::string name;
-    std::cin >> name;
+    std::getline(std::cin, name);
     Customer* customer=nullptr;
     if (customers.empty()) {
         customer=new Customer(name, employee, "000000");
@@ -711,8 +711,10 @@ int main() {
     Day* day = new Day();
     Inventory* inv = new Inventory(getStartingPlants());
     inv->observeTime(day);
-    Employee* employee = new MossExpert("John Mossman",inv);
+    Employee* employee = new MossExpert("Johnathan Mossman",inv);
+    day->addObserver(employee);
     Employee* gardener = new Gardener("Sound Gardener", inv);
+    day->addObserver(gardener);
     employee->setNext(gardener);
 
     Employee* ferb = new FernExpert("Ferb Ferman", inv);

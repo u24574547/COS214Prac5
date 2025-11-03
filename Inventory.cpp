@@ -41,11 +41,12 @@ void Inventory::observeTime(Day *time) {
 }
 void Inventory::removeDead()
 {
-    for (size_t i = 0; i < items.size(); i++)
-    {
-        if (items[i]->getStateName() == "Dead State") {
-            items.erase(items.begin() + i);
-            i = 0;
+    for (auto it = items.begin(); it != items.end(); ++it) {
+        if ((*it)->getStateName() == "Dead State") {
+            Plant* plant= *it;
+            items.erase(it);
+            --it;
+            delete plant;
         }
     }
 }

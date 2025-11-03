@@ -53,6 +53,12 @@ public:
      */
     void removeDead() override;
 
+    /**
+     * @brief function that represents the actions performed by the employee when a day passes.
+     *
+     */
+    virtual void update();
+
 protected:
 private:
 };
