@@ -8,12 +8,12 @@ void MatureState::nextState(Plant* plant) {
 
 
 void MatureState::grow(Plant* plant) {
-    if (oldGrowthLevel>plant->getGrowthLevel()) {
+    if (oldGrowthLevel>=plant->getGrowthLevel()) {
         startDying(plant);
     }
     oldGrowthLevel=plant->getGrowthLevel();
     if (plant->getAmountWateredToday()) {
-        std::cout << "Mature plant growing... growth level: " << plant->getGrowthLevel() << std::endl;
+        std::cout << "Mature "<<plant->getSpecies()<<" plant growing... growth level: " << plant->getGrowthLevel() << std::endl;
 
         if (plant->getGrowthLevel() >= 50) { // threshold for ReadyForSale
             nextState(plant);
@@ -25,6 +25,6 @@ std::string MatureState::getName() {
 }
 
 void MatureState::startDying(Plant *plant) {
-    std::cout << "Seedling has negative growth and begins dying." << std::endl;
+    std::cout << "Mature plant is in poor and begins dying." << std::endl;
     plant->setState(new DyingState());
 }

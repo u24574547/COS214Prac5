@@ -65,7 +65,7 @@ void BasePlant::endDay() {
 void BasePlant::grow() {
     if (state) {
         if (amountWateredToday>=requiredWaterPerDay) {
-            int grewBy = getGrowthMultiplier() * (growthRate - abs(preferredEnvironment - currentEnvironment))-1;
+            int grewBy = getGrowthMultiplier() * (growthRate - abs(preferredEnvironment - currentEnvironment));
             growthLevel += grewBy;
             // std::cout<<"Grew by: "<<grewBy<<std::endl;
             // std::cout<<"Base Growth: "<<growthRate - abs(preferredEnvironment - currentEnvironment)+1<<std::endl;

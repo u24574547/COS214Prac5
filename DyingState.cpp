@@ -16,11 +16,11 @@ std::string DyingState::getName() {
 void DyingState::grow(Plant *plant) {
     if (oldGrowthLevel>=plant->getGrowthLevel()) {
         daysDying++;
-        std::cout<<"Plant still dying. Days of life left without intervention: "<<3-daysDying<<std::endl;
+        std::cout<<plant->getSpecies()<<" is still dying. Days of life left without intervention: "<<3-daysDying<<std::endl;
     }
     else {
         daysTakenCareOf++;
-        std::cout<<"Plant is recovering from almost dying."<<std::endl;
+        std::cout<<plant->getSpecies()<<" is recovering from almost dying."<<std::endl;
     }
     oldGrowthLevel=plant->getGrowthLevel();
     if (daysDying>=3) {

@@ -2,13 +2,13 @@
 
 void ReadyForSaleState::nextState(Plant* plant) {
     if (plant->isSold()) {
-        std::cout << "Plant sold! Transitioning to Sold" << std::endl;
+        std::cout << "Plant sold! Transitioning to Sold state." << std::endl;
         plant->setState(new SoldState());
     }
 }
 
 void ReadyForSaleState::grow(Plant* plant) {
-    if (oldGrowthLevel>plant->getGrowthLevel()) {
+    if (oldGrowthLevel>=plant->getGrowthLevel()) {
         startDying(plant);
     }
     oldGrowthLevel=plant->getGrowthLevel();
@@ -16,7 +16,7 @@ void ReadyForSaleState::grow(Plant* plant) {
         nextState(plant); // move to Sold
     }
     else {
-        std::cout << "Plant is ready for sale. No further growth." << std::endl;
+        std::cout << plant->getSpecies()<<" is ready for sale." << std::endl;
     }
 }
 
@@ -25,6 +25,6 @@ std::string ReadyForSaleState::getName() {
 }
 
 void ReadyForSaleState::startDying(Plant *plant) {
-    std::cout << "Seedling has negative growth and begins dying." << std::endl;
+    std::cout << "A plant that is ready for sale is in poor conditions and begins dying." << std::endl;
     plant->setState(new DyingState());
 }
