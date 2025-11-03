@@ -113,5 +113,12 @@ void Employee::removeDead(){
     }
 
 }
+    void Employee::add(Employee *employee){
+        if (next == nullptr) {
+            next = employee;
+        } else {
+            next->add(employee);
+        }
+    }
 
 #endif

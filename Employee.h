@@ -82,9 +82,15 @@ public:
     virtual std::string toString();
     /**
      * @brief handler method that removes all the plants in the inventory that are in the dead state. to be performed by the handler.
-     * 
+     *
      */
     virtual void removeDead();
+    /**
+     * @brief adds the next employee to the chain. appending employees to the 'tail' of the employee linked list structure
+     * 
+     * @param employee 
+     */
+    void add(Employee *employee);
 
 protected:
     /// @brief name of employee
