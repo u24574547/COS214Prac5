@@ -46,5 +46,9 @@ void Day::notify()
         observer->update();
     }
 }
+vector<Observer *> Day::getObservers()
+{
+    return this->observers;
+}
 
 #endif
