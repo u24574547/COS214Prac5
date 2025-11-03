@@ -16,6 +16,7 @@
 #include "MatureState.h"
 #include "MossExpert.h"
 #include "MossSupplier.h"
+#include "NonfloweringExpert.h"
 #include "NonFloweringSupplier.h"
 #include "ReadyForSale.h"
 
@@ -704,8 +705,47 @@ vector<Plant *> getStartingPlants() {
     return plants;
 }
 
-void employeeMenu(Employee * employee) {
-    //TODO: implement employee menu
+void hire(Employee * employee, Inventory* inv) {
+    setBufferedInput(true);
+    std::cout<<"Enter the new employee's name:";
+    std::string name;
+    std::getline(std::cin,name);
+    setBufferedInput(false);
+    std::string menu =  "Choose new employee's job:\n"
+    "1. Gardener\n"
+    "2. Fern Expert\n"
+    "3. Flowering plant Expert\n"
+    "4. Non-flowering plant Expert\n"
+    "5. Moss Expert\n";
+    std::cout<<menu<<std::endl;
+    char c;
+    while (true) {
+        c = getchar();
+        if (c == '1') {
+            employee->add(new Gardener(name, inv));
+            break;
+        }
+        else if (c == '2') {
+            employee->add(new FernExpert(name, inv));
+            break;
+        }
+        else if (c == '3') {
+            employee->add(new FloweringExpert(name, inv));
+            break;
+        }
+        else if (c == '4') {
+            employee->add(new NonfloweringExpert(name, inv));
+            break;
+        }
+        else if (c == '5') {
+            employee->add(new MossExpert(name, inv));
+            break;
+        }
+        std::cout<<"Invalid Input.\n\n"<<menu<<std::endl;
+    }
+}
+
+void employeeMenu(Employee * employee, Inventory* inv) {
     std::string menu =  "Options:\n"
     "1. View employee details\n"
     "2. Hire a new employee\n"
@@ -718,7 +758,7 @@ void employeeMenu(Employee * employee) {
             cout<<employee->toString()<<"\n"<<endl;
         }
         else if (c == '2') {
-            cout<<"Not implemented yet";
+            hire(employee, inv);
         }
         else if (c == 'b') break;
         std::cout<<menu<<std::endl;
@@ -778,7 +818,7 @@ int main() {
         c = getchar();
         if (c == '1') customerSelectionMenu(customers, employee);
         else if (c == '2') plantSelectionMenu(inv);
-        else if (c == '3') employeeMenu(employee);
+        else if (c == '3') employeeMenu(employee, inv);
         else if (c == '4') {
             autoManagementEnabled=!autoManagementEnabled;
             cout<<"Auto watering "<<(autoManagementEnabled?"Enabled":"Disabled")<<endl;
